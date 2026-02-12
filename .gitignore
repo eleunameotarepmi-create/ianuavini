@@ -1,0 +1,75 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+*.local
+
+# Deploy config
+.netlify/
+.vercel/
+
+# Environment
+.env
+.env.local
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+Thumbs.db
+
+# =============================
+# Project-specific exclusions
+# =============================
+
+# Root-level scripts (py, js, ts, cjs) — NOT in components/services/data/utils/public
+/*.py
+/*.js
+/*.ts
+/*.cjs
+!vite.config.ts
+!tsconfig.json
+!server.js
+
+# Root-level temp files
+/*.txt
+/*.json
+!package.json
+!package-lock.json
+!vercel.json
+/*.bat
+/Dockerfile*
+/GUIDA_SCHEMA_DATABASE.md
+
+# Scripts folder (audit/normalization scripts)
+scripts/
+
+# Debug files
+_debug*
+
+# Backups
+*.bak*
+db_backup*.json
+db.json.backup*
+
+# Backup components
+components/*.backup.tsx
+
+# Old glass images (keep only final versions)
+public/assets/glass_*_v1.png
+public/assets/glass_*_v2.png
+public/assets/glass_*_v3.png
+public/assets/glass_*_raw.png
+public/assets/glass_*_tr.png
+public/assets/*_raw.png
+
+# Data docs
+services/ais_full_spec.txt

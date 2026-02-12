@@ -1,0 +1,17 @@
+{
+    "projectSettings": {
+        "framework": "vite",
+        "buildCommand": "npm run build",
+        "outputDirectory": "dist"
+    },
+    "rewrites": [
+        {
+            "source": "/api/db",
+            "destination": "/data/db.json"
+        },
+        {
+            "source": "/(.*)",
+            "destination": "/index.html"
+        }
+    ]
+}

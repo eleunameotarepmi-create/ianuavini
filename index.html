@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#0c0a09" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Ianua Vini</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            background: 'var(--c-bg)',
+            surface: 'var(--c-surface)',
+            primary: 'var(--c-text)',
+            secondary: 'var(--c-text-muted)',
+            accent: 'var(--c-accent)',
+            border: 'var(--c-border)',
+            input: 'var(--c-input)',
+            success: 'var(--c-success)', // Fixed typo in thought process, handled here
+          },
+          fontFamily: {
+            serif: ['var(--f-heading)'],
+            sans: ['var(--f-body)'],
+            mono: ['var(--f-mono)'],
+          },
+          borderRadius: {
+            base: 'var(--r-base)',
+          },
+          boxShadow: {
+            theme: 'var(--e-shadow)',
+            glow: 'var(--e-glow)',
+          }
+        }
+      }
+    }
+  </script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Courier+Prime:wght@400;700&family=Orbitron:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/pwa-192x192.png" />
+  <style>
+    body {
+      font-family: var(--f-body);
+      background-color: var(--c-bg);
+      color: var(--c-text);
+      -webkit-tap-highlight-color: transparent;
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    h1,
+    h2,
+    h3,
+    .font-serif {
+      font-family: var(--f-heading) !important;
+      letter-spacing: 0.05em;
+    }
+
+    .font-sans {
+      font-family: var(--f-body) !important;
+    }
+
+    .font-sans {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* RIMOZIONE TOTALE SCROLLBARS */
+    ::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+    }
+
+    html,
+    body {
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none !important;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none !important;
+      scrollbar-width: none !important;
+    }
+
+    .vertical-text {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+    }
+
+    /* Admin Input Styles - Restored */
+    .admin-input {
+      width: 100%;
+      background-color: #fafaf9;
+      /* stone-50 */
+      border: 1px solid #78716c;
+      /* stone-500: Much darker for visibility */
+      border-radius: 0.5rem;
+      /* rounded-lg */
+      padding: 0.5rem 1rem;
+      /* px-4 py-2 */
+      font-size: 0.875rem;
+      /* text-sm */
+      transition: all 0.2s;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+      /* Subtle inner shadow for depth */
+    }
+
+    .admin-input:focus {
+      outline: none;
+      border-color: #D4AF37;
+      box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+    }
+
+    /* CUSTOM ANIMATIONS (Polyfill for tailwindcss-animate) */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+
+      to {
+        opacity: 0;
+      }
+    }
+
+    @keyframes zoomIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes zoomOut {
+      from {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      to {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+    }
+
+    @keyframes slideInBottom {
+      from {
+        opacity: 0;
+        transform: translateY(2rem);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-2rem);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .animate-in {
+      animation-duration: var(--t-medium, 0.4s);
+      animation-fill-mode: both;
+      animation-timing-function: ease-out;
+    }
+
+    .fade-in {
+      animation-name: fadeIn;
+    }
+
+    .zoom-in {
+      animation-name: zoomIn;
+    }
+
+    .slide-in-from-bottom-4,
+    .slide-in-from-bottom-8 {
+      animation-name: slideInBottom;
+    }
+
+    .slide-in-from-left-2 {
+      animation-name: slideInLeft;
+    }
+
+    .delay-100 {
+      animation-delay: 100ms;
+    }
+
+    .delay-200 {
+      animation-delay: 200ms;
+    }
+
+    .delay-300 {
+      animation-delay: 300ms;
+    }
+
+    .delay-500 {
+      animation-delay: 500ms;
+    }
+
+    .delay-700 {
+      animation-delay: 700ms;
+    }
+
+    .delay-1000 {
+      animation-delay: 1000ms;
+    }
+
+    /* Theme Transitions */
+    *,
+    *::before,
+    *::after {
+      transition-property: background-color, border-color, color, fill, stroke;
+      transition-timing-function: ease-in-out;
+      transition-duration: 300ms;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+
+</html>
