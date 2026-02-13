@@ -120,7 +120,7 @@ export const MobileRegionSelector: React.FC<MobileRegionSelectorProps> = ({ onSe
                             {/* Footer divider */}
                             <div className="flex items-center gap-3 pt-2">
                                 <div className="flex-1 h-px bg-[#D4AF37]/20" />
-                                <span className="text-[#D4AF37]/40 text-sm" style={{ fontFamily: "'Great Vibes', cursive" }}>Giuliana e Paolo</span>
+                                <span className="text-[#D4AF37] text-sm drop-shadow-[0_0_10px_rgba(244,196,48,0.4)]" style={{ fontFamily: "'Great Vibes', cursive" }}>Giuliana e Paolo</span>
                                 <div className="flex-1 h-px bg-[#D4AF37]/20" />
                             </div>
                         </div>

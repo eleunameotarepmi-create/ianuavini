@@ -58,7 +58,7 @@ const WineListItem = React.memo(({ item, wineries, onSelectWine, language }: { i
                 {/* Vintage prices row for verticale wines */}
                 {wine.vintages && Array.isArray(wine.vintages) && wine.vintages.length > 0 && (
                     <div className="mt-2">
-                        <span className="text-[#D4AF37]/60 uppercase tracking-widest font-bold" style={{ fontSize: 'clamp(8px, 2vw, 10px)' }}>Verticale</span>
+                        <span className="text-[#D4AF37] uppercase tracking-widest font-bold drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]" style={{ fontSize: 'clamp(8px, 2vw, 10px)' }}>Verticale</span>
                         <div className="flex flex-wrap gap-x-2 gap-y-1 mt-1">
                             {wine.vintages.map((v: any, i: number) => (
                                 <span key={i} className="text-[#D4AF37] font-mono" style={{ fontSize: 'clamp(9px, 2.2vw, 11px)' }}>
@@ -101,7 +101,7 @@ const AccordionWineItem = React.memo(({ wine, onSelectWine }: { wine: Wine, onSe
             {/* Vintage prices for verticale wines */}
             {wine.vintages && Array.isArray(wine.vintages) && wine.vintages.length > 0 && (
                 <div className="mt-1">
-                    <span className="text-[#D4AF37]/60 uppercase tracking-widest font-bold" style={{ fontSize: 'clamp(7px, 1.8vw, 9px)' }}>Verticale</span>
+                    <span className="text-[#D4AF37] uppercase tracking-widest font-bold drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]" style={{ fontSize: 'clamp(7px, 1.8vw, 9px)' }}>Verticale</span>
                     <div className="flex flex-wrap gap-x-2 gap-y-1 mt-0.5">
                         {wine.vintages.map((v: any, i: number) => (
                             <span key={i} className="text-[#D4AF37] font-mono" style={{ fontSize: 'clamp(8px, 2vw, 10px)' }}>
