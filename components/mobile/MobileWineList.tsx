@@ -58,10 +58,10 @@ const WineListItem = React.memo(({ item, wineries, onSelectWine, language }: { i
                 {/* Vintage prices row for verticale wines */}
                 {wine.vintages && Array.isArray(wine.vintages) && wine.vintages.length > 0 && (
                     <div className="mt-2">
-                        <span className="text-stone-500 uppercase tracking-widest font-bold" style={{ fontSize: 'clamp(8px, 2vw, 10px)' }}>Verticale</span>
+                        <span className="text-[#D4AF37]/60 uppercase tracking-widest font-bold" style={{ fontSize: 'clamp(8px, 2vw, 10px)' }}>Verticale</span>
                         <div className="flex flex-wrap gap-x-2 gap-y-1 mt-1">
                             {wine.vintages.map((v: any, i: number) => (
-                                <span key={i} className="text-stone-400 font-mono" style={{ fontSize: 'clamp(9px, 2.2vw, 11px)' }}>
+                                <span key={i} className="text-[#D4AF37] font-mono" style={{ fontSize: 'clamp(9px, 2.2vw, 11px)' }}>
                                     {v.year}: € {v.price}{i < wine.vintages.length - 1 ? ' ·' : ''}
                                 </span>
                             ))}
@@ -71,7 +71,7 @@ const WineListItem = React.memo(({ item, wineries, onSelectWine, language }: { i
             </div>
             {(wine.price || wine.priceRange) && (
                 <span className="text-[#D4AF37] font-serif font-bold bg-[#D4AF37]/10 rounded-full shadow-[0_0_12px_rgba(212,175,55,0.25)] border border-[#D4AF37]/30 whitespace-nowrap shrink-0" style={{ fontSize: 'clamp(14px, 3.8vw, 20px)', padding: '6px 12px' }}>
-                    {wine.price ? `${(wine.price || '').toString().replace(/[^0-9.,€\s]/g, '').trim()}` : wine.priceRange}
+                    {wine.price ? `€ ${(wine.price || '').toString().replace(/[^0-9.,\s]/g, '').trim()}` : wine.priceRange}
                 </span>
             )}
         </div>
@@ -101,11 +101,11 @@ const AccordionWineItem = React.memo(({ wine, onSelectWine }: { wine: Wine, onSe
             {/* Vintage prices for verticale wines */}
             {wine.vintages && Array.isArray(wine.vintages) && wine.vintages.length > 0 && (
                 <div className="mt-1">
-                    <span className="text-stone-500 uppercase tracking-widest font-bold" style={{ fontSize: 'clamp(7px, 1.8vw, 9px)' }}>Verticale</span>
+                    <span className="text-[#D4AF37]/60 uppercase tracking-widest font-bold" style={{ fontSize: 'clamp(7px, 1.8vw, 9px)' }}>Verticale</span>
                     <div className="flex flex-wrap gap-x-2 gap-y-1 mt-0.5">
                         {wine.vintages.map((v: any, i: number) => (
-                            <span key={i} className="text-stone-400 font-mono" style={{ fontSize: 'clamp(8px, 2vw, 10px)' }}>
-                                {v.year}: €{v.price}{i < wine.vintages.length - 1 ? ' ·' : ''}
+                            <span key={i} className="text-[#D4AF37] font-mono" style={{ fontSize: 'clamp(8px, 2vw, 10px)' }}>
+                                {v.year}: € {v.price}{i < wine.vintages.length - 1 ? ' ·' : ''}
                             </span>
                         ))}
                     </div>
@@ -115,7 +115,7 @@ const AccordionWineItem = React.memo(({ wine, onSelectWine }: { wine: Wine, onSe
         {/* Price */}
         {(wine.price || wine.priceRange) && (
             <span className="text-[#D4AF37] font-serif font-bold bg-[#D4AF37]/10 rounded-full whitespace-nowrap flex-shrink-0 shadow-md border border-[#D4AF37]/20" style={{ fontSize: 'clamp(13px, 3.5vw, 18px)', padding: '5px 10px' }}>
-                {wine.price ? `${(wine.price || '').toString().replace(/[^0-9.,€\s]/g, '').trim()}` : wine.priceRange}
+                {wine.price ? `€ ${(wine.price || '').toString().replace(/[^0-9.,\s]/g, '').trim()}` : wine.priceRange}
             </span>
         )}
         <ArrowUpRight size={16} className="text-stone-600 group-active:text-[#D4AF37] transition-colors flex-shrink-0" />
@@ -268,6 +268,13 @@ export const MobileWineList: React.FC<MobileWineListProps> = ({
             setTimeout(() => searchInputRef.current?.focus(), 100);
         }
     }, [autoFocusSearch]);
+
+    // Gateway prevails: sync region filter when user selects a region from home
+    useEffect(() => {
+        if (initialRegion) {
+            setSelectedRegionFilter(initialRegion);
+        }
+    }, [initialRegion]);
 
     // Get images for current region filter
     const currentImages = React.useMemo(() => {

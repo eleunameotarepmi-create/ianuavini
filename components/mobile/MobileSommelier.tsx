@@ -150,7 +150,7 @@ export const MobileSommelier: React.FC<MobileSommelierProps> = ({
                                 const prevIsHeader = idx > 0 && /^\d+\.\s/.test(lines[idx - 1]?.trim());
                                 const isWineName = prevIsHeader && trimmed.length > 0 && !trimmed.startsWith('•');
                                 return <p key={idx} className={`mb-2 last:mb-0 ${isHeader ? 'text-[#D4AF37] font-semibold mt-4 first:mt-0' :
-                                        isWineName ? 'pb-2 mb-3 border-b border-[#D4AF37]/30' : ''
+                                    isWineName ? 'pb-2 mb-3 border-b border-[#D4AF37]/30' : ''
                                     }`}>{line}</p>;
                             });
                         })()}
@@ -170,8 +170,8 @@ export const MobileSommelier: React.FC<MobileSommelierProps> = ({
             {/* Input bar — keyboard aware */}
             <div
                 ref={inputBarRef}
-                className="p-4 bg-stone-900/90 backdrop-blur-md border-t border-stone-800 fixed left-0 right-0 z-20 transition-all duration-150"
-                style={{ bottom: keyboardOffset > 0 ? `${keyboardOffset}px` : '70px' }}
+                className="p-4 bg-stone-900/90 backdrop-blur-md border-t border-stone-800 fixed left-0 right-0 z-[60] transition-all duration-150"
+                style={{ bottom: keyboardOffset > 0 ? `${keyboardOffset}px` : '80px' }}
             >
                 <div className="flex gap-2 relative max-w-md mx-auto">
                     <input

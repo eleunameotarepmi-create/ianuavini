@@ -215,7 +215,7 @@ export const WineDetailModal: React.FC<WineDetailModalProps> = ({ wine, winery, 
               <WineGlass
                 wine={effectiveWine}
                 straight={true}
-                className="w-[90px] h-[135px] md:w-[160px] md:h-[240px] !translate-y-0 opacity-90 drop-shadow-lg"
+                className="w-[160px] h-[240px] md:w-[240px] md:h-[360px] !translate-y-0 opacity-90 drop-shadow-lg"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent blur-sm mix-blend-overlay rounded-b-3xl pointer-events-none" />
             </div>
