@@ -29,11 +29,21 @@ const isMagnumBottle = (name: string) => {
 
 const getGlassDescription = (type: string | undefined, language: Language): string => {
   if (!type) return t('glass.standard', language);
-  if (['red'].includes(type)) return t('glass.red', language);
-  if (['white', 'rose'].includes(type)) return t('glass.white', language);
+  if (['red', 'balloon'].includes(type)) return t('glass.balloon', language);
+  if (['white'].includes(type)) return t('glass.white', language);
+  if (['rose'].includes(type)) return t('glass.renano_rose', language);
   if (['sparkling', 'sparkling_rose'].includes(type)) return t('glass.sparkling', language);
+  if (['sparkling_complex', 'champagne'].includes(type)) return t('glass.tulipano', language);
+  if (['sparkling_rose_complex'].includes(type)) return t('glass.tulipano_rose', language);
   if (['dessert'].includes(type)) return t('glass.dessert', language);
-  return t('glass.universal', language);
+  if (['borgogna', 'white_structured', 'white_complex'].includes(type)) return t('glass.borgogna', language);
+  if (['borgogna_red'].includes(type)) return t('glass.borgogna_red', language);
+  if (['red_complex'].includes(type)) return t('glass.gran_balloon', language);
+  if (['red_structured'].includes(type)) return t('glass.borgogna_red_structured', language);
+  if (['borgogna_rose', 'rose_structured'].includes(type)) return t('glass.borgogna_rose', language);
+  if (['red_premium', 'barbaresco'].includes(type)) return t('glass.barbaresco', language);
+  if (['flute_rose'].includes(type)) return t('glass.flute_rose', language);
+  return t('glass.balloon', language); // Default fallback
 }
 
 interface WineDetailModalProps {
@@ -159,7 +169,7 @@ export const WineDetailModal: React.FC<WineDetailModalProps> = ({ wine, winery, 
 
       </div>
 
-      <div className="relative w-full h-full md:max-h-[90vh] md:max-w-7xl flex flex-col md:flex-row overflow-hidden md:rounded-3xl md:border md:border-white/10 md:shadow-2xl bg-stone-900/40">
+      <div className="relative w-full h-full flex flex-col overflow-hidden bg-stone-900/40">
 
         {/* Close Button - Moved inside the card specifically to avoid overlapping the frame */}
         <button
@@ -170,7 +180,7 @@ export const WineDetailModal: React.FC<WineDetailModalProps> = ({ wine, winery, 
         </button>
 
         {/* LEFT COLUMN: HERO IMAGE - On mobile, fixed at top, nothing can cover it */}
-        <div className="w-full md:w-1/2 h-[45vh] md:h-full shrink-0 relative flex items-center justify-center p-8 md:p-12 overflow-hidden bg-gradient-to-b from-stone-950 to-stone-900 z-30">
+        <div className="w-full h-[45vh] shrink-0 relative flex items-center justify-center p-8 overflow-hidden bg-gradient-to-b from-stone-950 to-stone-900 z-30">
           {/* Subtle background glow, not obscuring */}
           <div className="absolute inset-0 bg-radial-gradient from-[#D4AF37]/5 to-transparent opacity-50" />
 
@@ -187,7 +197,7 @@ export const WineDetailModal: React.FC<WineDetailModalProps> = ({ wine, winery, 
 
           {/* MOBILE PRICE - Floating in Hero - Metallic Gold Gradient */}
           {(selectedVintage?.price || effectiveWine.price) && (
-            <div className="absolute bottom-4 right-2 z-20 md:hidden animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-500">
+            <div className="absolute bottom-4 right-2 z-20 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-500">
               <div className="bg-transparent px-2 py-1 rounded-full border border-[#D4AF37]/50 flex items-center justify-center">
                 <span className="font-serif text-xl font-bold tracking-wide bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] bg-clip-text text-transparent drop-shadow-md">
                   €{(selectedVintage ? selectedVintage.price : effectiveWine.price || '').toString().replace(/[^0-9.,();\-\s]/g, '').trim()}
@@ -209,13 +219,13 @@ export const WineDetailModal: React.FC<WineDetailModalProps> = ({ wine, winery, 
           </div>
 
           {/* Wine Glass Indicator - Bottom Left of Bottle (Hero) */}
-          <div className="absolute bottom-[12%] left-[0px] md:bottom-[8%] md:left-2 z-20 flex flex-col items-center gap-1">
+          <div className="absolute bottom-[12%] left-[0px] z-20 flex flex-col items-center gap-1">
             {/* Glass image - tappable */}
             <div className="relative cursor-pointer" onClick={() => setGlassInfoOpen(true)}>
               <WineGlass
                 wine={effectiveWine}
                 straight={true}
-                className="w-[160px] h-[240px] md:w-[240px] md:h-[360px] !translate-y-0 opacity-90 drop-shadow-lg"
+                className="w-[160px] h-[240px] !translate-y-0 opacity-90 drop-shadow-lg"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent blur-sm mix-blend-overlay rounded-b-3xl pointer-events-none" />
             </div>
@@ -223,7 +233,7 @@ export const WineDetailModal: React.FC<WineDetailModalProps> = ({ wine, winery, 
             {/* Glass Label - Small */}
             <div className="bg-black/40 backdrop-blur-md px-2 py-1 rounded-full border border-white/10">
               <div className="flex items-center gap-1">
-                <span className="text-[9px] md:text-[10px] uppercase tracking-wider text-[#D4AF37] font-bold whitespace-nowrap">
+                <span className="text-[9px] uppercase tracking-wider text-[#D4AF37] whitespace-pre-line text-center">
                   {getGlassDescription(effectiveWine.type, language)}
                 </span>
               </div>
@@ -239,7 +249,7 @@ export const WineDetailModal: React.FC<WineDetailModalProps> = ({ wine, winery, 
                 onClick={() => setGlassInfoOpen(false)}
               >
                 <div
-                  className="relative bg-stone-900 border border-[#D4AF37]/20 rounded-3xl p-7 md:p-10 max-w-lg w-full shadow-2xl animate-in zoom-in-95 duration-300 max-h-[85vh] overflow-y-auto"
+                  className="relative bg-stone-900 border border-[#D4AF37]/20 rounded-3xl p-7 max-w-lg w-full shadow-2xl animate-in zoom-in-95 duration-300 max-h-[85vh] overflow-y-auto"
                   onClick={e => e.stopPropagation()}
                 >
                   {/* Close button */}
@@ -283,7 +293,7 @@ export const WineDetailModal: React.FC<WineDetailModalProps> = ({ wine, winery, 
         </div>
 
         {/* RIGHT COLUMN: DETAILS (The "Sheet") - On mobile, stays below hero, internal scroll only */}
-        <div className="w-full md:w-1/2 h-[55vh] md:h-full relative bg-stone-900 md:bg-stone-900/80 md:backdrop-blur-xl flex flex-col justify-start overflow-y-auto overflow-x-hidden no-scrollbar rounded-t-[2.5rem] md:rounded-none z-20 border-t border-white/10 md:border-none shadow-[0_-10px_40px_rgba(0,0,0,0.8)] md:shadow-none transition-colors duration-500">
+        <div className="w-full h-[55vh] relative bg-stone-900 flex flex-col justify-start overflow-y-auto overflow-x-hidden no-scrollbar rounded-t-[2.5rem] z-20 border-t border-white/10 shadow-[0_-10px_40px_rgba(0,0,0,0.8)] transition-colors duration-500">
 
           {/* BACKGROUND WATERMARK & GOLDEN DECOR */}
           <div className="absolute inset-0 pointer-events-none opacity-10 mix-blend-screen overflow-hidden">
@@ -303,24 +313,24 @@ export const WineDetailModal: React.FC<WineDetailModalProps> = ({ wine, winery, 
           )}
 
           {/* Mobile Drag Handle Indicator & Type Icon fallback if needed */}
-          <div className="w-full flex items-center justify-between px-6 pt-4 pb-2 md:hidden">
+          <div className="w-full flex items-center justify-between px-6 pt-4 pb-2">
             <div className="w-12 h-1.5 bg-stone-800 rounded-full mx-auto" />
             {/* Small glass icon top right mobile? Optional. Let's keep specific mobile glass in header block below instead for consistency */}
           </div>
 
-          <div className="px-3 py-6 md:px-12 md:py-16 md:max-w-2xl mx-auto space-y-6">
+          <div className="px-3 py-6 mx-auto space-y-6">
 
             {/* Header Info (Unified for Mobile & Desktop) */}
-            <div className="space-y-4 text-center md:text-left">
-              <div className="flex items-center justify-center md:justify-start gap-3">
+            <div className="space-y-4 text-center">
+              <div className="flex items-center justify-center gap-3">
                 <div className="h-[1px] w-8 bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728]" />
-                <span className="font-sans text-sm md:text-base uppercase tracking-[0.25em] bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] bg-clip-text text-transparent font-bold">{winery?.name}</span>
-                <div className="h-[1px] w-8 bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] md:hidden" />
+                <span className="font-sans text-sm uppercase tracking-[0.25em] bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] bg-clip-text text-transparent font-bold">{winery?.name}</span>
+                <div className="h-[1px] w-8 bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728]" />
               </div>
               {/* NEW WINE TYPE BADGE - Text Based, Clean, No Icons */}
               {/* Wine Glass Indicator - Removed from here, moved to Hero Left Column per user request */}
 
-              <h1 className="text-3xl md:text-4xl font-serif text-stone-100 leading-tight">
+              <h1 className="text-3xl font-serif text-stone-100 leading-tight">
                 {effectiveWine.name}
               </h1>
 
@@ -328,21 +338,21 @@ export const WineDetailModal: React.FC<WineDetailModalProps> = ({ wine, winery, 
               {showBottleGuide && (
                 <button
                   onClick={() => setIsBottleGuideOpen(true)}
-                  className="inline-flex items-center gap-2 px-3 py-1.5 bg-stone-800/60 border border-white/10 rounded-full text-xs uppercase tracking-widest font-serif text-stone-400 hover:text-[#D4AF37] hover:border-[#D4AF37]/30 transition-all mx-auto md:mx-0"
+                  className="inline-flex items-center gap-2 px-3 py-1.5 bg-stone-800/60 border border-white/10 rounded-full text-xs uppercase tracking-widest font-serif text-stone-400 hover:text-[#D4AF37] hover:border-[#D4AF37]/30 transition-all mx-auto"
                 >
                   <span>{t('bottle.formats', language)}</span>
                   <span className="text-[#D4AF37]">→</span>
                 </button>
               )}
 
-              <div className="flex flex-col md:flex-row items-center md:justify-between gap-4">
-                <span className="bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] bg-clip-text text-transparent font-sans text-xl md:text-xl uppercase tracking-widest order-2 md:order-1 font-bold shadow-black drop-shadow-sm">
+              <div className="flex flex-col items-center gap-4">
+                <span className="bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] bg-clip-text text-transparent font-sans text-xl uppercase tracking-widest order-2 font-bold shadow-black drop-shadow-sm">
                   {effectiveWine.grapes}
                 </span>
 
                 {/* DESKTOP PRICE - Inline, Elegant, Metallic Gold */}
                 {(selectedVintage?.price || effectiveWine.price) && (
-                  <div className="order-1 md:order-2 hidden md:block relative">
+                  <div className="order-1 hidden relative">
                     <div className="absolute -inset-4 bg-black/20 blur-xl rounded-full -z-10" />
                     <span className="relative font-serif text-3xl font-medium tracking-wide bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
                       {(() => {
@@ -369,19 +379,19 @@ export const WineDetailModal: React.FC<WineDetailModalProps> = ({ wine, winery, 
 
             {/* Vintage Selector (Mobile + Desktop) */}
             {effectiveWine.vintages && effectiveWine.vintages.length > 0 && (
-              <div className="flex gap-3 flex-wrap items-center justify-center md:justify-start py-2">
+              <div className="flex gap-3 flex-wrap items-center justify-center py-2">
                 {effectiveWine.vintages.map(v => (
                   <button
                     key={v.year}
                     onClick={() => setSelectedVintage(v)}
                     className={`
-                      w-16 h-16 md:w-12 md:h-12 rounded-full flex flex-col items-center justify-center border-2 transition-all duration-300
+                      w-16 h-16 rounded-full flex flex-col items-center justify-center border-2 transition-all duration-300
                       ${selectedVintage?.year === v.year
                         ? 'bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] border-transparent text-stone-900 scale-110 shadow-[0_0_20px_rgba(212,175,55,0.4)]'
                         : 'bg-transparent border-stone-500 text-stone-400 hover:border-[#D4AF37] hover:text-[#D4AF37] active:scale-95'}
                     `}
                   >
-                    <span className="text-xs md:text-[11px] font-serif font-bold leading-none italic">{v.year}</span>
+                    <span className="text-xs font-serif font-bold leading-none italic">{v.year}</span>
                     <span className="text-[10px] font-serif opacity-70 whitespace-nowrap">€{v.price}</span>
                   </button>
                 ))}
@@ -500,7 +510,7 @@ export const WineDetailModal: React.FC<WineDetailModalProps> = ({ wine, winery, 
 
             {/* Description */}
             <div className="relative">
-              <p className="font-serif text-lg md:text-xl text-stone-200 leading-relaxed italic border-l-2 border-accent/30 pl-4 py-1">
+              <p className="font-serif text-lg text-stone-200 leading-relaxed italic border-l-2 border-accent/30 pl-4 py-1">
                 {getTranslated(effectiveWine, 'description', language)}
               </p>
             </div>
@@ -554,9 +564,9 @@ export const WineDetailModal: React.FC<WineDetailModalProps> = ({ wine, winery, 
 
             {/* ZOOM PRICE - Floating Bottom Left - Metallic Gold */}
             {(selectedVintage?.price || effectiveWine.price) && (
-              <div className="absolute bottom-8 right-4 md:bottom-12 md:right-8 z-[160] animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">
+              <div className="absolute bottom-8 right-4 z-[160] animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">
                 <div className="bg-stone-800/40 backdrop-blur-md px-4 py-1.5 rounded-full border border-[#D4AF37]/50 flex items-center justify-center">
-                  <span className="font-serif text-3xl md:text-4xl font-medium tracking-wide bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] bg-clip-text text-transparent drop-shadow-[0_4px_20px_rgba(0,0,0,1)]">
+                  <span className="font-serif text-3xl font-medium tracking-wide bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] bg-clip-text text-transparent drop-shadow-[0_4px_20px_rgba(0,0,0,1)]">
                     €{(selectedVintage ? selectedVintage.price : effectiveWine.price || '').toString().replace(/[^0-9.,();\-\s]/g, '').trim()}
                   </span>
                 </div>
@@ -564,7 +574,7 @@ export const WineDetailModal: React.FC<WineDetailModalProps> = ({ wine, winery, 
             )}
 
             {/* DYNAMIC WIREFRAME WINE GLASS - Floating Bottom Left */}
-            <div className="absolute bottom-8 left-4 md:bottom-12 md:left-20 z-[155] animate-in fade-in zoom-in-50 duration-1000 delay-500 hidden md:block pointer-events-none">
+            <div className="absolute bottom-8 left-4 z-[155] animate-in fade-in zoom-in-50 duration-1000 delay-500 hidden pointer-events-none">
 
             </div>
 

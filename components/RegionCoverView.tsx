@@ -109,7 +109,7 @@ export const RegionCoverView: React.FC<RegionCoverViewProps> = ({ region, onEnte
     const Icon = getIcon(region.id);
 
     return (
-        <div className="relative min-h-screen md:h-screen w-full bg-[#1c1917] font-serif overflow-y-auto md:overflow-hidden transition-colors duration-1000">
+        <div className="relative min-h-screen w-full bg-[#1c1917] font-serif overflow-y-auto transition-colors duration-1000">
             {/* Background Image - Fixed to ensure it stays during mobile scroll */}
             <div className="fixed inset-0 z-0">
                 <div
@@ -123,7 +123,7 @@ export const RegionCoverView: React.FC<RegionCoverViewProps> = ({ region, onEnte
             {onHome && (
                 <button
                     onClick={onHome}
-                    className="fixed top-6 right-6 z-50 p-4 md:p-3 bg-stone-900/30 backdrop-blur-md border border-[#D4AF37]/40 rounded-full text-[#D4AF37] hover:bg-[#D4AF37] hover:text-stone-900 transition-all duration-500 group shadow-[0_0_20px_rgba(212,175,55,0.2)] active:scale-95"
+                    className="fixed top-6 right-6 z-50 p-4 bg-stone-900/30 backdrop-blur-md border border-[#D4AF37]/40 rounded-full text-[#D4AF37] hover:bg-[#D4AF37] hover:text-stone-900 transition-all duration-500 group shadow-[0_0_20px_rgba(212,175,55,0.2)] active:scale-95"
                     title="Torna alla Home"
                 >
                     <Home size={22} className="group-hover:scale-110 transition-transform" />
@@ -131,7 +131,7 @@ export const RegionCoverView: React.FC<RegionCoverViewProps> = ({ region, onEnte
             )}
 
             {/* Main Layout Container */}
-            <div className={`relative z-10 min-h-screen flex flex-col items-center justify-between pt-12 pb-24 md:pb-20 px-6 md:px-8 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+            <div className={`relative z-10 min-h-screen flex flex-col items-center justify-between pt-12 pb-24 px-6 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
 
                 {/* Top Section: Header + Title */}
                 <div className="flex flex-col items-center w-full shrink-0">
@@ -141,17 +141,17 @@ export const RegionCoverView: React.FC<RegionCoverViewProps> = ({ region, onEnte
                             <div className="absolute inset-0 bg-[#D4AF37]/40 blur-3xl rounded-full scale-[2.2]" />
                             <Icon size={46} className="relative text-[#D4AF37] drop-shadow-[0_0_20px_rgba(244,196,48,0.8)]" strokeWidth={1} />
                         </div>
-                        <span className="text-xs md:text-sm lg:text-base uppercase tracking-[0.8em] text-[#D4AF37] font-bold drop-shadow-[0_0_15px_rgba(244,196,48,0.5)] text-center">
+                        <span className="text-xs uppercase tracking-[0.8em] text-[#D4AF37] font-bold drop-shadow-[0_0_15px_rgba(244,196,48,0.5)] text-center">
                             {region.id === 'vda' ? "Valle d'Aosta • Vallée d'Aoste" : region.label}
                         </span>
                     </div>
 
                     {/* 2. Center Piece: The Big Hero Title */}
                     {localizedData.introTitle && (
-                        <div className="flex flex-col items-center text-center max-w-5xl mt-8 mb-12 md:mb-10">
+                        <div className="flex flex-col items-center text-center max-w-5xl mt-8 mb-12">
                             <h1 className={`font-serif text-white uppercase tracking-[0.15em] leading-tight mb-6 drop-shadow-lg ${localizedData.introTitle.length > 25
-                                ? 'text-2xl md:text-2xl lg:text-3xl'
-                                : 'text-3xl md:text-4xl lg:text-5xl'
+                                ? 'text-2xl
+                                : 'text-3xl
                                 }`}>
                                 {localizedData.introTitle}
                             </h1>
@@ -162,16 +162,16 @@ export const RegionCoverView: React.FC<RegionCoverViewProps> = ({ region, onEnte
 
                 {/* 3. The Integrated Info Grid: Territory, Philosophy, Varieties */}
                 {localizedData.details && (
-                    <div className="w-full flex-grow flex items-center justify-center my-8 md:my-0">
-                        <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 lg:gap-16 items-start max-w-6xl mx-auto">
+                    <div className="w-full flex-grow flex items-center justify-center my-8">
+                        <div className="w-full grid grid-cols-1 gap-12 items-start max-w-6xl mx-auto">
                             {/* Territory */}
-                            <div className="flex flex-col items-center md:items-start text-center md:text-left group">
-                                <h3 className="text-[12px] uppercase tracking-[0.3em] text-[#D4AF37] mb-6 md:mb-8 font-bold flex items-center gap-3 drop-shadow-[0_0_10px_rgba(244,196,48,0.4)]">
+                            <div className="flex flex-col items-center text-center group">
+                                <h3 className="text-[12px] uppercase tracking-[0.3em] text-[#D4AF37] mb-6 font-bold flex items-center gap-3 drop-shadow-[0_0_10px_rgba(244,196,48,0.4)]">
                                     <Mountain size={15} className="opacity-90" /> {localizedData.details.territory.title}
                                 </h3>
-                                <div className="space-y-4 md:space-y-6">
+                                <div className="space-y-4">
                                     {localizedData.details.territory.points.slice(0, 4).map((point, idx) => (
-                                        <p key={idx} className="text-sm lg:text-base text-stone-300 italic font-light leading-relaxed">
+                                        <p key={idx} className="text-sm text-stone-300 italic font-light leading-relaxed">
                                             {point}
                                         </p>
                                     ))}
@@ -179,13 +179,13 @@ export const RegionCoverView: React.FC<RegionCoverViewProps> = ({ region, onEnte
                             </div>
 
                             {/* Philosophy */}
-                            <div className="flex flex-col items-center md:items-start text-center md:text-left group">
-                                <h3 className="text-[12px] uppercase tracking-[0.3em] text-[#D4AF37] mb-6 md:mb-8 font-bold flex items-center gap-3 drop-shadow-[0_0_10px_rgba(244,196,48,0.4)]">
+                            <div className="flex flex-col items-center text-center group">
+                                <h3 className="text-[12px] uppercase tracking-[0.3em] text-[#D4AF37] mb-6 font-bold flex items-center gap-3 drop-shadow-[0_0_10px_rgba(244,196,48,0.4)]">
                                     <Wind size={15} className="opacity-90" /> {localizedData.details.philosophy.title}
                                 </h3>
-                                <div className="space-y-4 md:space-y-6">
+                                <div className="space-y-4">
                                     {localizedData.details.philosophy.points.slice(0, 4).map((point, idx) => (
-                                        <p key={idx} className="text-sm lg:text-base text-stone-300 italic font-light leading-relaxed">
+                                        <p key={idx} className="text-sm text-stone-300 italic font-light leading-relaxed">
                                             {point}
                                         </p>
                                     ))}
@@ -193,8 +193,8 @@ export const RegionCoverView: React.FC<RegionCoverViewProps> = ({ region, onEnte
                             </div>
 
                             {/* Varieties */}
-                            <div className="flex flex-col items-center md:items-start text-center md:text-left group">
-                                <h3 className="text-[12px] uppercase tracking-[0.3em] text-[#D4AF37] mb-6 md:mb-8 font-bold flex items-center gap-3 drop-shadow-[0_0_10px_rgba(244,196,48,0.4)]">
+                            <div className="flex flex-col items-center text-center group">
+                                <h3 className="text-[12px] uppercase tracking-[0.3em] text-[#D4AF37] mb-6 font-bold flex items-center gap-3 drop-shadow-[0_0_10px_rgba(244,196,48,0.4)]">
                                     <Grape size={15} className="opacity-90" /> {localizedData.details.varieties.title}
                                 </h3>
                                 <div className="space-y-6">
@@ -203,7 +203,7 @@ export const RegionCoverView: React.FC<RegionCoverViewProps> = ({ region, onEnte
                                             <span className="text-[10px] uppercase tracking-[0.3em] text-[#D4AF37]/80 font-bold">
                                                 {group.label}
                                             </span>
-                                            <p className="text-sm lg:text-base text-stone-200 font-light leading-relaxed">
+                                            <p className="text-sm text-stone-200 font-light leading-relaxed">
                                                 {group.items.join(' • ')}
                                             </p>
                                         </div>
@@ -215,7 +215,7 @@ export const RegionCoverView: React.FC<RegionCoverViewProps> = ({ region, onEnte
                 )}
 
                 {/* 4. Bottom Portion: Action Buttons - Touch Optimized */}
-                <div className="flex flex-col sm:flex-row items-center gap-6 mt-12 shrink-0 pb-8 md:pb-0 w-full sm:w-auto">
+                <div className="flex flex-col sm:flex-row items-center gap-6 mt-12 shrink-0 pb-8 w-full sm:w-auto">
                     <button
                         onClick={onViewMenu}
                         className="group relative w-full sm:w-auto px-10 py-5 bg-stone-900/80 backdrop-blur-xl border border-[#D4AF37]/50 text-white uppercase tracking-[0.25em] text-sm font-serif hover:bg-stone-800 hover:border-[#D4AF37] transition-all duration-500 rounded-full shadow-[0_0_30px_rgba(244,196,48,0.2)] active:scale-[0.98]"

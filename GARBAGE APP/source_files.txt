@@ -1,0 +1,25 @@
+BALLOON.png
+BARBARESCO.png
+bicchieri-bianco-leggero-1.jpg
+bicchieri-bianco-strutturato.jpg
+bicchieri-passito.jpg
+bicchieri-rosso-medio.jpg
+bicchieri-rosso-strutturato.jpg
+bicchieri-spumante.jpg
+Borgogna bianco.png
+Borgogna rosè strutturato.jpg
+bORGOGNA ROSSO.png
+Flute Frizzante bianco.jpg
+Flute rosè.jpg
+Guida bottiglie sito.txt
+Passito.jpg
+Renano Bianco.png
+Renano Rosè.png
+Screenshot 2026-02-13 015154.png
+Screenshot 2026-02-13 015220.png
+Screenshot 2026-02-13 015236.png
+Screenshot 2026-02-13 015302.png
+Screenshot 2026-02-13 015312.png
+Screenshot 2026-02-13 015336.png
+Tulipano bianco frizzante.jpg
+Tulipano rosè frizzante.png

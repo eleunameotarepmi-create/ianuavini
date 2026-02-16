@@ -1,0 +1,38 @@
+{
+  "wines": [
+    {
+      "id": "wine_1769636869896_0",
+      "name": "Barbaresco DOCG \"Mantico\" 2018"
+    }
+  ],
+  "dishes": [
+    {
+      "id": "1",
+      "name": "Selezione di formaggi e salumi locali"
+    },
+    {
+      "id": "20",
+      "name": "Le polente di IANUA (concia o con il camoscio)"
+    },
+    {
+      "id": "23",
+      "name": "Rognoncino al Porto con purea di patate"
+    },
+    {
+      "id": "28",
+      "name": "Sottofiletto o filetto di garronese alla griglia"
+    },
+    {
+      "id": "29",
+      "name": "Filetto di garronese alla Rossini o alla Wellington"
+    },
+    {
+      "id": "5",
+      "name": "Vitello tonnato"
+    },
+    {
+      "id": "8",
+      "name": "Sushi vald\u00f4t\u00e8n (albese, tartare, carne salada)"
+    }
+  ]
+}

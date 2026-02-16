@@ -1,0 +1,7 @@
+Searching for 'Sushi'...
+Item found: Sushi valdôtèn (albese, tartare, carne salada)
+Verified Pairings count: 1
+  Pairing 1:
+    Wine ID: andrea_oberto_nebbiolo_2023
+    Label: Scelta del Sommelier
+    -> Link to Wine: NOT FOUND

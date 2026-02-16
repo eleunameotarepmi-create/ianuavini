@@ -1,0 +1,4 @@
+Vercel CLI 50.16.0
+Retrieving projectÔÇª
+Fetching logs...
+No logs found for emanuele-s-projects-ba7b0d37/ianuavini on branch main

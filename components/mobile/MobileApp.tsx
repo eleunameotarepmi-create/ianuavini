@@ -331,7 +331,7 @@ export const MobileApp: React.FC<MobileAppProps> = (props) => {
             )}
 
             {mobileTab === 'menu' && (
-                <div className="pt-4 pb-24">
+                <div className="pb-24">
                     <MenuView
                         menu={menu}
                         wines={wines}
@@ -340,6 +340,7 @@ export const MobileApp: React.FC<MobileAppProps> = (props) => {
                         onSelectWine={setSelectedWine}
                         onUpdateMenu={onUpdateMenu}
                         onOpenGruppi={() => setShowGruppiModal(true)}
+                        onExploreWineries={() => setMobileTab('cellar')}
                     />
                 </div>
             )}

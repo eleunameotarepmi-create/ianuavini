@@ -19,7 +19,7 @@ const io = new Server(httpServer, {
     }
 });
 
-const PORT = process.env.PORT || 4016;
+const PORT = process.env.PORT || 3577;
 const DB_FILE = path.join(__dirname, 'db.json');
 const ADMIN_TOKEN = 'ianua2024'; // Simple security token
 

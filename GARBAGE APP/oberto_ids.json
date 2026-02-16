@@ -1,0 +1,54 @@
+{
+  "wines": [
+    {
+      "id": "wine_1769631559580_0",
+      "name": "Langhe Nebbiolo DOC 2022"
+    },
+    {
+      "id": "wine_1769631559580_1",
+      "name": "Barolo DOCG del Comune di La Morra 2019"
+    }
+  ],
+  "dishes": [
+    {
+      "id": "1",
+      "name": "Selezione di formaggi e salumi locali"
+    },
+    {
+      "id": "16",
+      "name": "Bucatini alla amatriciana valdostana"
+    },
+    {
+      "id": "20",
+      "name": "Le polente di IANUA (concia o con il camoscio)"
+    },
+    {
+      "id": "23",
+      "name": "Rognoncino al Porto con purea di patate"
+    },
+    {
+      "id": "27",
+      "name": "Cotoletta alla valdostana in doppia panatura di grissini"
+    },
+    {
+      "id": "29",
+      "name": "Filetto di garronese alla Rossini o alla Wellington"
+    },
+    {
+      "id": "3",
+      "name": "Entr\u00e9e valdostana (pane nero, miele, burro, castagne, lardo, mocetta)"
+    },
+    {
+      "id": "5",
+      "name": "Vitello tonnato"
+    },
+    {
+      "id": "8",
+      "name": "Sushi vald\u00f4t\u00e8n (albese, tartare, carne salada)"
+    },
+    {
+      "id": "9",
+      "name": "Tris del Piemonte: vol au vent ai porcini, sformato di verza, insalata russa"
+    }
+  ]
+}

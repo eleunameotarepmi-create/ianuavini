@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Wine, Winery, MenuItem, GlossaryItem, AiInstruction } from '../types';
 import { WINE_REGIONS, PIEMONTE_REGIONS, getWineryRegion, getAltitude } from '../constants';
-import { Plus, Edit2, Trash2, Wine as WineIcon, Store, UtensilsCrossed, Globe, Loader2, Image as ImageIcon, Download, Upload, Trash, FileText, BookOpen, Sparkles, Eye, EyeOff, Search, LogOut, FileJson, Bot } from 'lucide-react';
+import { Plus, Edit2, Trash2, Wine as WineIcon, Store, UtensilsCrossed, Globe, Loader2, Image as ImageIcon, Download, Upload, Trash, FileText, BookOpen, Sparkles, Eye, EyeOff, Search, LogOut, FileJson, Bot, MoreHorizontal, ChevronDown, ChevronRight, X } from 'lucide-react';
 import { parseMenuWithAi, extractWineryData, extractWineryDataFromText, generateGlossaryFromWines, extractGlossaryFromText, translateToLanguages } from '../services/geminiService';
 import { translateWithOpenRouter } from '../services/openRouterService';
 import { translateWithDeepLBoth, getDeepLUsage } from '../services/deeplService';
@@ -79,7 +79,7 @@ interface AdminPanelProps {
   onBulkUpdate: (data: { wines: Wine[], wineries: Winery[], glossary?: GlossaryItem[], menu?: MenuItem[] }) => void;
 }
 
-type AdminTab = 'wines' | 'wineries' | 'menu' | 'glossary' | 'settings' | 'ai_instructions' | 'themes';
+type AdminTab = 'catalogo' | 'menu' | 'glossary' | 'settings' | 'ai_instructions' | 'themes';
 
 export const AdminPanel: React.FC<AdminPanelProps> = ({
   wines, wineries, menu, glossary, aiInstructions,
@@ -88,7 +88,11 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
   onUpdateMenu, onUpdateGlossary, onResetGlossary, onDeleteGlossaryItem, onAddAiInstruction, onUpdateAiInstruction, onDeleteAiInstruction, onWipeData, onExportBackup, onImportBackup, onLogout,
   onWipeWines, onWipeWineries, onWipeMenu, onWipeGlossary, defaultRegion, onBulkUpdate
 }) => {
-  const [activeTab, setActiveTab] = useState<AdminTab>('wines');
+  const [activeTab, setActiveTab] = useState<AdminTab>('catalogo');
+  const [expandedWineryId, setExpandedWineryId] = useState<string | null>(null);
+  const [showActionsMenu, setShowActionsMenu] = useState(false);
+  const [editingContext, setEditingContext] = useState<'wine' | 'winery' | null>(null);
+  const [editingWineryParentId, setEditingWineryParentId] = useState<string | null>(null);
   const [adminRegion, setAdminRegion] = useState<'vda' | 'piemonte'>(defaultRegion || 'vda');
   const { currentTheme, setTheme } = useTheme();
 
@@ -119,8 +123,8 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
   const filteredWines = wines.filter(w =>
     filteredWineries.some(winery => winery.id === w.wineryId)
   ).sort((a, b) => {
-    const orderA = wineryOrderMap.get(a.wineryId) ?? 999;
-    const orderB = wineryOrderMap.get(b.wineryId) ?? 999;
+    const orderA = Number(wineryOrderMap.get(a.wineryId) ?? 999);
+    const orderB = Number(wineryOrderMap.get(b.wineryId) ?? 999);
     if (orderA !== orderB) return orderA - orderB;
     return a.name.localeCompare(b.name);
   });
@@ -1596,564 +1600,629 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
   };
 
   return (
-    <div className="p-4 pb-32 space-y-8 animate-in fade-in duration-500 bg-[#fcfbf9] min-h-screen">
+    <div className="p-4 pb-32 space-y-6 animate-in fade-in duration-500 bg-stone-950 min-h-screen">
       <div className="flex justify-between items-center px-1">
-        <h1 className="text-lg font-serif font-bold text-stone-800">Admin Panel</h1>
+        <h1 className="text-lg font-serif font-bold bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] bg-clip-text text-transparent">Pannello Admin</h1>
         <button
           onClick={onLogout}
-          className="flex items-center gap-2 px-3 py-1.5 bg-red-50 text-red-600 rounded-lg text-[10px] font-bold uppercase tracking-widest border border-red-100 hover:bg-red-100 transition-colors"
+          className="flex items-center gap-2 px-3 py-1.5 bg-red-500/10 text-red-400 rounded-lg text-[10px] font-bold uppercase tracking-widest border border-red-500/20 hover:bg-red-500/20 transition-colors"
         >
           <LogOut size={14} /> Esci
         </button>
       </div>
 
       {/* REGION TOGGLE SWITCHER */}
-      <div className="flex justify-center mb-6">
-        <div className="bg-white p-1 rounded-xl shadow-sm border border-stone-200 flex gap-2">
+      <div className="flex justify-center">
+        <div className="bg-stone-900/80 p-1 rounded-xl border border-white/10 backdrop-blur-sm flex gap-1">
           <button
             onClick={() => setAdminRegion('vda')}
-            className={`px-6 py-2 rounded-lg font-bold uppercase tracking-widest text-[10px] transition-all flex items-center gap-2 ${adminRegion === 'vda' ? 'bg-stone-800 text-[#D4AF37] shadow-lg' : 'text-stone-400 hover:bg-stone-50'}`}
+            className={`px-5 py-2 rounded-lg font-bold uppercase tracking-widest text-[10px] transition-all flex items-center gap-2 ${adminRegion === 'vda' ? 'bg-[#D4AF37]/10 text-[#D4AF37] border border-[#D4AF37]/30' : 'text-stone-500 hover:text-stone-300 hover:bg-white/5'}`}
           >
-            ⛰️ L'Ascesa (VDA)
+            ⛰️ VDA
           </button>
-          <div className="w-px bg-stone-200 my-1"></div>
           <button
             onClick={() => setAdminRegion('piemonte')}
-            className={`px-6 py-2 rounded-lg font-bold uppercase tracking-widest text-[10px] transition-all flex items-center gap-2 ${adminRegion === 'piemonte' ? 'bg-stone-800 text-[#D4AF37] shadow-lg' : 'text-stone-400 hover:bg-stone-50'}`}
+            className={`px-5 py-2 rounded-lg font-bold uppercase tracking-widest text-[10px] transition-all flex items-center gap-2 ${adminRegion === 'piemonte' ? 'bg-[#D4AF37]/10 text-[#D4AF37] border border-[#D4AF37]/30' : 'text-stone-500 hover:text-stone-300 hover:bg-white/5'}`}
           >
-            🌫️ La Discesa (Piemonte)
+            🌫️ Piemonte
           </button>
         </div>
       </div>
 
-      <div className="flex bg-stone-100 p-1 rounded-2xl shadow-inner overflow-x-auto no-scrollbar">
+      <div className="flex bg-stone-900/60 p-1 rounded-2xl border border-white/10 overflow-x-auto no-scrollbar">
         {[
-          { id: 'wines', icon: WineIcon, label: 'Vini' },
-          { id: 'wineries', icon: Store, label: 'Cantine' },
+          { id: 'catalogo', icon: WineIcon, label: 'Catalogo' },
           { id: 'menu', icon: UtensilsCrossed, label: 'Menu' },
           { id: 'glossary', icon: BookOpen, label: 'Glossario' },
-          { id: 'ai_instructions', icon: Bot, label: 'Centrale Operativa' },
+          { id: 'ai_instructions', icon: Bot, label: 'Centrale' },
           { id: 'settings', icon: Globe, label: 'Database' }
         ].map(tab => (
           <button
             key={tab.id}
-            onClick={() => { setActiveTab(tab.id as AdminTab); resetForms(); lastScrollPos.current = 0; }}
-            className={`flex-1 min-w-[70px] flex flex-col items-center justify-center gap-1 py-3 rounded-xl font-sans text-[8px] font-bold uppercase tracking-widest transition-all ${activeTab === tab.id ? 'bg-white text-stone-800 shadow-sm' : 'text-stone-400'}`}
+            onClick={() => { setActiveTab(tab.id as AdminTab); resetForms(); setExpandedWineryId(null); setShowActionsMenu(false); lastScrollPos.current = 0; }}
+            className={`flex-1 min-w-[60px] flex flex-col items-center justify-center gap-1 py-3 rounded-xl font-sans text-[9px] font-bold uppercase tracking-wider transition-all ${activeTab === tab.id ? 'bg-stone-800 text-[#D4AF37] shadow-lg shadow-[#D4AF37]/5' : 'text-stone-500 hover:text-stone-400'}`}
           >
-            <tab.icon size={16} className={activeTab === tab.id ? 'text-[#D4AF37]' : ''} /> {tab.label}
+            <tab.icon size={18} className={activeTab === tab.id ? 'text-[#D4AF37]' : ''} /> {tab.label}
           </button>
         ))}
       </div>
 
-      {activeTab === 'wines' && (
-        <div className="space-y-6">
-          {/* ... Wines Header ... */}
-          <div className="flex justify-between items-center">
-            <div className="flex items-center gap-3">
-              <h2 className="text-xl font-serif font-bold text-stone-800 uppercase tracking-tighter">Catalogo Vini</h2>
-
-              {/* WINE SEARCH BAR */}
-              <div className="relative">
-                <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400" />
-                <input
-                  type="text"
-                  placeholder="Cerca vino..."
-                  className="pl-9 pr-4 py-1.5 bg-white border border-stone-200 rounded-full text-xs focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/20 w-48 transition-all"
-                  value={wineSearchTerm}
-                  onChange={(e) => setWineSearchTerm(e.target.value)}
-                />
-                {wineSearchTerm && (
-                  <button
-                    onClick={() => setWineSearchTerm('')}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-300 hover:text-stone-500"
-                  >
-                    <Trash2 size={10} /> {/* Using Trash as clear icon or X if available, mostly X is better but using what I have imported or simple char */}
-                  </button>
-                )}
-              </div>
-
-              <button
-                onClick={() => setShowHiddenWines(!showHiddenWines)}
-                className={`text-[9px] px-3 py-1.5 rounded-full font-bold uppercase tracking-wider transition-all ${showHiddenWines ? 'bg-red-100 text-red-600' : 'bg-stone-100 text-stone-500'}`}
-              >
-                {showHiddenWines ? `Nascosti (${wines.filter(w => w.hidden).length})` : `Visibili (${wines.filter(w => !w.hidden).length})`}
-              </button>
-            </div>
-            <div className="flex gap-2 items-center">
-              {/* EXPORT GROUP */}
-              <button onClick={handleExportWinesFull} className="p-2 bg-stone-100 text-stone-600 rounded-full shadow-lg hover:bg-stone-200" title="Esporta Vini (Completo)"><Download size={18} /></button>
-              <button onClick={handleExportWinesNoImages} className="p-2 bg-stone-100 text-stone-400 rounded-full shadow-lg hover:bg-stone-200" title="Esporta Vini (No Foto)"><FileText size={18} /></button>
-
-              <div className="h-4 w-px bg-stone-200 mx-1" />
-
-              {/* IMPORT GROUP */}
-              <label className="p-2 bg-stone-100 text-stone-600 rounded-full shadow-lg hover:bg-stone-200 cursor-pointer" title="Importa Vini (Completo)">
-                <Upload size={18} />
-                <input type="file" accept=".json" className="hidden" onChange={handleImportWinesFull} />
-              </label>
-              <label className="p-2 bg-purple-50 text-purple-600 rounded-full shadow-lg hover:bg-purple-100 cursor-pointer border border-purple-100" title="Importa Vini (No Foto - Mantiene Immagini Esistenti)">
-                <Sparkles size={18} />
-                <input type="file" accept=".json" className="hidden" onChange={handleImportWinesNoImages} />
-              </label>
-
-              <div className="h-4 w-px bg-stone-200 mx-1" />
-
-              <button onClick={onWipeWines} className="p-2 bg-red-100 text-red-600 rounded-full shadow-lg hover:bg-red-200" title="Svuota Vini"><Trash size={18} /></button>
-              <button onClick={() => setIsAdding(true)} className="p-2 bg-stone-800 text-[#D4AF37] rounded-full shadow-lg"><Plus /></button>
-            </div>
-          </div>
-
-          {/* ... Wineries Header ... */}
-          {/* ... (Actually I need to target specific blocks. Let's start with Wines Header lines 240-251) */}
-          {isAdding || editingId ? (
-            <div className="bg-white p-6 rounded-[2rem] border shadow-xl space-y-4">
-              <input placeholder="Nome Vino (es. Donnas DOC 2020)" className="w-full bg-stone-50 border border-stone-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-[#D4AF37] text-stone-700 font-medium transition-colors" value={wineForm.name} onChange={e => setWineForm({ ...wineForm, name: e.target.value })} />
-              <select className="w-full bg-stone-50 border border-stone-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-[#D4AF37] text-stone-700 font-medium transition-colors" value={wineForm.wineryId} onChange={e => setWineForm({ ...wineForm, wineryId: e.target.value })}>
-                <option value="">Seleziona Cantina...</option>
-                {filteredWineries.map(w => <option key={w.id} value={w.id}>{w.name}</option>)}
-              </select>
-
-              <select className="w-full bg-stone-50 border border-stone-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-[#D4AF37] text-stone-700 font-medium transition-colors" value={wineForm.type || ''} onChange={e => setWineForm({ ...wineForm, type: e.target.value as any })}>
-                <option value="">Seleziona Tipologia (per Calice)...</option>
-                <option value="red">Rosso</option>
-                <option value="white">Bianco</option>
-                <option value="rose">Rosato</option>
-                <option value="sparkling_rose">Rosato Frizzante</option>
-                <option value="sparkling">Bollicine / Spumante</option>
-                <option value="dessert">Dolce / Passito</option>
-              </select>
-
-              <label className="text-[10px] uppercase font-bold text-stone-500 tracking-widest ml-1">VITIGNI & GRADAZIONE</label>
-              <div className="grid grid-cols-2 gap-3">
-                <input placeholder="Vitigni (es. Nebbiolo 100%)" className="w-full bg-stone-50 border border-stone-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-[#D4AF37] text-stone-700 font-medium transition-colors" value={wineForm.grapes} onChange={e => setWineForm({ ...wineForm, grapes: e.target.value })} />
-                <input placeholder="Gradazione (es. 13.5%)" className="w-full bg-stone-50 border border-stone-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-[#D4AF37] text-stone-700 font-medium transition-colors" value={wineForm.alcohol} onChange={e => setWineForm({ ...wineForm, alcohol: e.target.value })} />
-              </div>
-
-              <label className="text-[10px] uppercase font-bold text-stone-500 tracking-widest ml-1">TEMPERATURA DI SERVIZIO</label>
-              <div className="grid grid-cols-2 gap-3">
-                <input placeholder="Temperatura (es. 16-18°C)" className="w-full bg-stone-50 border border-stone-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-[#D4AF37] text-stone-700 font-medium transition-colors" value={wineForm.temperature} onChange={e => setWineForm({ ...wineForm, temperature: e.target.value })} />
-                {/* Altitude removed as per user request */}
-              </div>
-
-              <label className="text-[10px] uppercase font-bold text-stone-500 tracking-widest ml-1">ABBINAMENTI CONSIGLIATI</label>
-              <input placeholder="Abbinamenti (es. Carni rosse, Fontina)" className="w-full bg-stone-50 border border-stone-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-[#D4AF37] text-stone-700 font-medium transition-colors" value={wineForm.pairing} onChange={e => setWineForm({ ...wineForm, pairing: e.target.value })} />
-
-              <label className="text-[10px] uppercase font-bold text-stone-500 tracking-widest ml-1">DESCRIZIONE</label>
-              <textarea placeholder="Descrivi il vino..." className="w-full bg-stone-50 border border-stone-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-[#D4AF37] text-stone-700 font-medium h-32 leading-relaxed p-4 transition-colors" value={wineForm.description} onChange={e => setWineForm({ ...wineForm, description: e.target.value })} />
-
-              <label className="text-[10px] uppercase font-bold text-stone-500 tracking-widest ml-1">PROFILO SENSORIALE</label>
-              <textarea placeholder="Descrivi il profilo sensoriale..." className="w-full bg-stone-50 border border-stone-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-[#D4AF37] text-stone-700 font-medium h-32 leading-relaxed p-4 transition-colors" value={wineForm.sensoryProfile || ''} onChange={e => setWineForm({ ...wineForm, sensoryProfile: e.target.value })} />
-
-              <label className="text-[10px] uppercase font-bold text-stone-500 tracking-widest ml-1">CURIOSITÀ (LO SAPEVI CHE?)</label>
-              <textarea placeholder="Aggiungi una curiosità o un aneddoto..." className="w-full bg-stone-50 border border-stone-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-[#D4AF37] text-stone-700 font-medium h-24 leading-relaxed p-4 transition-colors" value={wineForm.curiosity || ''} onChange={e => setWineForm({ ...wineForm, curiosity: e.target.value })} />
-
-
-
-              <div className="flex items-end gap-2">
-                <div className="flex-1">
-                  <input
-                    placeholder="Prezzo in Carta (es. 25 o 119 (2014); 125 (2013))"
-                    className="w-full bg-stone-50 border border-stone-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-[#D4AF37] text-stone-700 font-medium transition-colors"
-                    value={wineForm.price || ''}
-                    onChange={e => setWineForm({ ...wineForm, price: e.target.value })}
-                  />
-                </div>
+      {activeTab === 'catalogo' && (
+        <div className="space-y-4" style={{ backgroundImage: "url('/assets/desktop_bg.jpg')", backgroundPosition: 'bottom center', backgroundRepeat: 'no-repeat', backgroundSize: '100% 200px' }}>
+          {/* CATALOGO HEADER - Mobile optimized */}
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <h2 className="text-lg font-serif font-bold text-[#D4AF37] uppercase tracking-tight">Catalogo</h2>
+              <div className="flex items-center gap-2">
                 <button
-                  onClick={() => {
-                    const raw = wineForm.price || "";
-                    // Regex to find patterns like "119 (2014)" or "125(2013)"
-                    // Matches: Price part (digits/dots/commas) + Space? + ( + Year (4 digits) + )
-                    // Global match to find all
-                    const regex = /([\d.,]+)\s*\(\s*(\d{4})\s*\)/g;
-                    let match;
-                    const newVintages = [];
-
-                    while ((match = regex.exec(raw)) !== null) {
-                      // match[1] is price, match[2] is year
-                      newVintages.push({
-                        price: match[1].trim(),
-                        year: match[2].trim()
-                      });
-                    }
-
-                    if (newVintages.length > 0) {
-                      if (confirm(`Trovate ${newVintages.length} annate nel testo del prezzo. Vuoi generare la lista "Annate & Prezzi"?\n\n${newVintages.map(v => `${v.year}: €${v.price}`).join('\n')}`)) {
-                        setWineForm(prev => ({
-                          ...prev,
-                          vintages: [...(prev.vintages || []), ...newVintages],
-                          price: prev.price // Keep the text as is, or clear it? User usually wants one or other. Let's keep it as is for safety, or maybe just "Vedi lista annate"
-                          // Actually, users often want the text "Price Range" if vintages exist.
-                          // Let's just append invalidating nothing.
-                        }));
-                      }
-                    } else {
-                      alert("Nessun formato 'Prezzo (Anno)' trovato nel testo.\nUsa ad esempio: '119 (2014); 125 (2013)'");
-                    }
-                  }}
-                  className="p-2 bg-purple-100 text-purple-600 rounded-lg hover:bg-purple-200 transition-colors mb-[1px]"
-                  title="Estrai Annate dal Testo"
+                  onClick={() => setShowHiddenWines(!showHiddenWines)}
+                  className={`text-[9px] px-3 py-1.5 rounded-full font-bold uppercase tracking-wider transition-all ${showHiddenWines ? 'bg-red-500/10 text-red-400 border border-red-500/20' : 'bg-white/5 text-stone-500 border border-white/10'}`}
                 >
-                  <Sparkles size={18} />
+                  {showHiddenWines ? `Nascosti` : `Visibili (${wines.filter(w => !w.hidden).length})`}
                 </button>
-              </div>
-
-              {/* GESTIONE ANNATE */}
-              <div className="space-y-3 p-4 bg-stone-50 rounded-xl border border-dashed border-stone-300">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs uppercase tracking-widest text-stone-600 font-bold">Annate & Prezzi</span>
-                  </div>
+                {/* Actions dropdown trigger */}
+                <div className="relative">
                   <button
-                    onClick={() => setWineForm({ ...wineForm, vintages: [...(wineForm.vintages || []), { year: '', price: '' }] })}
-                    className="bg-stone-800 text-[#D4AF37] px-3 py-1 rounded-lg text-[9px] uppercase font-bold tracking-widest hover:bg-black transition-all flex items-center gap-1"
+                    onClick={() => setShowActionsMenu(!showActionsMenu)}
+                    className="p-2 bg-white/5 text-stone-400 rounded-full hover:bg-white/10 border border-white/10 transition-colors"
                   >
-                    <Plus size={12} /> Aggiungi Annata
+                    <MoreHorizontal size={18} />
                   </button>
-                </div>
-
-                {(wineForm.vintages && wineForm.vintages.length > 0) ? (
-                  <div className="grid gap-2">
-                    {wineForm.vintages.map((v, idx) => (
-                      <div key={idx} className="flex gap-2 items-center">
-                        <input
-                          placeholder="Annata (es. 2018)"
-                          className="admin-input flex-1 bg-white min-w-[100px]"
-                          value={v.year || ''}
-                          onChange={e => {
-                            const newVintages = [...(wineForm.vintages || [])];
-                            newVintages[idx] = { ...newVintages[idx], year: e.target.value };
-                            setWineForm({ ...wineForm, vintages: newVintages });
-                          }}
-                        />
-                        <input
-                          placeholder="Prezzo (€)"
-                          className="admin-input w-24 bg-white min-w-[80px]"
-                          value={v.price || ''}
-                          onChange={e => {
-                            const newVintages = [...(wineForm.vintages || [])];
-                            newVintages[idx] = { ...newVintages[idx], price: e.target.value };
-                            setWineForm({ ...wineForm, vintages: newVintages });
-                          }}
-                        />
-                        <button
-                          onClick={() => {
-                            const newVintages = wineForm.vintages!.filter((_, i) => i !== idx);
-                            setWineForm({ ...wineForm, vintages: newVintages });
-                          }}
-                          className="p-2 text-red-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                        >
-                          <Trash2 size={16} />
+                  {showActionsMenu && (
+                    <>
+                      <div className="fixed inset-0 z-40" onClick={() => setShowActionsMenu(false)} />
+                      <div className="absolute right-0 top-12 z-50 bg-stone-900 rounded-2xl shadow-2xl border border-white/10 backdrop-blur-xl w-64 py-2 animate-in fade-in duration-200">
+                        <div className="px-4 py-2 border-b border-white/5">
+                          <p className="text-[10px] font-bold uppercase tracking-widest text-[#D4AF37]/60">Azioni Catalogo</p>
+                        </div>
+                        {/* EXPORT ACTIONS */}
+                        <button onClick={() => { handleExportAllWineries(); setShowActionsMenu(false); }} className="w-full flex items-center gap-3 px-4 py-3 hover:bg-white/5 transition-colors text-left">
+                          <Upload size={16} className="text-stone-500" />
+                          <span className="text-xs text-stone-300 font-medium">Esporta Tutto (Cantine + Vini)</span>
+                        </button>
+                        <button onClick={() => { handleExportWinesFull(); setShowActionsMenu(false); }} className="w-full flex items-center gap-3 px-4 py-3 hover:bg-white/5 transition-colors text-left">
+                          <Download size={16} className="text-stone-500" />
+                          <span className="text-xs text-stone-300 font-medium">Esporta Vini (Completo)</span>
+                        </button>
+                        <button onClick={() => { handleExportWinesOnly(); setShowActionsMenu(false); }} className="w-full flex items-center gap-3 px-4 py-3 hover:bg-white/5 transition-colors text-left">
+                          <WineIcon size={16} className="text-[#D4AF37]" />
+                          <span className="text-xs text-stone-300 font-medium">Esporta Solo Vini (Backup)</span>
+                        </button>
+                        <button onClick={() => { handleExportWinesNoImages(); setShowActionsMenu(false); }} className="w-full flex items-center gap-3 px-4 py-3 hover:bg-white/5 transition-colors text-left">
+                          <FileText size={16} className="text-stone-400" />
+                          <span className="text-xs text-stone-300 font-medium">Esporta Vini (No Foto)</span>
+                        </button>
+                        <div className="h-px bg-white/5 my-1" />
+                        {/* IMPORT ACTIONS */}
+                        <label className="w-full flex items-center gap-3 px-4 py-3 hover:bg-white/5 transition-colors text-left cursor-pointer">
+                          <FileJson size={16} className="text-stone-500" />
+                          <span className="text-xs text-stone-300 font-medium">Importa JSON Completo</span>
+                          <input type="file" accept=".json" className="hidden" onChange={(e) => { handleJsonImport(e); setShowActionsMenu(false); }} />
+                        </label>
+                        <label className="w-full flex items-center gap-3 px-4 py-3 hover:bg-white/5 transition-colors text-left cursor-pointer">
+                          <Store size={16} className="text-emerald-500" />
+                          <span className="text-xs text-stone-300 font-medium">Importa Cantina Singola</span>
+                          <input type="file" accept=".json" className="hidden" onChange={(e) => { handleImportSingleWinery(e); setShowActionsMenu(false); }} />
+                        </label>
+                        <label className="w-full flex items-center gap-3 px-4 py-3 hover:bg-white/5 transition-colors text-left cursor-pointer">
+                          <Sparkles size={16} className="text-purple-500" />
+                          <span className="text-xs text-stone-300 font-medium">Importa Integrativo</span>
+                          <input type="file" accept=".json" className="hidden" onChange={(e) => { handleIntegrativeImport(e); setShowActionsMenu(false); }} />
+                        </label>
+                        <label className="w-full flex items-center gap-3 px-4 py-3 hover:bg-white/5 transition-colors text-left cursor-pointer">
+                          <Upload size={16} className="text-stone-600" />
+                          <span className="text-xs text-stone-300 font-medium">Importa Vini (Completo)</span>
+                          <input type="file" accept=".json" className="hidden" onChange={(e) => { handleImportWinesFull(e); setShowActionsMenu(false); }} />
+                        </label>
+                        <label className="w-full flex items-center gap-3 px-4 py-3 hover:bg-white/5 transition-colors text-left cursor-pointer">
+                          <Sparkles size={16} className="text-purple-400" />
+                          <span className="text-xs text-stone-300 font-medium">Importa Vini (No Foto)</span>
+                          <input type="file" accept=".json" className="hidden" onChange={(e) => { handleImportWinesNoImages(e); setShowActionsMenu(false); }} />
+                        </label>
+                        <div className="h-px bg-white/5 my-1" />
+                        {/* AI ACTIONS */}
+                        <button onClick={() => { handleTranslateAllWineries(); setShowActionsMenu(false); }} disabled={isLoadingAi} className="w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-500/10 transition-colors text-left">
+                          <Globe size={16} className="text-blue-500" />
+                          <span className="text-xs text-blue-400 font-medium">Traduci Tutto (EN/FR)</span>
+                        </button>
+                        <button onClick={() => { handleNormalizeSensoryProfiles(); setShowActionsMenu(false); }} className="w-full flex items-center gap-3 px-4 py-3 hover:bg-amber-500/10 transition-colors text-left">
+                          <Sparkles size={16} className="text-amber-500" />
+                          <span className="text-xs text-amber-400 font-medium">Genera Profili Sensoriali</span>
+                        </button>
+                        <div className="h-px bg-white/5 my-1" />
+                        {/* DANGER ZONE */}
+                        <button onClick={() => { onWipeWines(); setShowActionsMenu(false); }} className="w-full flex items-center gap-3 px-4 py-3 hover:bg-red-500/10 transition-colors text-left">
+                          <Trash size={16} className="text-red-400" />
+                          <span className="text-xs text-red-400 font-medium">Svuota Tutti i Vini</span>
+                        </button>
+                        <button onClick={() => { onWipeWineries(); setShowActionsMenu(false); }} className="w-full flex items-center gap-3 px-4 py-3 hover:bg-red-500/10 transition-colors text-left">
+                          <Trash size={16} className="text-red-400" />
+                          <span className="text-xs text-red-400 font-medium">Svuota Tutte le Cantine</span>
                         </button>
                       </div>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="text-center py-2 text-stone-400 text-[10px] italic">
-                    Nessuna annata specifica inserita (usa prezzo standard)
-                  </div>
-                )}
-              </div>
-
-              {/* CAMPO UPLOAD IMMAGINE VINO */}
-              <div className="space-y-3 p-4 bg-stone-50 rounded-xl border border-dashed border-stone-300">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <ImageIcon size={18} className="text-[#D4AF37]" />
-                    <span className="text-xs uppercase tracking-widest text-stone-600 font-bold">Foto Bottiglia</span>
-                  </div>
-                  <label className="cursor-pointer bg-stone-800 text-white px-4 py-2 rounded-lg text-[10px] uppercase font-bold tracking-widest hover:bg-black transition-all flex items-center gap-2">
-                    <Upload size={14} /> Scegli File
-                    <input
-                      type="file"
-                      className="hidden"
-                      accept="image/*"
-                      onChange={async (e) => {
-                        const file = e.target.files?.[0];
-                        if (file) {
-                          try {
-                            const compressed = await compressImage(file);
-                            setWineForm({ ...wineForm, image: compressed });
-                          } catch (err) {
-                            alert("Errore caricamento immagine");
-                          }
-                        }
-                      }}
-                    />
-                  </label>
+                    </>
+                  )}
                 </div>
-                {wineForm.image ? (
-                  <div className="relative group">
-                    <img src={wineForm.image} alt="Anteprima" className="w-full h-48 object-contain rounded-lg border bg-white" />
-                    <button
-                      onClick={() => setWineForm({ ...wineForm, image: '' })}
-                      className="absolute top-2 right-2 bg-red-500 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all shadow-lg"
-                    >
-                      <Trash2 size={14} />
-                    </button>
-                  </div>
-                ) : (
-                  <div className="h-24 flex items-center justify-center text-stone-300 text-xs uppercase tracking-widest">
-                    Nessuna immagine selezionata
-                  </div>
-                )}
-              </div>
-
-              <div className="flex gap-2">
-                <button onClick={() => {
-                  if (isAdding) onAddWine({ ...wineForm, id: "wine_" + Date.now().toString() } as Wine);
-                  else if (editingId) onUpdateWine({ ...wineForm, id: editingId } as Wine);
-                  resetForms();
-                }} className="flex-1 bg-stone-800 text-[#D4AF37] py-4 rounded-xl font-bold uppercase text-[10px] tracking-widest">Salva</button>
-                <button onClick={resetForms} className="px-6 bg-stone-100 text-stone-500 rounded-xl font-bold uppercase text-[10px]">Annulla</button>
               </div>
             </div>
-          ) : (
-            <div className="grid gap-3">
-              {filteredWines.filter(w => {
-                const matchesVisibility = showHiddenWines ? w.hidden : !w.hidden;
-                const matchesSearch = wineSearchTerm === '' ||
-                  w.name.toLowerCase().includes(wineSearchTerm.toLowerCase()) ||
-                  w.grapes?.toLowerCase().includes(wineSearchTerm.toLowerCase()) ||
-                  w.type?.toLowerCase().includes(wineSearchTerm.toLowerCase());
-                return matchesVisibility && matchesSearch;
-              }).length === 0 ? (
-                <div className="text-center py-10 text-stone-400 font-serif italic">
-                  {wineSearchTerm ? 'Nessun vino trovato con questa ricerca' : (showHiddenWines ? 'Nessun vino nascosto' : `Nessun vino visibile in ${adminRegion === 'vda' ? 'Valle d\'Aosta' : 'Piemonte'}`)}
-                </div>
-              ) : filteredWines.filter(w => {
-                const matchesVisibility = showHiddenWines ? w.hidden : !w.hidden;
-                const matchesSearch = wineSearchTerm === '' ||
-                  w.name.toLowerCase().includes(wineSearchTerm.toLowerCase()) ||
-                  w.grapes?.toLowerCase().includes(wineSearchTerm.toLowerCase()) ||
-                  w.type?.toLowerCase().includes(wineSearchTerm.toLowerCase());
-                return matchesVisibility && matchesSearch;
-              }).map(wine => (
-                <div key={wine.id} className={`bg-white p-4 rounded-2xl flex items-center justify-between border shadow-sm ${wine.hidden ? 'bg-red-50 border-red-200' : ''}`}>
-                  <div className="flex items-center gap-3">
-                    {wine.image && <img src={wine.image} alt={wine.name} className="w-10 h-14 object-cover rounded" />}
-                    <div>
-                      <p className="font-serif font-bold text-stone-800">
-                        {wine.name}
-                      </p>
-                      <p className="text-[9px] text-stone-400 uppercase">{wine.grapes}</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-1">
-                    <button
-                      onClick={() => onUpdateWine({ ...wine, hidden: !wine.hidden })}
-                      className={`p-2 ${wine.hidden ? 'text-green-500 hover:bg-green-50' : 'text-red-400 hover:bg-red-50'} rounded-lg transition-colors`}
-                      title={wine.hidden ? 'Rimetti in carta' : 'Togli dalla carta'}
-                    >
-                      {wine.hidden ? <Eye size={16} /> : <EyeOff size={16} />}
-                    </button>
-                    <button onClick={() => { setWineForm(wine); setEditingId(wine.id); lastScrollPos.current = window.scrollY; }} className="p-2 text-stone-300"><Edit2 size={16} /></button>
-                    <button onClick={() => onDeleteWine(wine.id)} className="p-2 text-stone-300 hover:text-red-600"><Trash2 size={16} /></button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
 
-
-      {activeTab === 'wineries' && (
-        <div className="space-y-6">
-          <div className="flex justify-between items-center">
-            <h2 className="text-xl font-serif font-bold text-stone-800 uppercase tracking-tighter">Cantine</h2>
-            <div className="flex gap-2 items-center">
-              {/* Pulsante TRADUCI TUTTO */}
-              <button
-                onClick={handleTranslateAllWineries}
-                disabled={isLoadingAi}
-                className="flex items-center gap-2 px-3 py-1.5 bg-blue-50 text-blue-600 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-blue-100 transition-all border border-blue-100 shadow-sm"
-                title="Traduci tutte le cantine e vini mancanti"
-              >
-                {isLoadingAi ? <Loader2 size={14} className="animate-spin" /> : <Globe size={14} />}
-                Traduci Tutto
-              </button>
-
-              <div className="h-4 w-px bg-stone-200 mx-1" />
-
-              {/* Pulsante UNIFORMA PROFILI SENSORIALI */}
-              <button
-                onClick={handleNormalizeSensoryProfiles}
-                className="p-2 bg-amber-50 text-amber-600 rounded-full shadow-lg hover:bg-amber-100 transition-all border border-amber-100"
-                title="Genera Profili Sensoriali mancanti (da Descrizione)"
-              >
-                <Sparkles size={18} />
-              </button>
-
-              <div className="h-4 w-px bg-stone-200 mx-1" />
-
-              {/* Pulsante ESPORTA TUTTO */}
-              <button
-                onClick={handleExportAllWineries}
-                className="p-2 bg-stone-100 text-stone-600 rounded-full shadow-lg hover:bg-stone-200"
-                title="Esporta Tutto (Cantine + Vini)"
-              >
-                <Upload size={18} />
-              </button>
-
-              {/* Pulsante ESPORTA VINI (BACKUP) */}
-              <button
-                onClick={handleExportWinesOnly}
-                className="p-2 bg-stone-800 text-[#D4AF37] rounded-full shadow-lg hover:bg-black transition-all border border-stone-700"
-                title="Esporta JSON solo Vini (Backup)"
-              >
-                <WineIcon size={18} />
-              </button>
-
-              <div className="h-4 w-px bg-stone-200 mx-1" />
-
-              {/* Pulsante IMPORTA JSON */}
-              <label className="p-2 bg-stone-100 text-stone-600 rounded-full shadow-lg hover:bg-stone-200 cursor-pointer" title="Importa JSON Completo">
-                <FileJson size={18} />
-                <input type="file" accept=".json" className="hidden" onChange={handleJsonImport} />
-              </label>
-
-              {/* Pulsante IMPORTA CANTINA SINGOLA */}
-              <label className="p-2 bg-emerald-50 text-emerald-600 rounded-full shadow-lg hover:bg-emerald-100 cursor-pointer flex items-center gap-1 border border-emerald-100" title="Importa Cantina Singola (.json)">
-                <Store size={14} />
-                <Upload size={14} />
-                <input type="file" accept=".json" className="hidden" onChange={handleImportSingleWinery} />
-              </label>
-
-              {/* Pulsante IMPORTA INTEGRATIVO (FUSIONE) */}
-              <label
-                className="p-2 bg-purple-50 text-purple-600 rounded-full shadow-lg hover:bg-purple-100 cursor-pointer flex items-center gap-1 border border-purple-100"
-                title="Importa e Aggiorna (Mantiene Immagini)"
-              >
-                <Sparkles size={12} />
-                <Upload size={18} />
-                <input type="file" accept=".json" className="hidden" onChange={handleIntegrativeImport} />
-              </label>
-
-              <button onClick={onWipeWineries} className="p-2 bg-red-100 text-red-600 rounded-full shadow-lg hover:bg-red-200" title="Svuota Cantine"><Trash size={18} /></button>
-              <button onClick={() => { setIsAdding(true); lastScrollPos.current = window.scrollY; }} className="p-2 bg-stone-800 text-[#D4AF37] rounded-full shadow-lg"><Plus /></button>
+            {/* Search bar - full width on mobile */}
+            <div className="relative">
+              <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400" />
+              <input
+                type="text"
+                placeholder="Cerca cantina o vino..."
+                className="w-full pl-10 pr-4 py-2.5 bg-stone-900/80 border border-white/10 rounded-xl text-sm text-stone-200 placeholder-stone-500 focus:outline-none focus:border-[#D4AF37]/50 focus:ring-1 focus:ring-[#D4AF37]/20 transition-all"
+                value={wineSearchTerm}
+                onChange={(e) => setWineSearchTerm(e.target.value)}
+              />
+              {wineSearchTerm && (
+                <button
+                  onClick={() => setWineSearchTerm('')}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-300 hover:text-stone-500"
+                >
+                  <X size={14} />
+                </button>
+              )}
             </div>
           </div>
-          {isAdding || editingId ? (
-            <div className="bg-white p-6 rounded-[2rem] border shadow-xl space-y-4">
-              <input placeholder="Nome Cantina" className="admin-input" value={wineryForm.name} onChange={e => setWineryForm({ ...wineryForm, name: e.target.value })} />
-              <input placeholder="Località (es. Donnas, AO)" className="admin-input" value={wineryForm.location} onChange={e => setWineryForm({ ...wineryForm, location: e.target.value })} />
-              <div className="space-y-1">
-                <label className="text-[10px] uppercase font-bold text-stone-500 tracking-widest ml-1">ZONA / SOTTOZONA</label>
-                <select className="admin-input" value={wineryForm.region || ''} onChange={e => setWineryForm({ ...wineryForm, region: e.target.value })}>
-                  <option value="">Seleziona Zona...</option>
-                  {(adminRegion === 'vda' ? WINE_REGIONS : PIEMONTE_REGIONS).map(r => (
-                    <option key={r.id} value={r.id}>{r.label}</option>
-                  ))}
-                </select>
-              </div>
-              <label className="text-[10px] uppercase font-bold text-stone-500 tracking-widest ml-1">Descrizione Cantina</label>
-              <textarea placeholder="Descrizione / Storia della cantina" className="admin-input h-64 text-sm leading-relaxed p-4" value={wineryForm.description} onChange={e => setWineryForm({ ...wineryForm, description: e.target.value })} />
-              <input placeholder="Sito Web (https://...)" className="admin-input" value={wineryForm.website} onChange={e => setWineryForm({ ...wineryForm, website: e.target.value })} />
-              <textarea placeholder="Curiosità" className="admin-input h-16" value={wineryForm.curiosity || ''} onChange={e => setWineryForm({ ...wineryForm, curiosity: e.target.value })} />
 
-              {/* CAMPO UPLOAD IMMAGINE CANTINA */}
-              <div className="space-y-3 p-4 bg-stone-50 rounded-xl border border-dashed border-stone-300">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <ImageIcon size={18} className="text-[#D4AF37]" />
-                    <span className="text-xs uppercase tracking-widest text-stone-600 font-bold">Foto Cantina</span>
-                  </div>
-                  <label className="cursor-pointer bg-stone-800 text-white px-4 py-2 rounded-lg text-[10px] uppercase font-bold tracking-widest hover:bg-black transition-all flex items-center gap-2">
-                    <Upload size={14} /> Scegli File
-                    <input
-                      type="file"
-                      className="hidden"
-                      accept="image/*"
-                      onChange={async (e) => {
-                        const file = e.target.files?.[0];
-                        if (file) {
-                          try {
-                            const compressed = await compressImage(file);
-                            setWineryForm({ ...wineryForm, image: compressed });
-                          } catch (err) {
-                            alert("Errore caricamento immagine");
-                          }
-                        }
-                      }}
-                    />
-                  </label>
-                </div>
-                {wineryForm.image ? (
-                  <div className="relative group">
-                    <img src={wineryForm.image} alt="Anteprima" className="w-full h-48 object-cover rounded-lg border" />
-                    <button
-                      onClick={() => setWineryForm({ ...wineryForm, image: '' })}
-                      className="absolute top-2 right-2 bg-red-500 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all shadow-lg"
-                    >
-                      <Trash2 size={14} />
-                    </button>
-                  </div>
-                ) : (
-                  <div className="h-24 flex items-center justify-center text-stone-300 text-xs uppercase tracking-widest">
-                    Nessuna immagine selezionata
-                  </div>
-                )}
+          {/* ADD NEW WINERY BUTTON - Only when not editing */}
+          {!isAdding && !editingId && (
+            <button
+              onClick={() => { setIsAdding(true); setEditingContext('winery'); lastScrollPos.current = window.scrollY; }}
+              className="w-full flex items-center justify-center gap-2 py-3 bg-[#D4AF37]/10 border border-[#D4AF37]/30 text-[#D4AF37] rounded-xl font-bold uppercase text-[10px] tracking-widest hover:bg-[#D4AF37]/20 transition-all"
+            >
+              <Plus size={14} /> Nuova Cantina
+            </button>
+          )}
+
+          {/* ADD/EDIT WINERY FORM */}
+          {(isAdding || editingId) && editingContext === 'winery' && (
+            <div className="bg-stone-900/90 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden">
+              {/* Form Header */}
+              <div className="px-5 py-3 bg-gradient-to-r from-stone-900 to-stone-800 border-b border-white/5 flex items-center justify-between">
+                <p className="text-xs uppercase font-bold text-[#D4AF37] tracking-[0.15em]" style={{ fontFamily: "'Cinzel', serif" }}>{isAdding ? '➕ Nuova Cantina' : '✏️ Modifica Cantina'}</p>
+                <button onClick={() => { resetForms(); setEditingContext(null); }} className="p-1.5 text-stone-500 hover:text-stone-300 transition-colors"><X size={16} /></button>
               </div>
 
-              <div className="flex gap-2">
-                <button onClick={() => {
-                  const winery = { ...wineryForm, id: editingId || "winery_" + Date.now().toString(), coordinates: wineryForm.coordinates || { lat: 45, lng: 7 } } as Winery;
-                  if (isAdding) onAddWinery(winery);
-                  else if (editingId) onUpdateWinery(winery);
-                  resetForms();
-                }} className="flex-1 bg-stone-800 text-[#D4AF37] py-4 rounded-xl font-bold uppercase text-[10px] tracking-widest">Salva</button>
-                <button onClick={resetForms} className="px-6 bg-stone-100 text-stone-500 rounded-xl font-bold uppercase text-[10px]">Annulla</button>
-              </div>
-            </div>
-          ) : (
-            <div className="grid gap-3">
-              {filteredWineries.map(winery => (
-                <div key={winery.id} className="bg-white p-4 rounded-2xl flex items-center justify-between border shadow-sm">
-                  <div className="flex items-center gap-3">
-                    {winery.image && <img src={winery.image} alt={winery.name} className="w-14 h-14 object-contain rounded-xl bg-stone-50 border border-stone-200 p-1" />}
-                    <div>
-                      <p className="font-serif font-bold text-stone-800">{winery.name}</p>
-                      <p className="text-[9px] text-stone-400 uppercase">{winery.location}</p>
+              <div className="p-4 space-y-3">
+                {/* HERO PHOTO */}
+                <div className="relative rounded-xl overflow-hidden bg-stone-800/60 border border-white/5">
+                  {wineryForm.image ? (
+                    <div className="relative group">
+                      <img src={wineryForm.image} alt="Cantina" className="w-full h-36 object-cover" />
+                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center gap-3">
+                        <label className="cursor-pointer bg-white/20 backdrop-blur-sm text-white px-3 py-2 rounded-lg text-[10px] uppercase font-bold tracking-widest hover:bg-white/30 transition-all flex items-center gap-1.5">
+                          <Upload size={12} /> Cambia
+                          <input type="file" className="hidden" accept="image/*" onChange={async (e) => { const file = e.target.files?.[0]; if (file) { try { const compressed = await compressImage(file); setWineryForm({ ...wineryForm, image: compressed }); } catch { alert("Errore"); } } }} />
+                        </label>
+                        <button onClick={() => setWineryForm({ ...wineryForm, image: '' })} className="bg-red-500/80 backdrop-blur-sm text-white px-3 py-2 rounded-lg text-[10px] uppercase font-bold tracking-widest hover:bg-red-500 transition-all flex items-center gap-1.5">
+                          <Trash2 size={12} /> Rimuovi
+                        </button>
+                      </div>
                     </div>
+                  ) : (
+                    <label className="cursor-pointer h-28 flex flex-col items-center justify-center gap-2 text-stone-500 hover:text-[#D4AF37] hover:bg-stone-800 transition-all">
+                      <ImageIcon size={28} className="opacity-40" />
+                      <span className="text-[10px] uppercase font-bold tracking-widest">Carica Foto Cantina</span>
+                      <input type="file" className="hidden" accept="image/*" onChange={async (e) => { const file = e.target.files?.[0]; if (file) { try { const compressed = await compressImage(file); setWineryForm({ ...wineryForm, image: compressed }); } catch { alert("Errore"); } } }} />
+                    </label>
+                  )}
+                </div>
+
+                {/* SECTION: Identità */}
+                <div className="rounded-xl border border-white/5 overflow-hidden">
+                  <div className="px-4 py-2 bg-[#D4AF37]/5 border-l-2 border-l-[#D4AF37] flex items-center gap-2">
+                    <span className="text-xs">🏠</span>
+                    <span className="text-[10px] uppercase font-bold tracking-[0.15em] text-[#D4AF37]" style={{ fontFamily: "'Cinzel', serif" }}>Identità</span>
+                    {wineryForm.name && wineryForm.location && <span className="ml-auto text-[9px] text-emerald-400">✓</span>}
                   </div>
-                  <div className="flex gap-1">
-                    <button
-                      onClick={() => {
-                        const wineryWines = wines.filter(w => w.wineryId === winery.id);
-                        const backupData = {
-                          winery: winery,
-                          wines: wineryWines
-                          // Not adding glossary here as it's global, but user asked for "winery and bottles"
-                        };
-                        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backupData, null, 2));
-                        const downloadAnchorNode = document.createElement('a');
-                        downloadAnchorNode.setAttribute("href", dataStr);
-                        downloadAnchorNode.setAttribute("download", `${winery.name.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_backup.json`);
-                        document.body.appendChild(downloadAnchorNode);
-                        downloadAnchorNode.click();
-                        downloadAnchorNode.remove();
-                      }}
-                      className="p-2 text-stone-300 hover:text-[#D4AF37]"
-                      title="Backup JSON Cantina"
-                    >
-                      <Download size={16} />
-                    </button>
-                    <button
-                      onClick={() => handleTranslateWinery(winery)}
-                      disabled={translatingWineryId === winery.id}
-                      className={`p-2 ${translatingWineryId === winery.id ? 'text-[#D4AF37] animate-pulse' : 'text-stone-300 hover:text-green-500'}`}
-                      title="Traduci in EN/FR"
-                    >
-                      {translatingWineryId === winery.id ? <Loader2 size={16} className="animate-spin" /> : <Globe size={16} />}
-                    </button>
-                    <button onClick={() => { setWineryForm(winery); setEditingId(winery.id); lastScrollPos.current = window.scrollY; }} className="p-2 text-stone-300"><Edit2 size={16} /></button>
-                    <button onClick={() => onDeleteWinery(winery.id)} className="p-2 text-stone-300 hover:text-red-600"><Trash2 size={16} /></button>
+                  <div className="p-3 space-y-2 bg-stone-950/30">
+                    <input placeholder="Nome Cantina" className="admin-input" value={wineryForm.name} onChange={e => setWineryForm({ ...wineryForm, name: e.target.value })} />
+                    <input placeholder="Località (es. Donnas, AO)" className="admin-input" value={wineryForm.location} onChange={e => setWineryForm({ ...wineryForm, location: e.target.value })} />
+                    <select className="admin-input" value={wineryForm.region || ''} onChange={e => setWineryForm({ ...wineryForm, region: e.target.value })}>
+                      <option value="">Seleziona Zona...</option>
+                      {(adminRegion === 'vda' ? WINE_REGIONS : PIEMONTE_REGIONS).map(r => (
+                        <option key={r.id} value={r.id}>{r.label}</option>
+                      ))}
+                    </select>
                   </div>
                 </div>
-              ))}
+
+                {/* SECTION: Descrizione */}
+                <div className="rounded-xl border border-white/5 overflow-hidden">
+                  <div className="px-4 py-2 bg-blue-500/5 border-l-2 border-l-blue-400 flex items-center gap-2">
+                    <span className="text-xs">📝</span>
+                    <span className="text-[10px] uppercase font-bold tracking-[0.15em] text-blue-300" style={{ fontFamily: "'Cinzel', serif" }}>Descrizione</span>
+                    {wineryForm.description && <span className="ml-auto text-[9px] text-emerald-400">✓</span>}
+                  </div>
+                  <div className="p-3 space-y-2 bg-stone-950/30">
+                    <textarea placeholder="Descrizione / Storia della cantina..." className="admin-input h-32" value={wineryForm.description} onChange={e => setWineryForm({ ...wineryForm, description: e.target.value })} />
+                    <textarea placeholder="Curiosità (lo sapevi che?)" className="admin-input h-16" value={wineryForm.curiosity || ''} onChange={e => setWineryForm({ ...wineryForm, curiosity: e.target.value })} />
+                  </div>
+                </div>
+
+                {/* SECTION: Web */}
+                <div className="rounded-xl border border-white/5 overflow-hidden">
+                  <div className="px-4 py-2 bg-green-500/5 border-l-2 border-l-green-400 flex items-center gap-2">
+                    <span className="text-xs">🌐</span>
+                    <span className="text-[10px] uppercase font-bold tracking-[0.15em] text-green-300" style={{ fontFamily: "'Cinzel', serif" }}>Sito Web</span>
+                    {wineryForm.website && <span className="ml-auto text-[9px] text-emerald-400">✓</span>}
+                  </div>
+                  <div className="p-3 bg-stone-950/30">
+                    <input placeholder="https://..." className="admin-input" value={wineryForm.website} onChange={e => setWineryForm({ ...wineryForm, website: e.target.value })} />
+                  </div>
+                </div>
+
+                {/* ACTIONS */}
+                <div className="flex gap-2 pt-1">
+                  <button onClick={() => {
+                    const winery = { ...wineryForm, id: editingId || "winery_" + Date.now().toString(), coordinates: wineryForm.coordinates || { lat: 45, lng: 7 } } as Winery;
+                    if (isAdding) onAddWinery(winery);
+                    else if (editingId) onUpdateWinery(winery);
+                    resetForms(); setEditingContext(null);
+                  }} className="flex-1 bg-gradient-to-r from-[#BF953F] via-[#D4AF37] to-[#B38728] text-stone-950 py-3.5 rounded-xl font-bold uppercase text-[10px] tracking-widest hover:shadow-lg hover:shadow-[#D4AF37]/20 transition-all">Salva Cantina</button>
+                  <button onClick={() => { resetForms(); setEditingContext(null); }} className="px-5 bg-white/5 border border-white/10 text-stone-400 rounded-xl font-bold uppercase text-[10px] hover:bg-white/10 transition-all">Annulla</button>
+                </div>
+              </div>
             </div>
           )}
-        </div>
+
+          {/* ADD/EDIT WINE FORM */}
+          {(isAdding || editingId) && editingContext === 'wine' && (
+            <div className="bg-stone-900/90 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden">
+              {/* Form Header */}
+              <div className="px-5 py-3 bg-gradient-to-r from-stone-900 to-stone-800 border-b border-white/5 flex items-center justify-between">
+                <p className="text-xs uppercase font-bold text-[#D4AF37] tracking-[0.15em]" style={{ fontFamily: "'Cinzel', serif" }}>{isAdding ? '➕ Nuovo Vino' : '✏️ Modifica Vino'}</p>
+                <button onClick={() => { resetForms(); setEditingContext(null); setEditingWineryParentId(null); }} className="p-1.5 text-stone-500 hover:text-stone-300 transition-colors"><X size={16} /></button>
+              </div>
+
+              <div className="p-4 space-y-3">
+                {/* HERO PHOTO */}
+                <div className="relative rounded-xl overflow-hidden bg-stone-800/60 border border-white/5">
+                  {wineForm.image ? (
+                    <div className="relative group">
+                      <img src={wineForm.image} alt="Vino" className="w-full h-36 object-contain bg-stone-900" />
+                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center gap-3">
+                        <label className="cursor-pointer bg-white/20 backdrop-blur-sm text-white px-3 py-2 rounded-lg text-[10px] uppercase font-bold tracking-widest hover:bg-white/30 transition-all flex items-center gap-1.5">
+                          <Upload size={12} /> Cambia
+                          <input type="file" className="hidden" accept="image/*" onChange={async (e) => { const file = e.target.files?.[0]; if (file) { try { const compressed = await compressImage(file); setWineForm({ ...wineForm, image: compressed }); } catch { alert("Errore"); } } }} />
+                        </label>
+                        <button onClick={() => setWineForm({ ...wineForm, image: '' })} className="bg-red-500/80 backdrop-blur-sm text-white px-3 py-2 rounded-lg text-[10px] uppercase font-bold tracking-widest hover:bg-red-500 transition-all flex items-center gap-1.5">
+                          <Trash2 size={12} /> Rimuovi
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <label className="cursor-pointer h-28 flex flex-col items-center justify-center gap-2 text-stone-500 hover:text-[#D4AF37] hover:bg-stone-800 transition-all">
+                      <ImageIcon size={28} className="opacity-40" />
+                      <span className="text-[10px] uppercase font-bold tracking-widest">Carica Foto Bottiglia</span>
+                      <input type="file" className="hidden" accept="image/*" onChange={async (e) => { const file = e.target.files?.[0]; if (file) { try { const compressed = await compressImage(file); setWineForm({ ...wineForm, image: compressed }); } catch { alert("Errore"); } } }} />
+                    </label>
+                  )}
+                </div>
+
+                {/* SECTION: Identità */}
+                <div className="rounded-xl border border-white/5 overflow-hidden">
+                  <div className="px-4 py-2 bg-[#D4AF37]/5 border-l-2 border-l-[#D4AF37] flex items-center gap-2">
+                    <span className="text-xs">🍷</span>
+                    <span className="text-[10px] uppercase font-bold tracking-[0.15em] text-[#D4AF37]" style={{ fontFamily: "'Cinzel', serif" }}>Identità</span>
+                    {wineForm.name && wineForm.wineryId && <span className="ml-auto text-[9px] text-emerald-400">✓</span>}
+                  </div>
+                  <div className="p-3 space-y-2 bg-stone-950/30">
+                    <input placeholder="Nome Vino (es. Donnas DOC 2020)" className="admin-input" value={wineForm.name} onChange={e => setWineForm({ ...wineForm, name: e.target.value })} />
+                    <select className="admin-input" value={wineForm.wineryId} onChange={e => setWineForm({ ...wineForm, wineryId: e.target.value })}>
+                      <option value="">Seleziona Cantina...</option>
+                      {filteredWineries.map(w => <option key={w.id} value={w.id}>{w.name}</option>)}
+                    </select>
+                    <select className="admin-input" value={wineForm.type || ''} onChange={e => setWineForm({ ...wineForm, type: e.target.value as any })}>
+                      <option value="">Tipologia (per Calice)...</option>
+                      <option value="red">Rosso Giovane (Balloon)</option>
+                      <option value="borgogna_red">Rosso (Borgogna)</option>
+                      <option value="red_structured">Rosso Strutturato (Borgogna)</option>
+                      <option value="red_premium">Rosso Molto Strutturato (Barbaresco)</option>
+                      <option value="red_complex">Rosso da Affinamento (Gran Balloon)</option>
+                      <option value="white">Bianco Poco Strutturato (Renano)</option>
+                      <option value="borgogna">Bianco Strutturato (Borgogna)</option>
+                      <option value="rose">Rosato Poco Strutturato (Renano)</option>
+                      <option value="rose_structured">Rosato Strutturato (Borgogna)</option>
+                      <option value="sparkling">Frizzante (Flute)</option>
+                      <option value="flute_rose">Frizzante Rosé (Flute Rosé)</option>
+                      <option value="sparkling_complex">Bollicine Complesse (Tulipano)</option>
+                      <option value="sparkling_rose_complex">Bollicine Rosé Complesse (Tulipano)</option>
+                      <option value="dessert">Dolce / Passito</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* SECTION: Tecnica */}
+                <div className="rounded-xl border border-white/5 overflow-hidden">
+                  <div className="px-4 py-2 bg-purple-500/5 border-l-2 border-l-purple-400 flex items-center gap-2">
+                    <span className="text-xs">🧪</span>
+                    <span className="text-[10px] uppercase font-bold tracking-[0.15em] text-purple-300" style={{ fontFamily: "'Cinzel', serif" }}>Tecnica</span>
+                    {wineForm.grapes && wineForm.alcohol && <span className="ml-auto text-[9px] text-emerald-400">✓</span>}
+                  </div>
+                  <div className="p-3 space-y-2 bg-stone-950/30">
+                    <input placeholder="Vitigni (es. Nebbiolo 100%)" className="admin-input" value={wineForm.grapes} onChange={e => setWineForm({ ...wineForm, grapes: e.target.value })} />
+                    <div className="grid grid-cols-2 gap-2">
+                      <input placeholder="Gradazione (es. 13.5%)" className="admin-input" value={wineForm.alcohol} onChange={e => setWineForm({ ...wineForm, alcohol: e.target.value })} />
+                      <input placeholder="Temp. (es. 16-18°C)" className="admin-input" value={wineForm.temperature} onChange={e => setWineForm({ ...wineForm, temperature: e.target.value })} />
+                    </div>
+                    <input placeholder="Abbinamenti (es. Carni rosse, Fontina)" className="admin-input" value={wineForm.pairing} onChange={e => setWineForm({ ...wineForm, pairing: e.target.value })} />
+                  </div>
+                </div>
+
+                {/* SECTION: Testi */}
+                <div className="rounded-xl border border-white/5 overflow-hidden">
+                  <div className="px-4 py-2 bg-blue-500/5 border-l-2 border-l-blue-400 flex items-center gap-2">
+                    <span className="text-xs">📝</span>
+                    <span className="text-[10px] uppercase font-bold tracking-[0.15em] text-blue-300" style={{ fontFamily: "'Cinzel', serif" }}>Testi</span>
+                    {wineForm.description && <span className="ml-auto text-[9px] text-emerald-400">✓</span>}
+                  </div>
+                  <div className="p-3 space-y-2 bg-stone-950/30">
+                    <textarea placeholder="Descrizione del vino..." className="admin-input h-28" value={wineForm.description} onChange={e => setWineForm({ ...wineForm, description: e.target.value })} />
+                    <textarea placeholder="Profilo sensoriale..." className="admin-input h-20" value={wineForm.sensoryProfile || ''} onChange={e => setWineForm({ ...wineForm, sensoryProfile: e.target.value })} />
+                    <textarea placeholder="Curiosità (lo sapevi che?)" className="admin-input h-16" value={wineForm.curiosity || ''} onChange={e => setWineForm({ ...wineForm, curiosity: e.target.value })} />
+                  </div>
+                </div>
+
+                {/* SECTION: Prezzo & Annate */}
+                <div className="rounded-xl border border-white/5 overflow-hidden">
+                  <div className="px-4 py-2 bg-green-500/5 border-l-2 border-l-green-400 flex items-center gap-2">
+                    <span className="text-xs">💰</span>
+                    <span className="text-[10px] uppercase font-bold tracking-[0.15em] text-green-300" style={{ fontFamily: "'Cinzel', serif" }}>Prezzo & Annate</span>
+                    {(wineForm.price || (wineForm.vintages && wineForm.vintages.length > 0)) && <span className="ml-auto text-[9px] text-emerald-400">✓</span>}
+                  </div>
+                  <div className="p-3 space-y-3 bg-stone-950/30">
+                    <div className="flex items-end gap-2">
+                      <div className="flex-1">
+                        <input placeholder="Prezzo (es. 25 o 119 (2014); 125 (2013))" className="admin-input" value={wineForm.price || ''} onChange={e => setWineForm({ ...wineForm, price: e.target.value })} />
+                      </div>
+                      <button
+                        onClick={() => {
+                          const raw = wineForm.price || "";
+                          const regex = /([\d.,]+)\s*\(\s*(\d{4})\s*\)/g;
+                          let match;
+                          const newVintages: any[] = [];
+                          while ((match = regex.exec(raw)) !== null) {
+                            newVintages.push({ price: match[1].trim(), year: match[2].trim() });
+                          }
+                          if (newVintages.length > 0) {
+                            if (confirm(`Trovate ${newVintages.length} annate. Generare lista?`)) {
+                              setWineForm(prev => ({ ...prev, vintages: [...(prev.vintages || []), ...newVintages] }));
+                            }
+                          } else {
+                            alert("Nessun formato 'Prezzo (Anno)' trovato.");
+                          }
+                        }}
+                        className="p-2.5 bg-purple-500/10 text-purple-400 rounded-lg hover:bg-purple-500/20 border border-purple-500/20 transition-colors"
+                        title="Estrai Annate dal Testo"
+                      >
+                        <Sparkles size={16} />
+                      </button>
+                    </div>
+
+                    {/* Vintages list */}
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] uppercase tracking-widest text-stone-500 font-bold">Annate</span>
+                        <button
+                          onClick={() => setWineForm({ ...wineForm, vintages: [...(wineForm.vintages || []), { year: '', price: '' }] })}
+                          className="bg-[#D4AF37]/10 border border-[#D4AF37]/30 text-[#D4AF37] px-2.5 py-1 rounded-lg text-[9px] uppercase font-bold tracking-widest hover:bg-[#D4AF37]/20 transition-all flex items-center gap-1"
+                        >
+                          <Plus size={10} /> Aggiungi
+                        </button>
+                      </div>
+                      {(wineForm.vintages && wineForm.vintages.length > 0) ? (
+                        <div className="grid gap-1.5">
+                          {wineForm.vintages.map((v, idx) => (
+                            <div key={idx} className="flex gap-2 items-center">
+                              <input placeholder="Anno" className="admin-input flex-1" value={v.year || ''} onChange={e => { const nv = [...(wineForm.vintages || [])]; nv[idx] = { ...nv[idx], year: e.target.value }; setWineForm({ ...wineForm, vintages: nv }); }} />
+                              <input placeholder="€" className="admin-input w-20" value={v.price || ''} onChange={e => { const nv = [...(wineForm.vintages || [])]; nv[idx] = { ...nv[idx], price: e.target.value }; setWineForm({ ...wineForm, vintages: nv }); }} />
+                              <button onClick={() => setWineForm({ ...wineForm, vintages: wineForm.vintages!.filter((_, i) => i !== idx) })} className="p-1.5 text-red-400 hover:text-red-300 transition-colors"><Trash2 size={14} /></button>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="text-center py-2 text-stone-600 text-[10px] italic">Nessuna annata (usa prezzo standard)</div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* ACTIONS */}
+                <div className="flex gap-2 pt-1">
+                  <button onClick={() => {
+                    if (isAdding) onAddWine({ ...wineForm, id: "wine_" + Date.now().toString() } as Wine);
+                    else if (editingId) onUpdateWine({ ...wineForm, id: editingId } as Wine);
+                    resetForms(); setEditingContext(null); setEditingWineryParentId(null);
+                  }} className="flex-1 bg-gradient-to-r from-[#BF953F] via-[#D4AF37] to-[#B38728] text-stone-950 py-3.5 rounded-xl font-bold uppercase text-[10px] tracking-widest hover:shadow-lg hover:shadow-[#D4AF37]/20 transition-all">Salva Vino</button>
+                  <button onClick={() => { resetForms(); setEditingContext(null); setEditingWineryParentId(null); }} className="px-5 bg-white/5 border border-white/10 text-stone-400 rounded-xl font-bold uppercase text-[10px] hover:bg-white/10 transition-all">Annulla</button>
+                </div>
+              </div>
+            </div>
+          )}
+
+
+
+
+
+
+          {/* ACCORDION CANTINE LIST */}
+          {
+            !isAdding && !editingId && (
+              <div className="grid gap-3">
+                {filteredWineries
+                  .filter(w => wineSearchTerm === '' ||
+                    w.name.toLowerCase().includes(wineSearchTerm.toLowerCase()) ||
+                    w.location?.toLowerCase().includes(wineSearchTerm.toLowerCase()) ||
+                    wines.filter(wine => wine.wineryId === w.id).some(wine =>
+                      wine.name.toLowerCase().includes(wineSearchTerm.toLowerCase()) ||
+                      wine.grapes?.toLowerCase().includes(wineSearchTerm.toLowerCase())
+                    )
+                  )
+                  .map(winery => {
+                    const wineryWines = filteredWines.filter(w => w.wineryId === winery.id);
+                    const visibleWines = wineryWines.filter(w => showHiddenWines ? w.hidden : !w.hidden);
+                    const isExpanded = expandedWineryId === winery.id || wineSearchTerm !== '';
+
+                    return (
+                      <div key={winery.id} className="rounded-2xl overflow-hidden backdrop-blur-sm" style={{ background: 'linear-gradient(135deg, rgba(28,25,23,0.95), rgba(41,37,36,0.85))' }}>
+                        {/* WINERY HEADER — gold accent, prominent parent */}
+                        <div
+                          className="flex items-center gap-3 px-3 py-3 cursor-pointer active:bg-white/5 transition-colors border-l-[3px] border-l-[#D4AF37]"
+                          onClick={() => setExpandedWineryId(expandedWineryId === winery.id ? null : winery.id)}
+                        >
+                          {winery.image && <img src={winery.image} alt={winery.name} className="w-12 h-12 object-contain rounded-xl bg-stone-800 border border-[#D4AF37]/30 p-0.5 flex-shrink-0" />}
+                          <div className="flex-1 min-w-0">
+                            <p className="text-[15px] text-stone-100 truncate" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 700 }}>{winery.name}</p>
+                            <div className="flex items-center gap-1.5">
+                              <span className="text-[9px] text-stone-500 uppercase">{winery.location}</span>
+                              <span className="text-[8px] bg-[#D4AF37]/15 text-[#D4AF37] px-1.5 py-0.5 rounded-full font-bold">{wineryWines.length} vini</span>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-0.5 flex-shrink-0">
+                            {/* Primary: Edit — gold accent */}
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setWineryForm(winery);
+                                setEditingId(winery.id);
+                                setEditingContext('winery');
+                                lastScrollPos.current = window.scrollY;
+                              }}
+                              className="p-1.5 text-[#D4AF37]/70 hover:text-[#D4AF37] rounded-lg transition-colors"
+                              title="Modifica Cantina"
+                            >
+                              <Edit2 size={15} />
+                            </button>
+                            {/* Secondary actions — smaller, subtle */}
+                            <div className="flex items-center gap-0 opacity-50 hover:opacity-100 transition-opacity">
+                              <button
+                                onClick={(e) => { e.stopPropagation(); handleTranslateWinery(winery); }}
+                                disabled={translatingWineryId === winery.id}
+                                className={`p-1 rounded transition-colors ${translatingWineryId === winery.id ? 'text-[#D4AF37] animate-pulse opacity-100' : 'text-stone-500 hover:text-green-400'}`}
+                                title="Traduci EN/FR"
+                              >
+                                {translatingWineryId === winery.id ? <Loader2 size={12} className="animate-spin" /> : <Globe size={12} />}
+                              </button>
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  const backupData = { winery: winery, wines: wineryWines };
+                                  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backupData, null, 2));
+                                  const dl = document.createElement('a');
+                                  dl.setAttribute("href", dataStr);
+                                  dl.setAttribute("download", `${winery.name.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_backup.json`);
+                                  document.body.appendChild(dl);
+                                  dl.click();
+                                  dl.remove();
+                                }}
+                                className="p-1 text-stone-500 hover:text-blue-400 rounded transition-colors"
+                                title="Backup Cantina"
+                              >
+                                <Download size={12} />
+                              </button>
+                              <button
+                                onClick={(e) => { e.stopPropagation(); if (confirm(`Eliminare "${winery.name}" e tutti i suoi vini?`)) onDeleteWinery(winery.id); }}
+                                className="p-1 text-stone-600 hover:text-red-400 rounded transition-colors"
+                                title="Elimina Cantina"
+                              >
+                                <Trash2 size={12} />
+                              </button>
+                            </div>
+                            {/* Chevron — clear expand indicator */}
+                            {isExpanded ? <ChevronDown size={18} className="text-[#D4AF37]/60 ml-1" /> : <ChevronRight size={18} className="text-stone-500 ml-1" />}
+                          </div>
+                        </div>
+
+                        {/* WINES LIST - Expanded */}
+                        {isExpanded && (
+                          <div className="border-t border-white/5">
+                            {/* Add wine to this winery */}
+                            <button
+                              onClick={() => {
+                                setIsAdding(true);
+                                setEditingContext('wine');
+                                setEditingWineryParentId(winery.id);
+                                setWineForm({ ...wineForm, wineryId: winery.id });
+                                lastScrollPos.current = window.scrollY;
+                              }}
+                              className="w-full flex items-center justify-center gap-2 py-2.5 text-[#D4AF37] text-[10px] font-bold uppercase tracking-widest hover:bg-white/5 transition-colors"
+                            >
+                              <Plus size={12} /> Aggiungi Vino
+                            </button>
+
+                            {visibleWines.length === 0 ? (
+                              <div className="text-center py-4 text-stone-600 text-xs italic">
+                                {showHiddenWines ? 'Nessun vino nascosto' : 'Nessun vino visibile'}
+                              </div>
+                            ) : (
+                              visibleWines
+                                .filter(w => wineSearchTerm === '' ||
+                                  w.name.toLowerCase().includes(wineSearchTerm.toLowerCase()) ||
+                                  w.grapes?.toLowerCase().includes(wineSearchTerm.toLowerCase())
+                                )
+                                .map(wine => (
+                                  <div key={wine.id} className={`flex items-center gap-2.5 pl-5 pr-3 py-2 border-t border-white/[0.03] border-l-2 ${wine.hidden ? 'border-l-red-500/40 bg-red-500/[0.03]' : 'border-l-stone-700/50 bg-stone-950/30'}`}>
+                                    {wine.image && <img src={wine.image} alt={wine.name} className="w-9 h-12 object-cover rounded-md flex-shrink-0 border border-white/10" />}
+                                    <div className="flex-1 min-w-0">
+                                      <p className="text-[13px] text-stone-300 leading-tight truncate" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}>{wine.name}</p>
+                                      <p className="text-[8px] text-stone-600 uppercase truncate">{wine.grapes}</p>
+                                    </div>
+                                    <div className="flex items-center gap-0 flex-shrink-0">
+                                      {/* Primary: Edit */}
+                                      <button
+                                        onClick={() => { setWineForm(wine); setEditingId(wine.id); setEditingContext('wine'); lastScrollPos.current = window.scrollY; }}
+                                        className="p-1.5 text-[#D4AF37]/50 hover:text-[#D4AF37] rounded-lg transition-colors"
+                                      >
+                                        <Edit2 size={13} />
+                                      </button>
+                                      {/* Secondary: Hide + Delete — subtle */}
+                                      <div className="flex items-center gap-0 opacity-40 hover:opacity-100 transition-opacity">
+                                        <button
+                                          onClick={() => onUpdateWine({ ...wine, hidden: !wine.hidden })}
+                                          className={`p-1 rounded transition-colors ${wine.hidden ? 'text-green-500 opacity-100' : 'text-stone-500 hover:text-orange-400'}`}
+                                          title={wine.hidden ? 'Rimetti in carta' : 'Nascondi'}
+                                        >
+                                          {wine.hidden ? <Eye size={11} /> : <EyeOff size={11} />}
+                                        </button>
+                                        <button
+                                          onClick={() => { if (confirm(`Eliminare "${wine.name}"?`)) onDeleteWine(wine.id); }}
+                                          className="p-1 text-stone-600 hover:text-red-400 rounded transition-colors"
+                                        >
+                                          <Trash2 size={11} />
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                ))
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+
+                {filteredWineries.filter(w => wineSearchTerm === '' ||
+                  w.name.toLowerCase().includes(wineSearchTerm.toLowerCase()) ||
+                  wines.filter(wine => wine.wineryId === w.id).some(wine => wine.name.toLowerCase().includes(wineSearchTerm.toLowerCase()))
+                ).length === 0 && (
+                    <div className="text-center py-10 text-stone-400 font-serif italic">
+                      {wineSearchTerm ? 'Nessun risultato' : `Nessuna cantina in ${adminRegion === 'vda' ? "Valle d'Aosta" : 'Piemonte'}`}
+                    </div>
+                  )}
+
+              </div>
+            )
+          }
+
+          {/* Footer vineyard image */}
+          <div className="mt-8 rounded-2xl overflow-hidden">
+            <img src="/assets/desktop_bg.jpg" alt="" className="w-full object-cover" style={{ height: '220px' }} />
+          </div>
+        </div >
       )
       }
 
@@ -2161,30 +2230,30 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
         activeTab === 'glossary' && (
           <div className="space-y-6">
             <div className="flex justify-between items-center">
-              <h2 className="text-xl font-serif font-bold text-stone-800 uppercase tracking-tighter">Manuale Glossario</h2>
+              <h2 className="text-xl font-serif font-bold text-[#D4AF37] uppercase tracking-tighter">Manuale Glossario</h2>
               <div className="flex gap-2 items-center flex-wrap justify-end">
                 {/* Traduzione */}
                 <button
                   onClick={handleTranslateAllGlossary}
                   disabled={isLoadingAi}
-                  className="flex items-center gap-2 px-3 py-1.5 bg-blue-50 text-blue-600 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-blue-100 transition-all border border-blue-100"
+                  className="flex items-center gap-2 px-3 py-1.5 bg-blue-500/10 text-blue-400 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-blue-500/20 transition-all border border-blue-500/20"
                   title="Traduci tutti i termini mancanti"
                 >
                   {isLoadingAi ? <Loader2 size={12} className="animate-spin" /> : <Globe size={12} />}
                   Traduci
                 </button>
 
-                <div className="h-4 w-px bg-stone-200 mx-1" />
+                <div className="h-4 w-px bg-white/10 mx-1" />
 
                 {/* Gestione Dati */}
                 <button
                   onClick={handleExportGlossaryOnly}
-                  className="flex items-center gap-1 px-3 py-1.5 bg-stone-100 text-stone-600 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-stone-200 transition-all"
+                  className="flex items-center gap-1 px-3 py-1.5 bg-white/5 text-stone-400 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-white/10 border border-white/10 transition-all"
                   title="Esporta JSON"
                 >
                   <Download size={12} /> Esporta
                 </button>
-                <label className="flex items-center gap-1 px-3 py-1.5 bg-stone-100 text-stone-600 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-stone-200 transition-all cursor-pointer" title="Importa JSON">
+                <label className="flex items-center gap-1 px-3 py-1.5 bg-white/5 text-stone-400 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-white/10 border border-white/10 transition-all cursor-pointer" title="Importa JSON">
                   <Upload size={12} /> Importa
                   <input type="file" accept=".json" className="hidden" onChange={handleImportGlossaryOnly} />
                 </label>
@@ -2199,30 +2268,30 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                 </button>
                 <button
                   onClick={handleOptimizeGlossary}
-                  className="flex items-center gap-1 px-3 py-1.5 bg-green-50 text-green-600 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-green-100 transition-all border border-green-100"
+                  className="flex items-center gap-1 px-3 py-1.5 bg-green-500/10 text-green-400 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-green-500/20 transition-all border border-green-500/20"
                   title="Unisci duplicati e pulisci"
                 >
                   <Sparkles size={12} /> Ottimizza
                 </button>
                 <button
                   onClick={handleRestoreBackup}
-                  className="flex items-center gap-1 px-3 py-1.5 bg-orange-50 text-orange-600 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-orange-100 transition-all border border-orange-100"
+                  className="flex items-center gap-1 px-3 py-1.5 bg-orange-500/10 text-orange-400 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-orange-500/20 transition-all border border-orange-500/20"
                   title="Recupera 22 termini di base (Crotta)"
                 >
                   🆘 Ripristina
                 </button>
 
-                <div className="h-4 w-px bg-stone-200 mx-1" />
+                <div className="h-4 w-px bg-white/10 mx-1" />
 
                 {/* Azioni Item */}
-                <button onClick={onWipeGlossary} className="p-1.5 bg-red-50 text-red-500 rounded-full hover:bg-red-100 transition-colors" title="Svuota tutto"><Trash size={14} /></button>
+                <button onClick={onWipeGlossary} className="p-1.5 bg-red-500/10 text-red-400 rounded-full hover:bg-red-500/20 border border-red-500/20 transition-colors" title="Svuota tutto"><Trash size={14} /></button>
                 <button onClick={() => { setIsAdding(true); lastScrollPos.current = window.scrollY; }} className="p-1.5 bg-stone-800 text-[#D4AF37] rounded-full shadow-lg hover:scale-105 transition-transform" title="Aggiungi termine"><Plus size={14} /></button>
               </div>
             </div>
 
 
             {isAdding || editingId ? (
-              <div className="bg-white p-6 rounded-[2rem] border shadow-xl space-y-4">
+              <div className="bg-stone-900/90 backdrop-blur-sm p-6 rounded-[2rem] border border-white/10 space-y-4">
                 <input placeholder="Termine (es. Fumin)" className="admin-input" value={glossaryForm.term} onChange={e => setGlossaryForm({ ...glossaryForm, term: e.target.value })} />
                 <select className="admin-input" value={glossaryForm.category} onChange={e => setGlossaryForm({ ...glossaryForm, category: e.target.value as any })}>
                   <option value="Vitigno">Vitigno</option>
@@ -2231,8 +2300,8 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                 </select>
                 <textarea placeholder="Definizione..." className="admin-input h-24" value={glossaryForm.definition} onChange={e => setGlossaryForm({ ...glossaryForm, definition: e.target.value })} />
 
-                <div className="space-y-3 pt-4 border-t border-stone-100">
-                  <h4 className="text-sm font-bold text-stone-400 uppercase tracking-widest">Traduzioni (Opzionale)</h4>
+                <div className="space-y-3 pt-4 border-t border-white/10">
+                  <h4 className="text-sm font-bold text-[#D4AF37]/60 uppercase tracking-widest">Traduzioni (Opzionale)</h4>
                   <div className="grid grid-cols-2 gap-4">
                     <textarea
                       placeholder="🇬🇧 Definition (EN)"
@@ -2253,26 +2322,26 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                     if (isAdding) onUpdateGlossary([...glossary, glossaryForm as GlossaryItem]);
                     else if (editingId) onUpdateGlossary(glossary.map(g => g.term === editingId ? (glossaryForm as GlossaryItem) : g));
                     resetForms();
-                  }} className="flex-1 bg-stone-800 text-[#D4AF37] py-4 rounded-xl font-bold uppercase text-[10px] tracking-widest">Salva</button>
-                  <button onClick={resetForms} className="px-6 bg-stone-100 text-stone-500 rounded-xl font-bold uppercase text-[10px]">Annulla</button>
+                  }} className="flex-1 bg-gradient-to-r from-[#BF953F] via-[#D4AF37] to-[#B38728] text-stone-950 py-4 rounded-xl font-bold uppercase text-[10px] tracking-widest hover:shadow-lg hover:shadow-[#D4AF37]/20 transition-all">Salva</button>
+                  <button onClick={resetForms} className="px-6 bg-white/5 border border-white/10 text-stone-400 rounded-xl font-bold uppercase text-[10px] hover:bg-white/10 transition-all">Annulla</button>
                 </div>
               </div>
             ) : (
               <div className="grid gap-3">
                 {glossary.map((item, idx) => (
-                  <div key={`${item.term}_${idx}`} className="bg-white p-4 rounded-2xl flex items-center justify-between border shadow-sm">
+                  <div key={`${item.term}_${idx}`} className="bg-stone-900/80 p-4 rounded-2xl flex items-center justify-between border border-white/10">
                     <div>
-                      <p className="font-serif font-bold text-stone-800">{item.term}</p>
+                      <p className="font-serif font-bold text-stone-100">{item.term}</p>
                       <p className="text-[9px] uppercase tracking-widest text-[#D4AF37]">{item.category}</p>
                     </div>
                     <div className="flex gap-1">
-                      <button onClick={() => handleTranslateGlossaryItem(item)} className="p-2 text-blue-400 hover:bg-blue-50 rounded-lg transition-colors" title="Traduci Termine"><Globe size={16} /></button>
+                      <button onClick={() => handleTranslateGlossaryItem(item)} className="p-2 text-blue-400 hover:bg-blue-500/10 rounded-lg transition-colors" title="Traduci Termine"><Globe size={16} /></button>
                       <button onClick={() => {
                         console.log("Editing:", item.term);
                         setGlossaryForm(item);
                         setEditingId(item.term);
                         lastScrollPos.current = window.scrollY;
-                      }} className="p-2 text-stone-500 hover:text-[#D4AF37] hover:bg-stone-50 rounded-lg transition-colors" title="Modifica"><Edit2 size={16} /></button>
+                      }} className="p-2 text-stone-500 hover:text-[#D4AF37] hover:bg-white/5 rounded-lg transition-colors" title="Modifica"><Edit2 size={16} /></button>
                       <button onClick={() => {
                         if (confirm(`Eliminare "${item.term}"?`)) {
                           // Use explicit delete handler if available (for persistence)
@@ -2285,7 +2354,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                             onUpdateGlossary(newGlossary);
                           }
                         }
-                      }} className="p-2 text-red-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors" title="Elimina"><Trash2 size={16} /></button>
+                      }} className="p-2 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-colors" title="Elimina"><Trash2 size={16} /></button>
                     </div>
                   </div>
                 ))}
@@ -2300,23 +2369,23 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
           <div className="space-y-6">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-3">
-                <h2 className="text-xl font-serif font-bold text-stone-800 uppercase tracking-tighter">Gestione Menu</h2>
+                <h2 className="text-xl font-serif font-bold text-[#D4AF37] uppercase tracking-tighter">Gestione Menu</h2>
                 <button
                   onClick={() => setShowHiddenWines(!showHiddenWines)}
-                  className={`text-[9px] px-3 py-1.5 rounded-full font-bold uppercase tracking-wider transition-all ${showHiddenWines ? 'bg-red-100 text-red-600' : 'bg-stone-100 text-stone-500'}`}
+                  className={`text-[9px] px-3 py-1.5 rounded-full font-bold uppercase tracking-wider transition-all ${showHiddenWines ? 'bg-red-500/10 text-red-400 border border-red-500/20' : 'bg-white/5 text-stone-500 border border-white/10'}`}
                 >
                   {showHiddenWines ? `Nascosti (${menu.filter(m => m.hidden).length})` : `Visibili (${menu.filter(m => !m.hidden).length})`}
                 </button>
               </div>
               <div className="flex gap-2">
-                <button onClick={onWipeMenu} className="p-2 bg-red-100 text-red-600 rounded-full shadow-lg hover:bg-red-200" title="Svuota Menu"><Trash size={18} /></button>
+                <button onClick={onWipeMenu} className="p-2 bg-red-500/10 text-red-400 rounded-full hover:bg-red-500/20 border border-red-500/20" title="Svuota Menu"><Trash size={18} /></button>
                 <button onClick={() => { setIsAdding(true); lastScrollPos.current = window.scrollY; }} className="p-2 bg-stone-800 text-[#D4AF37] rounded-full shadow-lg"><Plus /></button>
               </div>
             </div>
 
             {/* Add/Edit Form */}
             {(isAdding || editingId) && (
-              <div className="bg-white p-6 rounded-[2rem] border shadow-xl space-y-4">
+              <div className="bg-stone-900/90 backdrop-blur-sm p-6 rounded-[2rem] border border-white/10 space-y-4">
                 <input
                   placeholder="Nome piatto (es. Cotoletta alla valdostana)"
                   className="admin-input"
@@ -2358,8 +2427,8 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                 />
 
                 {/* Multilanguage Tabs / Fields */}
-                <div className="space-y-3 pt-4 border-t border-stone-100">
-                  <h4 className="text-sm font-bold text-stone-400 uppercase tracking-widest">Traduzioni (Opzionale)</h4>
+                <div className="space-y-3 pt-4 border-t border-white/10">
+                  <h4 className="text-sm font-bold text-[#D4AF37]/60 uppercase tracking-widest">Traduzioni (Opzionale)</h4>
 
                   <div className="grid grid-cols-2 gap-4">
                     <input
@@ -2378,7 +2447,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                 </div>
 
                 {/* Extra Details */}
-                <div className="space-y-2 pt-4 border-t border-stone-100">
+                <div className="space-y-2 pt-4 border-t border-white/10">
                   <h4 className="text-sm font-bold text-stone-400 uppercase tracking-widest">Dettagli Extra</h4>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
@@ -2397,10 +2466,10 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                 </div>
 
                 {/* VINO SUGGERITO (MANUALE) */}
-                <div className="space-y-2 pt-4 border-t border-stone-100">
+                <div className="space-y-2 pt-4 border-t border-white/10">
                   <div className="flex items-center gap-2">
                     <WineIcon size={14} className="text-[#722F37]" />
-                    <h4 className="text-sm font-bold text-stone-400 uppercase tracking-widest">Vino Consigliato (Opzionale)</h4>
+                    <h4 className="text-sm font-bold text-[#D4AF37]/60 uppercase tracking-widest">Vino Consigliato (Opzionale)</h4>
                   </div>
                   <select
                     className="admin-input"
@@ -2444,13 +2513,13 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                 </div>
 
                 {/* CAMPO UPLOAD IMMAGINE PIATTO */}
-                <div className="space-y-3 p-4 bg-stone-50 rounded-xl border border-dashed border-stone-300">
+                <div className="space-y-3 p-4 bg-stone-800/50 rounded-xl border border-white/10">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <ImageIcon size={18} className="text-[#D4AF37]" />
-                      <span className="text-xs uppercase tracking-widest text-stone-600 font-bold">Foto Piatto</span>
+                      <span className="text-xs uppercase tracking-widest text-[#D4AF37]/60 font-bold">Foto Piatto</span>
                     </div>
-                    <label className="cursor-pointer bg-stone-800 text-white px-4 py-2 rounded-lg text-[10px] uppercase font-bold tracking-widest hover:bg-black transition-all flex items-center gap-2">
+                    <label className="cursor-pointer bg-[#D4AF37]/10 border border-[#D4AF37]/30 text-[#D4AF37] px-4 py-2 rounded-lg text-[10px] uppercase font-bold tracking-widest hover:bg-[#D4AF37]/20 transition-all flex items-center gap-2">
                       <Upload size={14} /> Scegli File
                       <input
                         type="file"
@@ -2472,7 +2541,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   </div>
                   {menuForm.image ? (
                     <div className="relative group">
-                      <img src={menuForm.image} alt="Anteprima" className="w-full h-48 object-cover rounded-lg border" />
+                      <img src={menuForm.image} alt="Anteprima" className="w-full h-48 object-cover rounded-lg border border-white/10" />
                       <button
                         onClick={() => setMenuForm({ ...menuForm, image: '' })}
                         className="absolute top-2 right-2 bg-red-500 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all shadow-lg"
@@ -2481,7 +2550,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       </button>
                     </div>
                   ) : (
-                    <div className="h-24 flex items-center justify-center text-stone-300 text-xs uppercase tracking-widest">
+                    <div className="h-24 flex items-center justify-center text-stone-600 text-xs uppercase tracking-widest">
                       Nessuna immagine selezionata
                     </div>
                   )}
@@ -2515,8 +2584,8 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       onUpdateMenu(menu.map(m => m.id === editingId ? menuItem : m));
                     }
                     resetForms();
-                  }} className="flex-1 bg-stone-800 text-[#D4AF37] py-4 rounded-xl font-bold uppercase text-[10px] tracking-widest">Salva</button>
-                  <button onClick={resetForms} className="px-6 bg-stone-100 text-stone-500 rounded-xl font-bold uppercase text-[10px]">Annulla</button>
+                  }} className="flex-1 bg-gradient-to-r from-[#BF953F] via-[#D4AF37] to-[#B38728] text-stone-950 py-4 rounded-xl font-bold uppercase text-[10px] tracking-widest hover:shadow-lg hover:shadow-[#D4AF37]/20 transition-all">Salva</button>
+                  <button onClick={resetForms} className="px-6 bg-white/5 border border-white/10 text-stone-400 rounded-xl font-bold uppercase text-[10px] hover:bg-white/10 transition-all">Annulla</button>
                 </div>
               </div>
             )}
@@ -2530,7 +2599,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   placeholder="Cerca nel menu..."
                   value={menuSearchTerm}
                   onChange={(e) => setMenuSearchTerm(e.target.value)}
-                  className="w-full bg-white border border-stone-200 rounded-xl py-3 pl-12 pr-4 text-sm focus:outline-none focus:border-[#D4AF37] transition-all shadow-sm"
+                  className="w-full bg-stone-900/80 border border-white/10 rounded-xl py-3 pl-12 pr-4 text-sm text-stone-200 placeholder-stone-500 focus:outline-none focus:border-[#D4AF37]/50 transition-all"
                 />
               </div>
             )}
@@ -2544,7 +2613,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   .filter(m => showHiddenWines ? m.hidden : !m.hidden)
                   .filter(m => (m.name || '').toLowerCase().includes(menuSearchTerm.toLowerCase()) || (m.category || '').toLowerCase().includes(menuSearchTerm.toLowerCase()))
                   .length === 0 ? (
-                  <div className="text-center py-10 text-stone-400 font-serif italic border border-dashed border-stone-200 rounded-2xl">
+                  <div className="text-center py-10 text-stone-500 font-serif italic border border-dashed border-white/10 rounded-2xl">
                     {menuSearchTerm ? 'Nessun piatto trovato' : (showHiddenWines ? 'Nessun piatto nascosto' : 'Nessun piatto visibile. Usa + o import per aggiungerne.')}
                   </div>
                 ) : (
@@ -2552,26 +2621,26 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                     .filter(m => showHiddenWines ? m.hidden : !m.hidden)
                     .filter(m => (m.name || '').toLowerCase().includes(menuSearchTerm.toLowerCase()) || (m.category || '').toLowerCase().includes(menuSearchTerm.toLowerCase()))
                     .map(item => (
-                      <div key={item.id} className={`bg-white p-4 rounded-2xl flex items-center justify-between border shadow-sm ${item.hidden ? 'bg-red-50 border-red-200' : ''}`}>
+                      <div key={item.id} className={`bg-stone-900/80 p-4 rounded-2xl flex items-center justify-between border border-white/10 ${item.hidden ? 'bg-red-500/5 border-red-500/20' : ''}`}>
                         <div>
-                          <p className="font-serif font-bold text-stone-800">{item.name}</p>
+                          <p className="font-serif font-bold text-stone-100">{item.name}</p>
                           <p className="text-[9px] text-stone-400 uppercase">{item.category} • {item.price}</p>
                         </div>
                         <div className="flex gap-1">
                           <button
                             onClick={() => onUpdateMenu(menu.map(m => m.id === item.id ? { ...m, hidden: !m.hidden } : m))}
-                            className={`p-2 ${item.hidden ? 'text-green-500 hover:bg-green-50' : 'text-red-400 hover:bg-red-50'} rounded-lg transition-colors`}
+                            className={`p-2 ${item.hidden ? 'text-green-400 hover:bg-green-500/10' : 'text-red-400 hover:bg-red-500/10'} rounded-lg transition-colors`}
                             title={item.hidden ? 'Rimetti nel menu' : 'Nascondi'}
                           >
                             {item.hidden ? <Eye size={16} /> : <EyeOff size={16} />}
                           </button>
-                          <button onClick={() => handleTranslateMenuItem(item)} className="p-2 text-blue-400 hover:bg-blue-50 rounded-lg transition-colors" title="Traduci Piatto"><Globe size={16} /></button>
+                          <button onClick={() => handleTranslateMenuItem(item)} className="p-2 text-blue-400 hover:bg-blue-500/10 rounded-lg transition-colors" title="Traduci Piatto"><Globe size={16} /></button>
                           <button onClick={() => {
                             setMenuForm({ ...item });
                             setEditingId(item.id);
                             lastScrollPos.current = window.scrollY;
-                          }} className="p-2 text-stone-300"><Edit2 size={16} /></button>
-                          <button onClick={() => onUpdateMenu(menu.filter(m => m.id !== item.id))} className="p-2 text-stone-300 hover:text-red-600"><Trash2 size={16} /></button>
+                          }} className="p-2 text-stone-500 hover:text-[#D4AF37]"><Edit2 size={16} /></button>
+                          <button onClick={() => onUpdateMenu(menu.filter(m => m.id !== item.id))} className="p-2 text-stone-500 hover:text-red-400"><Trash2 size={16} /></button>
 
                         </div>
                       </div>
@@ -2587,28 +2656,28 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
         activeTab === 'ai_instructions' && (
           <div className="space-y-6">
             {/* Clean vertical function list */}
-            <div className="bg-white rounded-[2rem] border border-stone-200 overflow-hidden shadow-sm">
+            <div className="bg-stone-900/80 rounded-[2rem] border border-white/10 overflow-hidden backdrop-blur-sm">
               {/* Header */}
-              <div className="px-6 py-4 bg-gradient-to-r from-stone-800 to-stone-700">
+              <div className="px-6 py-4 bg-gradient-to-r from-stone-900 to-stone-800 border-b border-white/5">
                 <h3 className="text-sm font-serif font-bold text-[#D4AF37] uppercase tracking-[0.2em]">⚙️ Routing AI</h3>
                 <p className="text-[10px] text-stone-400 mt-0.5">Provider per funzione</p>
               </div>
 
               {/* Function rows */}
-              <div className="divide-y divide-stone-100">
+              <div className="divide-y divide-white/5">
                 {/* Chat Sommelier */}
                 <div className="px-6 py-4 flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <span className="text-lg">🤖</span>
                     <div>
-                      <p className="text-sm font-bold text-stone-700">Sommelier</p>
+                      <p className="text-sm font-bold text-stone-200">Sommelier</p>
                       <p className="text-[10px] text-stone-400">Chat consigli vini</p>
                     </div>
                   </div>
                   <div className="flex gap-1">
                     {(['gemini', 'openrouter', 'openai'] as const).map(p => (
                       <button key={p} onClick={() => setChatProvider(p)}
-                        className={`px-3 py-1.5 rounded-full text-[10px] font-bold tracking-wide transition-all ${chatProvider === p ? 'bg-stone-800 text-[#D4AF37] shadow-sm' : 'bg-stone-100 text-stone-400 hover:bg-stone-200'}`}
+                        className={`px-3 py-1.5 rounded-full text-[10px] font-bold tracking-wide transition-all ${chatProvider === p ? 'bg-stone-800 text-[#D4AF37] shadow-sm' : 'bg-white/5 text-stone-500 hover:bg-white/10'}`}
                       >{p === 'gemini' ? 'Gemini' : p === 'openrouter' ? 'OR' : 'OpenAI'}</button>
                     ))}
                   </div>
@@ -2619,14 +2688,14 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   <div className="flex items-center gap-3">
                     <span className="text-lg">📷</span>
                     <div>
-                      <p className="text-sm font-bold text-stone-700">Scan</p>
+                      <p className="text-sm font-bold text-stone-200">Scan</p>
                       <p className="text-[10px] text-stone-400">Riconoscimento etichetta</p>
                     </div>
                   </div>
                   <div className="flex gap-1">
                     {(['gemini', 'openrouter'] as const).map(p => (
                       <button key={p} onClick={() => setScanProvider(p)}
-                        className={`px-3 py-1.5 rounded-full text-[10px] font-bold tracking-wide transition-all ${scanProvider === p ? 'bg-stone-800 text-[#D4AF37] shadow-sm' : 'bg-stone-100 text-stone-400 hover:bg-stone-200'}`}
+                        className={`px-3 py-1.5 rounded-full text-[10px] font-bold tracking-wide transition-all ${scanProvider === p ? 'bg-stone-800 text-[#D4AF37] shadow-sm' : 'bg-white/5 text-stone-500 hover:bg-white/10'}`}
                       >{p === 'gemini' ? 'Gemini' : 'OpenRouter'}</button>
                     ))}
                   </div>
@@ -2637,14 +2706,14 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   <div className="flex items-center gap-3">
                     <span className="text-lg">🍷</span>
                     <div>
-                      <p className="text-sm font-bold text-stone-700">Pairing</p>
+                      <p className="text-sm font-bold text-stone-200">Pairing</p>
                       <p className="text-[10px] text-stone-400">Abbinamento vino-piatto</p>
                     </div>
                   </div>
                   <div className="flex gap-1">
                     {(['gemini', 'openrouter', 'openai'] as const).map(p => (
                       <button key={p} onClick={() => setPairingProvider(p)}
-                        className={`px-3 py-1.5 rounded-full text-[10px] font-bold tracking-wide transition-all ${pairingProvider === p ? 'bg-stone-800 text-[#D4AF37] shadow-sm' : 'bg-stone-100 text-stone-400 hover:bg-stone-200'}`}
+                        className={`px-3 py-1.5 rounded-full text-[10px] font-bold tracking-wide transition-all ${pairingProvider === p ? 'bg-stone-800 text-[#D4AF37] shadow-sm' : 'bg-white/5 text-stone-500 hover:bg-white/10'}`}
                       >{p === 'gemini' ? 'Gemini' : p === 'openrouter' ? 'OR' : 'OpenAI'}</button>
                     ))}
                   </div>
@@ -2655,14 +2724,14 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   <div className="flex items-center gap-3">
                     <span className="text-lg">📄</span>
                     <div>
-                      <p className="text-sm font-bold text-stone-700">Importazione</p>
+                      <p className="text-sm font-bold text-stone-200">Importazione</p>
                       <p className="text-[10px] text-stone-400">PDF / testo → dati</p>
                     </div>
                   </div>
                   <div className="flex gap-1">
                     {(['gemini', 'openrouter'] as const).map(p => (
                       <button key={p} onClick={() => setImportProvider(p)}
-                        className={`px-3 py-1.5 rounded-full text-[10px] font-bold tracking-wide transition-all ${importProvider === p ? 'bg-stone-800 text-[#D4AF37] shadow-sm' : 'bg-stone-100 text-stone-400 hover:bg-stone-200'}`}
+                        className={`px-3 py-1.5 rounded-full text-[10px] font-bold tracking-wide transition-all ${importProvider === p ? 'bg-stone-800 text-[#D4AF37] shadow-sm' : 'bg-white/5 text-stone-500 hover:bg-white/10'}`}
                       >{p === 'gemini' ? 'Gemini' : 'OpenRouter'}</button>
                     ))}
                   </div>
@@ -2673,7 +2742,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   <div className="flex items-center gap-3">
                     <span className="text-lg">🔤</span>
                     <div>
-                      <p className="text-sm font-bold text-stone-700">Traduzioni</p>
+                      <p className="text-sm font-bold text-stone-200">Traduzioni</p>
                       <p className="text-[10px] text-stone-400">IT → EN / FR · fallback Gemini</p>
                     </div>
                   </div>
@@ -2685,14 +2754,14 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   <div className="flex items-center gap-3">
                     <span className="text-lg">💬</span>
                     <div>
-                      <p className="text-sm font-bold text-stone-700">Admin Chat</p>
+                      <p className="text-sm font-bold text-stone-200">Admin Chat</p>
                       <p className="text-[10px] text-stone-400">Assistente gestionale</p>
                     </div>
                   </div>
                   <div className="flex gap-1">
                     {(['gemini', 'openrouter', 'openai'] as const).map(p => (
                       <button key={p} onClick={() => setAdminChatProvider(p)}
-                        className={`px-3 py-1.5 rounded-full text-[10px] font-bold tracking-wide transition-all ${adminChatProvider === p ? 'bg-stone-800 text-[#D4AF37] shadow-sm' : 'bg-stone-100 text-stone-400 hover:bg-stone-200'}`}
+                        className={`px-3 py-1.5 rounded-full text-[10px] font-bold tracking-wide transition-all ${adminChatProvider === p ? 'bg-stone-800 text-[#D4AF37] shadow-sm' : 'bg-white/5 text-stone-500 hover:bg-white/10'}`}
                       >{p === 'gemini' ? 'Gemini' : p === 'openrouter' ? 'OR' : 'OpenAI'}</button>
                     ))}
                   </div>
@@ -2700,24 +2769,24 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
               </div>
 
               {/* Model config footer */}
-              <div className="px-6 py-4 bg-stone-50 border-t border-stone-200">
+              <div className="px-6 py-4 bg-stone-950/50 border-t border-white/5">
                 <p className="text-[10px] font-bold text-stone-500 uppercase tracking-wider mb-3">Modelli attivi</p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                   <select value={selectedGeminiModel} onChange={e => setSelectedGeminiModel(e.target.value)}
-                    className="bg-white border border-stone-200 rounded-lg px-3 py-2 text-stone-600 text-xs font-bold">
+                    className="bg-stone-800 border border-white/10 rounded-lg px-3 py-2 text-stone-300 text-xs font-bold">
                     {geminiModels.map(m => <option key={m.id} value={m.id}>🔮 {m.name}</option>)}
                   </select>
                   <select value={selectedOpenRouterModel} onChange={e => setSelectedOpenRouterModel(e.target.value)}
-                    className="bg-white border border-stone-200 rounded-lg px-3 py-2 text-stone-600 text-xs font-bold">
+                    className="bg-stone-800 border border-white/10 rounded-lg px-3 py-2 text-stone-300 text-xs font-bold">
                     {openRouterModels.map(m => <option key={m.id} value={m.id}>🌐 {m.name} {m.free ? '✓' : '💰'}</option>)}
                   </select>
                   <div className="space-y-1">
                     <select value={selectedOpenAIModel} onChange={e => setSelectedOpenAIModel(e.target.value)}
-                      className="w-full bg-white border border-stone-200 rounded-lg px-3 py-2 text-stone-600 text-xs font-bold">
+                      className="w-full bg-stone-800 border border-white/10 rounded-lg px-3 py-2 text-stone-300 text-xs font-bold">
                       {openAIModels.map(m => <option key={m.id} value={m.id}>🤖 {m.name}</option>)}
                     </select>
                     <input type="password" value={openAIKey} onChange={e => setOpenAIKey(e.target.value)}
-                      placeholder="OpenAI Key: sk-proj-..." className="w-full bg-white border border-stone-200 rounded-lg px-3 py-1.5 text-stone-500 font-mono text-[10px]" />
+                      placeholder="OpenAI Key: sk-proj-..." className="w-full bg-stone-800 border border-white/10 rounded-lg px-3 py-1.5 text-stone-400 font-mono text-[10px]" />
                   </div>
                 </div>
               </div>
@@ -2743,17 +2812,17 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
 
 
             <div className="text-center space-y-2">
-              <h2 className="text-2xl font-serif font-bold text-stone-800 uppercase tracking-widest">Manutenzione Database</h2>
+              <h2 className="text-2xl font-serif font-bold text-[#D4AF37] uppercase tracking-widest">Manutenzione Database</h2>
               <p className="text-xs text-stone-400 font-serif italic mb-4">Backup e Ripristino Totale</p>
 
               {/* Storage Usage Indicator */}
               {/* Storage Usage Indicator */}
-              <div className="bg-stone-100 rounded-xl p-4 mb-6">
+              <div className="bg-stone-900/80 rounded-xl p-4 mb-6 border border-white/10">
                 <div className="flex justify-between text-[10px] uppercase font-bold tracking-widest text-stone-500 mb-2">
                   <span>Peso Dati (Memoria Attiva)</span>
                   <span>{(new Blob([JSON.stringify({ wines, wineries, menu, glossary })]).size / 1024 / 1024).toFixed(2)} MB / ~5.00 MB</span>
                 </div>
-                <div className="w-full bg-stone-200 rounded-full h-2 overflow-hidden">
+                <div className="w-full bg-stone-800 rounded-full h-2 overflow-hidden">
                   <div
                     className="bg-[#D4AF37] h-full transition-all duration-1000"
                     style={{ width: `${Math.min(100, (new Blob([JSON.stringify({ wines, wineries, menu, glossary })]).size / 1024 / 1024 / 5) * 100)}%` }}
@@ -2766,7 +2835,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
 
               <button
                 onClick={onLogout}
-                className="w-full mb-8 py-3 bg-red-50 text-red-600 rounded-xl font-bold uppercase text-[10px] tracking-widest border border-red-100 hover:bg-red-100 transition-colors"
+                className="w-full mb-8 py-3 bg-red-500/10 text-red-400 rounded-xl font-bold uppercase text-[10px] tracking-widest border border-red-500/20 hover:bg-red-500/20 transition-colors"
               >
                 Esci (Logout)
               </button>
@@ -2941,25 +3010,25 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                 </div>
               </button>
 
-              <div className="h-px bg-stone-100 my-4" />
+              <div className="h-px bg-white/5 my-4" />
 
-              <button onClick={onExportBackup} className="w-full flex items-center gap-6 p-6 bg-white border rounded-[2rem] hover:border-[#D4AF37]/40 shadow-sm transition-all text-left group">
-                <div className="w-14 h-14 bg-stone-50 rounded-full flex items-center justify-center text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-white transition-all"><Download size={24} /></div>
-                <div><h4 className="font-serif font-bold text-stone-800 uppercase tracking-widest text-sm">Esporta Backup</h4><p className="text-[10px] text-stone-400 uppercase mt-1">Salva tutto su file .json</p></div>
+              <button onClick={onExportBackup} className="w-full flex items-center gap-6 p-6 bg-stone-900/80 border border-white/10 rounded-[2rem] hover:border-[#D4AF37]/30 transition-all text-left group backdrop-blur-sm">
+                <div className="w-14 h-14 bg-stone-800 rounded-full flex items-center justify-center text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-stone-950 transition-all"><Download size={24} /></div>
+                <div><h4 className="font-serif font-bold text-stone-100 uppercase tracking-widest text-sm">Esporta Backup</h4><p className="text-[10px] text-stone-500 uppercase mt-1">Salva tutto su file .json</p></div>
               </button>
               <div className="relative">
                 <input type="file" ref={fileInputRef} onChange={onImportBackup} accept=".json" className="hidden" />
-                <button onClick={() => fileInputRef.current?.click()} className="w-full flex items-center gap-6 p-6 bg-white border rounded-[2rem] hover:border-blue-300 shadow-sm transition-all text-left group">
-                  <div className="w-14 h-14 bg-stone-50 rounded-full flex items-center justify-center text-blue-400 group-hover:bg-blue-400 group-hover:text-white transition-all"><Upload size={24} /></div>
-                  <div><h4 className="font-serif font-bold text-stone-800 uppercase tracking-widest text-sm">Importa Backup</h4><p className="text-[10px] text-stone-400 uppercase mt-1">Carica file .json salvato</p></div>
+                <button onClick={() => fileInputRef.current?.click()} className="w-full flex items-center gap-6 p-6 bg-stone-900/80 border border-white/10 rounded-[2rem] hover:border-blue-500/30 transition-all text-left group backdrop-blur-sm">
+                  <div className="w-14 h-14 bg-stone-800 rounded-full flex items-center justify-center text-blue-400 group-hover:bg-blue-500 group-hover:text-white transition-all"><Upload size={24} /></div>
+                  <div><h4 className="font-serif font-bold text-stone-100 uppercase tracking-widest text-sm">Importa Backup</h4><p className="text-[10px] text-stone-500 uppercase mt-1">Carica file .json salvato</p></div>
                 </button>
               </div>
 
 
 
-              <button onClick={onWipeData} className="w-full flex items-center gap-6 p-6 bg-white border border-red-100 rounded-[2rem] hover:bg-red-50 shadow-sm transition-all text-left group">
-                <div className="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center text-red-500 group-hover:bg-red-500 group-hover:text-white transition-all"><Trash size={24} /></div>
-                <div><h4 className="font-serif font-bold text-red-600 uppercase tracking-widest text-sm">Svuota App (Vergine)</h4><p className="text-[10px] text-stone-400 uppercase mt-1">Reset totale irreversibile.</p></div>
+              <button onClick={onWipeData} className="w-full flex items-center gap-6 p-6 bg-stone-900/80 border border-red-500/20 rounded-[2rem] hover:bg-red-500/5 transition-all text-left group backdrop-blur-sm">
+                <div className="w-14 h-14 bg-red-500/10 rounded-full flex items-center justify-center text-red-400 group-hover:bg-red-500 group-hover:text-white transition-all"><Trash size={24} /></div>
+                <div><h4 className="font-serif font-bold text-red-400 uppercase tracking-widest text-sm">Svuota App (Vergine)</h4><p className="text-[10px] text-stone-500 uppercase mt-1">Reset totale irreversibile.</p></div>
               </button>
             </div>
           </div>
@@ -2970,7 +3039,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
         activeTab === 'themes' && (
           <div className="space-y-10 animate-in fade-in pb-20">
             <div className="text-center space-y-2">
-              <h2 className="text-2xl font-serif font-bold text-stone-800 uppercase tracking-widest">Tema Applicazione</h2>
+              <h2 className="text-2xl font-serif font-bold text-[#D4AF37] uppercase tracking-widest">Tema Applicazione</h2>
               <p className="text-xs text-stone-400 font-serif italic">Seleziona lo stile visivo dell'esperienza mobile</p>
             </div>
 
@@ -2981,7 +3050,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   <button
                     key={theme.id}
                     onClick={() => setTheme(theme.id)}
-                    className={`relative overflow-hidden rounded-[2rem] border-2 transition-all duration-300 text-left group ${isActive ? 'border-[#D4AF37] shadow-xl scale-[1.02]' : 'border-transparent hover:border-stone-200 shadow-sm bg-white'}`}
+                    className={`relative overflow-hidden rounded-[2rem] border-2 transition-all duration-300 text-left group ${isActive ? 'border-[#D4AF37] shadow-xl scale-[1.02]' : 'border-white/10 hover:border-white/20 bg-stone-900/80'}`}
                   >
                     {/* Preview Header */}
                     <div className="h-24 w-full relative overflow-hidden">
@@ -3028,15 +3097,21 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
       <style>{`
         .admin-input {
           width: 100%;
-          padding: 1.2rem 1.5rem;
-          background: #fdfcf9;
-          border: 1px solid #eee;
-          border-radius: 1rem;
-          font-family: 'Cormorant Garamond', serif;
-          font-size: 1.1rem;
+          padding: 0.85rem 1.1rem;
+          background: rgba(28, 25, 23, 0.8);
+          border: 1px solid rgba(255,255,255,0.08);
+          border-radius: 0.75rem;
+          font-family: 'Inter', system-ui, -apple-system, sans-serif;
+          font-size: 0.9rem;
+          color: #e7e5e4;
           outline: none;
+          transition: border-color 0.2s, box-shadow 0.2s;
         }
-        .admin-input:focus { border-color: #D4AF37; }
+        .admin-input::placeholder { color: #57534e; font-style: italic; }
+        .admin-input:focus { border-color: rgba(212, 175, 55, 0.4); box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.06); }
+        select.admin-input { cursor: pointer; }
+        select.admin-input option { background: #1c1917; color: #e7e5e4; }
+        textarea.admin-input { resize: vertical; line-height: 1.6; }
       `}</style>
     </div >
   );

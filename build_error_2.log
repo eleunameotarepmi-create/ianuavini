@@ -1,0 +1,21 @@
+
+> ianua-vini-alpine-wine-journey@0.0.0 build
+> vite build
+
+[36mvite v6.4.1 [32mbuilding for production...[36m[39m
+transforming...
+[32mÔ£ô[39m 1747 modules transformed.
+Ô£ù Build failed in 1.22s
+error during build:
+[vite-plugin-pwa:build] [plugin vite-plugin-pwa:build] components/WineryDetailModal.tsx: There was an error during the build:
+  Could not resolve "../translations" from "components/WineryDetailModal.tsx"
+Additionally, handling the error in the 'buildEnd' hook caused the following error:
+  Could not resolve "../translations" from "components/WineryDetailModal.tsx"
+file: C:/Users/Urukk/Desktop/v3revolution 15febbraio/components/WineryDetailModal.tsx
+    at getRollupError (file:///C:/Users/Urukk/Desktop/v3revolution%2015febbraio/node_modules/rollup/dist/es/shared/parseAst.js:401:41)
+    at file:///C:/Users/Urukk/Desktop/v3revolution%2015febbraio/node_modules/rollup/dist/es/shared/node-entry.js:23467:39
+    at async catchUnfinishedHookActions (file:///C:/Users/Urukk/Desktop/v3revolution%2015febbraio/node_modules/rollup/dist/es/shared/node-entry.js:22925:16)
+    at async rollupInternal (file:///C:/Users/Urukk/Desktop/v3revolution%2015febbraio/node_modules/rollup/dist/es/shared/node-entry.js:23450:5)
+    at async buildEnvironment (file:///C:/Users/Urukk/Desktop/v3revolution%2015febbraio/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:46235:14)
+    at async Object.defaultBuildApp [as buildApp] (file:///C:/Users/Urukk/Desktop/v3revolution%2015febbraio/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:46713:5)
+    at async CAC.<anonymous> (file:///C:/Users/Urukk/Desktop/v3revolution%2015febbraio/node_modules/vite/dist/node/cli.js:863:7)

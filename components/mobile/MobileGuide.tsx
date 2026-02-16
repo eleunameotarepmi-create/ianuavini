@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Wine as WineIcon } from 'lucide-react';
-import { GLASS_DEFINITIONS } from '../../data/glassData';
+import { GLASS_DEFINITIONS, GLASS_TYPE_MAP } from '../../data/glassData';
 import { WineGlass } from '../WineGlass';
 import { GlassGuideModal } from '../GlassGuideModal';
 import type { Wine } from '../../types';
@@ -14,15 +14,6 @@ export const MobileGuide: React.FC<MobileGuideProps> = ({ language }) => {
     const [selectedGlassId, setSelectedGlassId] = useState<string | null>(null);
 
     const glassEntries = Object.values(GLASS_DEFINITIONS);
-
-    const typeMap: Record<string, string> = {
-        'flute': 'sparkling',
-        'white': 'white',
-        'red': 'red',
-        'dessert': 'dessert',
-        'rose': 'rose',
-        'universal': 'red'
-    };
 
     return (
         <div className="pb-32 px-4 pt-4 min-h-full bg-stone-950 text-stone-100">
@@ -47,7 +38,7 @@ export const MobileGuide: React.FC<MobileGuideProps> = ({ language }) => {
                     const mockWine: Wine = {
                         id: `mock-${glass.id}`,
                         name: glass.name,
-                        type: typeMap[glass.id] as any,
+                        type: GLASS_TYPE_MAP[glass.id] as any,
                         grapes: '',
                         description: '',
                         price: '0',

@@ -8,7 +8,35 @@ export interface GlassDefinition {
     usage: string;
 }
 
+// Centralized mapping from glass definition IDs to wine types
+export const GLASS_TYPE_MAP: Record<string, string> = {
+    'flute': 'sparkling',
+    'renano': 'white',
+    'borgogna': 'borgogna',
+    'borgogna_red': 'borgogna_red',
+    'borgogna_rose': 'borgogna_rose',
+    'balloon': 'red',
+    'barbaresco': 'red_premium',
+    'marsala': 'dessert',
+    'white': 'white',
+    'red': 'red',
+    'dessert': 'dessert',
+    'rose': 'rose',
+    'flute_rose': 'flute_rose',
+    'tulipano_white_complex': 'sparkling_complex',
+    'tulipano_rose_complex': 'sparkling_rose_complex'
+};
+
+
 export const GLASS_DEFINITIONS: Record<string, GlassDefinition> = {
+    'flute_rose': {
+        id: 'flute_rose',
+        name: 'Flûte Rosé',
+        shortDescription: 'Freschezza per rosati frizzanti leggeri',
+        fullDescription: 'Il Flûte Rosé è pensato per esaltare la vivacità e il colore dei vini rosati frizzanti giovani. La forma slanciata preserva il perlage fine e persistente, mentre l\'apertura leggermente più ampia rispetto al flute classico permette ai delicati aromi fruttati di esprimersi al meglio.',
+        technicalDetails: 'Cristallo trasparente per apprezzare le sfumature rosa. Gambo lungo per mantenere la temperatura fresca (6-8°C).',
+        usage: 'Ideale per Rosé frizzanti, Prosecco Rosé, Spumanti Charmat Rosé.'
+    },
     'flute': {
         id: 'flute',
         name: 'Flûte Classica',
@@ -17,13 +45,21 @@ export const GLASS_DEFINITIONS: Record<string, GlassDefinition> = {
         technicalDetails: 'Il corpo stretto favorisce la risalita delle bollicine, mentre la leggera apertura in alto dirige il vino verso la punta della lingua, esaltandone la freschezza e la mineralità. Il materiale ideale è cristallo sottile con punto di perlage sul fondo. Il gambo lungo resta essenziale per evitare di riscaldare il vino con la mano.',
         usage: 'Perfetto per Prosecco, Spumanti Charmat, Champagne non millesimati, rosé frizzanti e tutti i vini dove la vivacità e la freschezza sono protagoniste.'
     },
-    'tulipano': {
-        id: 'tulipano',
-        name: 'Tulipano / Calice da Spumante',
-        shortDescription: 'Complessità aromatica per bollicine evolute',
-        fullDescription: 'Sempre più frequentemente si predilige un calice da degustazione per spumanti: una forma intermedia tra flûte e bicchiere da vino bianco, con corpo più ampio e imboccatura più chiusa. Questa soluzione consente una maggiore espressione dei profumi complessi, mantenendo comunque una buona valorizzazione del perlage.',
-        technicalDetails: 'I migliori calici per spumante includono un punto di perlage inciso sul fondo, una micro-incisione pensata per favorire la formazione continua delle bollicine. Anche il gambo lungo resta essenziale per evitare di riscaldare il vino con la mano. I calici più evoluti combinano eleganza formale e funzione sensoriale.',
-        usage: 'Per Franciacorta, Trento DOC, Champagne millesimato, rosé frizzanti strutturati e spumanti metodo classico dove si vuole apprezzare la complessità olfattiva.'
+    'tulipano_white_complex': {
+        id: 'tulipano_white_complex',
+        name: 'Tulipano Bianco Frizzante Complesso',
+        shortDescription: 'Complessità aromatica per bollicine bianche evolute',
+        fullDescription: 'Il Tulipano per frizzanti bianchi complessi è pensato per esaltare la ricchezza aromatica di spumanti metodo classico e Champagne. La forma più ampia rispetto al flute permette una maggiore espressione dei profumi complessi, mantenendo una buona valorizzazione del perlage.',
+        technicalDetails: 'Calice con punto di perlage inciso sul fondo per favorire la formazione continua delle bollicine. Gambo lungo per evitare di riscaldare il vino. Cristallo sottile per apprezzare le sfumature.',
+        usage: 'Ideale per Franciacorta, Trento DOC, Champagne millesimato, spumanti metodo classico dove si vuole apprezzare la complessità olfattiva.'
+    },
+    'tulipano_rose_complex': {
+        id: 'tulipano_rose_complex',
+        name: 'Tulipano Rosé Frizzante Complesso',
+        shortDescription: 'Eleganza per rosé frizzanti strutturati',
+        fullDescription: 'Il Tulipano per rosé frizzanti complessi valorizza la struttura e la complessità aromatica di spumanti rosé metodo classico. La forma permette di apprezzare sia il perlage fine che i profumi evoluti di frutti rossi e spezie.',
+        technicalDetails: 'Calice con punto di perlage inciso sul fondo. Cristallo trasparente per apprezzare le sfumature rosa. Gambo lungo per mantenere la temperatura fresca (6-8°C).',
+        usage: 'Perfetto per Franciacorta Rosé, Champagne Rosé millesimato, spumanti rosé metodo classico strutturati e complessi.'
     },
     'renano': {
         id: 'renano',
@@ -35,15 +71,32 @@ export const GLASS_DEFINITIONS: Record<string, GlassDefinition> = {
     },
     'borgogna': {
         id: 'borgogna',
-        name: 'Borgogna / Calice da Bianco Strutturato',
-        shortDescription: 'Ampiezza per vini bianchi complessi',
+        name: 'Borgogna',
+        shortDescription: 'Ampiezza per vini bianchi strutturati',
         fullDescription: 'Per valorizzare le caratteristiche di un vino bianco strutturato, il bicchiere deve avere una coppa ampia e una bocca leggermente richiusa. Questa forma consente una buona ossigenazione, favorendo l\'apertura dei profumi complessi e stratificati, spesso dominati da note di frutta matura, spezie, fiori appassiti, burro, miele o vaniglia. A differenza dei bianchi leggeri, questi vini beneficiano di un maggior contatto con l\'aria, che aiuta a rivelarne l\'evoluzione aromatica e la profondità.',
         technicalDetails: 'Il vino viene guidato verso il centro del palato, permettendo una percezione equilibrata tra struttura, accoglienza alcolica e persistenza. Un bicchiere in cristallo fine o vetro soffiato di alta qualità garantisce trasparenza e leggerezza, permettendo di osservare al meglio il colore dorato o ambrato. La forma sottile del bordo consente un sorso preciso.',
         usage: 'Per Chardonnay affinato in barrique, bianchi complessi, rosé strutturati e vini bianchi con affinamento importante.'
     },
+    'borgogna_red': {
+        id: 'borgogna_red',
+        name: 'Borgogna',
+        shortDescription: 'Ampiezza per rossi complessi e strutturati',
+        fullDescription: 'Il calice Borgogna per vini rossi ha una coppa ampia e panciuta con bocca larga, pensata per ossigenare rossi complessi e di grande struttura. La forma generosa permette al vino di esprimersi pienamente, liberando aromi terziari di spezie, cuoio, tabacco e frutti maturi. L\'ampio diametro della coppa favorisce una superficie di contatto con l\'aria maggiore rispetto ai calici tradizionali.',
+        technicalDetails: 'La coppa larga e arrotondata dirige il vino verso il centro della lingua, bilanciando tannini morbidi e acidità. Il cristallo sottile garantisce trasparenza per apprezzare le sfumature granato e aranciato dei rossi evoluti. Temperatura di servizio ideale: 16-18°C.',
+        usage: 'Per Barolo, Barbaresco, Pinot Nero di grande struttura, Borgogna francesi, e rossi di lungo invecchiamento.'
+    },
+    'borgogna_rose': {
+        id: 'borgogna_rose',
+        name: 'Borgogna',
+        shortDescription: 'Ampiezza per rosati strutturati e complessi',
+        fullDescription: 'Il calice Borgogna per rosati strutturati consente una buona ossigenazione dei profumi complessi tipici dei rosé di corpo. La coppa ampia permette di apprezzare le note fruttate mature, floreali e speziate, mantenendo la freschezza caratteristica del rosato.',
+        technicalDetails: 'La coppa arrotondata dirige il vino verso il centro del palato, bilanciando struttura e freschezza. Il cristallo sottile esalta le sfumature di colore dal corallo al cerasuolo. Temperatura di servizio ideale: 10-14°C.',
+        usage: 'Per rosati strutturati, Cerasuolo d\'Abruzzo, Tavel, Chiaretto di Bardolino riserva e rosé con affinamento.'
+    },
+
     'balloon': {
         id: 'balloon',
-        name: 'Balloon / Calice da Rosso',
+        name: 'Balloon',
         shortDescription: 'Versatilità per rossi giovani e di medio corpo',
         fullDescription: 'Il calice ideale per un vino rosso giovane o di struttura leggera ha una coppa di media ampiezza, leggermente arrotondata e con imboccatura non troppo chiusa. Questa forma consente una buona aerazione del vino, necessaria per ammorbidire eventuali spigolosità, senza disperdere i profumi primari come frutti rossi, viole, spezie dolci o leggere note erbacee. Il vino viene indirizzato verso il centro e i lati della lingua, mettendo in risalto la componente fruttata e la leggera trama tannica.',
         technicalDetails: 'Si prediligono materiali trasparenti e leggeri, come il cristallo soffiato o il vetro sottile, che garantiscono una visione nitida del colore – dal rubino brillante al porpora acceso. Il gambo di media lunghezza consente una buona presa evitando il contatto diretto con la coppa, fondamentale per mantenere la corretta temperatura di servizio, in genere tra i 14 e i 16°C.',
@@ -51,7 +104,7 @@ export const GLASS_DEFINITIONS: Record<string, GlassDefinition> = {
     },
     'barbaresco': {
         id: 'barbaresco',
-        name: 'Barbaresco / Calice da Rosso Strutturato',
+        name: 'Barbaresco',
         shortDescription: 'Ossigenazione per grandi rossi da invecchiamento',
         fullDescription: 'Il calice perfetto per un rosso strutturato e di lungo affinamento è ampio, con coppa grande e ben arrotondata, spesso a forma di grande tulipano o addirittura "a palla". L\'ampiezza favorisce una generosa ossigenazione del vino, necessaria per far emergere le note terziarie – cuoio, tabacco, spezie, sottobosco, goudron – insieme ai residui di frutto e alle sfumature evolute. La bocca leggermente richiusa concentra gli aromi verso il naso, permettendo una lettura olfattiva stratificata.',
         technicalDetails: 'Il bicchiere deve essere realizzato in cristallo fine o vetro soffiato di alta qualità, capaci di garantire estrema trasparenza e sottigliezza del bordo, favorendo una percezione pulita e precisa del sorso. L\'ampia superficie interna permette al vino di svilupparsi lentamente nel bicchiere. Il gambo lungo evita il contatto con la coppa, aiutando a mantenere la corretta temperatura di servizio – tra 16 e 18°C.',
@@ -71,16 +124,18 @@ export const getGlassTypeFromWine = (type: string | undefined): GlassDefinition 
     if (!type) return GLASS_DEFINITIONS['balloon'];
     // Sparkling
     if (['sparkling', 'champagne'].includes(type)) return GLASS_DEFINITIONS['tulipano'];
-    if (['sparkling_rose'].includes(type)) return GLASS_DEFINITIONS['flute'];
+    if (['sparkling_rose', 'flute_rose'].includes(type)) return GLASS_DEFINITIONS['flute_rose'];
     // Reds
     if (['red'].includes(type)) return GLASS_DEFINITIONS['balloon'];
-    if (['red_structured'].includes(type)) return GLASS_DEFINITIONS['barbaresco'];
+    if (['red_structured', 'barbaresco'].includes(type)) return GLASS_DEFINITIONS['barbaresco'];
+    if (['borgogna_red', 'red_complex'].includes(type)) return GLASS_DEFINITIONS['borgogna_red'];
     // Whites
     if (['white'].includes(type)) return GLASS_DEFINITIONS['renano'];
-    if (['white_complex'].includes(type)) return GLASS_DEFINITIONS['borgogna'];
+    if (['white_complex', 'borgogna'].includes(type)) return GLASS_DEFINITIONS['borgogna'];
     // Dessert
     if (['dessert', 'fortified'].includes(type)) return GLASS_DEFINITIONS['marsala'];
     // Rosé
     if (['rose'].includes(type)) return GLASS_DEFINITIONS['renano'];
+    if (['rose_structured', 'borgogna_rose'].includes(type)) return GLASS_DEFINITIONS['borgogna_rose'];
     return GLASS_DEFINITIONS['balloon'];
 };

@@ -22,7 +22,7 @@ export const Navigation: React.FC<NavigationProps> = ({ currentView, setView, la
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur-md border-t border-border flex justify-around items-center px-2 py-4 safe-bottom z-50 shadow-[0_-15px_40px_rgba(0,0,0,0.05)] transition-colors duration-500">
+    <nav className="sticky bottom-0 w-full bg-background/95 backdrop-blur-md border-t border-border flex justify-around items-center px-2 py-4 safe-bottom z-50 shadow-[0_-15px_40px_rgba(0,0,0,0.05)] transition-colors duration-500">
       {tabs.map((tab) => (
         <button
           key={tab.id}

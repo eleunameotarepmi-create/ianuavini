@@ -1,0 +1,16 @@
+const fs = require('fs');
+const dbPath = 'db.json';
+const db = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
+
+const wine = db.wines.find(w => w.name === 'SI');
+if (wine) {
+    console.log(`Updating SI price from '${wine.price}' to '64 €'`);
+    wine.price = '64 €';
+    // Maybe set winery if missing? user said "SI Les Petits Riens".
+    // If we have winery "Les Petits Riens", link it.
+    // But I will just update name/price for now.
+    fs.writeFileSync(dbPath, JSON.stringify(db, null, 2));
+    console.log('Updated SI.');
+} else {
+    console.log('SI not found.');
+}

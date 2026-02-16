@@ -1,0 +1,163 @@
+=== WINERIES ANALYSIS ===
+
+Name: Boen (Bonin Dino)
+Location: Arnad
+Manual Region (DB): Bassa Valle
+Calculated Region: bassa
+Calculated Altitude: 350
+
+Name: Caves Coopératives de Donnas
+Location: Donnas
+Manual Region (DB): Bassa Valle
+Calculated Region: bassa
+Calculated Altitude: 320
+
+Name: Piantagrossa
+Location: Donnas
+Manual Region (DB): Bassa Valle
+Calculated Region: bassa
+Calculated Altitude: 320
+
+Name: La Kiuva
+Location: Arnad
+Manual Region (DB): Bassa Valle
+Calculated Region: bassa
+Calculated Altitude: 350
+
+Name: Priod
+Location: Vignaioli Di Issogne
+Manual Region (DB): Bassa Valle
+Calculated Region: bassa
+Calculated Altitude: 390
+
+Name: La Crotta di Vegneron
+Location: Chambave
+Manual Region (DB): Bassa Valle
+Calculated Region: bassa
+Calculated Altitude: 500
+
+Name: Cave Gargantua
+Location: Gressan
+Manual Region (DB): la-plaine
+Calculated Region: plaine-to-valdigne
+Calculated Altitude: 0
+
+Name: Maison Anselmet
+Location: Villeneuve
+Manual Region (DB): la-plaine
+Calculated Region: plaine-to-valdigne
+Calculated Altitude: 670
+
+Name: Château Feuillet
+Location: Saint-Pierre
+Manual Region (DB): Media Valle
+Calculated Region: plaine-to-valdigne
+Calculated Altitude: 730
+
+Name: Chemin
+Location: Villeneuve
+Manual Region (DB): Media Valle
+Calculated Region: plaine-to-valdigne
+Calculated Altitude: 670
+
+Name: CoEnfer – Cooperativa de l’Enfer
+Location: Arvier
+Manual Region (DB): Media Valle
+Calculated Region: plaine-to-valdigne
+Calculated Altitude: 750
+
+Name: La Crotta di Prado
+Location: Jovençan
+Manual Region (DB): la-plaine
+Calculated Region: plaine-to-valdigne
+Calculated Altitude: 630
+
+Name: La Cantina di Cunéaz Nadir
+Location: Gressan
+Manual Region (DB): La Plaine
+Calculated Region: plaine-to-valdigne
+Calculated Altitude: 0
+
+Name: Diego Curtaz Viticoltore
+Location: Gressan
+Manual Region (DB): La Plaine
+Calculated Region: plaine-to-valdigne
+Calculated Altitude: 0
+
+Name: Di Barrò
+Location: Saint-Pierre
+Manual Region (DB): Media Valle
+Calculated Region: plaine-to-valdigne
+Calculated Altitude: 730
+
+Name: Di Francesco-Gasperi Vino & Spiriti
+Location: Saint-Pierre
+Manual Region (DB): Media Valle
+Calculated Region: plaine-to-valdigne
+Calculated Altitude: 730
+
+Name: Edoardo Braga
+Location: Jovençan
+Manual Region (DB): La Plaine
+Calculated Region: plaine-to-valdigne
+Calculated Altitude: 630
+
+Name: La Source
+Location: Saint-Pierre
+Manual Region (DB): Media Valle
+Calculated Region: plaine-to-valdigne
+Calculated Altitude: 730
+
+Name: Feudo di San Maurizio
+Location: Sarre
+Manual Region (DB): Media Valle
+Calculated Region: plaine-to-valdigne
+Calculated Altitude: 630
+
+Name: Cave Les Crêtes – Famiglia Charrère
+Location: Aymavilles
+Manual Region (DB): Media Valle
+Calculated Region: plaine-to-valdigne
+Calculated Altitude: 650
+
+Name: Les Petits Riens
+Location: Aosta
+Manual Region (DB): La Plaine
+Calculated Region: la-plaine
+Calculated Altitude: 580
+
+Name: Lo Triolet
+Location: Introd
+Manual Region (DB): Media Valle
+Calculated Region: plaine-to-valdigne
+Calculated Altitude: 880
+
+Name: Maison Vagneur
+Location: Saint-Nicolas
+Manual Region (DB): Media Valle
+Calculated Region: plaine-to-valdigne
+Calculated Altitude: 1200
+
+Name: Maison Maurice Cretaz
+Location: Sarre (AO)
+Manual Region (DB): Media Valle
+Calculated Region: plaine-to-valdigne
+Calculated Altitude: 630
+
+Name: Cave des Onze Communes
+Location: Aymavilles
+Manual Region (DB): Media Valle
+Calculated Region: plaine-to-valdigne
+Calculated Altitude: 650
+
+Name: André Pellissier
+Location: Saint-Pierre
+Manual Region (DB): Media Valle
+Calculated Region: plaine-to-valdigne
+Calculated Altitude: 730
+
+Name: Danilo Thomain
+Location: Arvier
+Manual Region (DB): Media Valle
+Calculated Region: plaine-to-valdigne
+Calculated Altitude: 750

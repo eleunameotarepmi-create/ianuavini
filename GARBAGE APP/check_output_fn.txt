@@ -1,0 +1,15 @@
+--- Report Vini Richiesti (Feuillet, Noussan) ---
+
+Cercando: feuillet
+  Trovata Cantina: Château Feuillet (winery_1768445255165)
+  - Chardonnay – Valle d’Aosta D.O.C.: PREZZO MANCANTE
+  - Petite Arvine – Valle d’Aosta D.O.C.: 45
+  - Pinot Nero – Valle d’Aosta D.O.C.: PREZZO MANCANTE
+  - Torrette – Valle d’Aosta D.O.C.: 38
+  - Torrette (0.375 L) | 2023: 26
+
+Cercando: noussan
+  Trovata Cantina: Noussan Vini (noussan)
+  - Pinot Gris "Tzanté" – Vallée d’Aoste D.O.C.: PREZZO MANCANTE
+  - Torrette Supérieur "La Prieure" – Vallée d’Aoste D.O.C.: PREZZO MANCANTE
+  - Torrette – Vallée d’Aoste D.O.C. (2023): PREZZO MANCANTE

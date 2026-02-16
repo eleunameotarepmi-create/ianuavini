@@ -1,0 +1,5 @@
+
+--- WINES ---
+300 images found.
+Total Size (Base64 chars): 34826543
+Approx Size (Bytes): 24.91 MB

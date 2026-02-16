@@ -1,0 +1,37 @@
+IANUA – Regole AIS + Schede Piatto (Menu Autunno) – Documento per Antigravity
+Obiettivo: pairing automatico piatto→vini su carta estesa (1000+ etichette) con ranking dal più azzeccato al meno.
+Base menu: ‘menu_autunno_20205.pdf’ (sezione ITA).
+
+A. Requisiti funzionali (come deve comportarsi l’app)
+•	Per ogni piatto: restituire una lista vini ordinata dal più azzeccato al meno (ranking).
+•	Soglia: NON mostrare vini con compatibilità < 50 (non consigliati).
+•	Etichette qualitative (interne o visibili): 80–100 = Perfetto; 65–79 = Ottimo; 50–64 = Compatibile; <50 = Nascosto.
+•	La compatibilità è un valore interno (0–100) usato per ordinare e filtrare. (Non è obbligatorio mostrarlo al cliente.)
+•	Per ogni vino mostrato: 1–2 motivi AIS sintetici (es. “grassezza ↔ freschezza”, “succulenza ↔ tannino maturo”).
+•	Nessuna invenzione: se un attributo non è noto, va marcato come ‘non disponibile’ e incide sulla compatibilità e sulla confidenza.
+•	Gestione varianti: quando un piatto ha opzioni (es. ‘… o …’), trattare le varianti come piatti distinti con schede dedicate.
+
+B. Tag standard (lingua comune tra piatto e vino)
+•	Scala consigliata: Basso / Medio / Alto (oppure 0–3).
+•	Tag piatto minimi: Intensità, Grassezza/Unguosità, Sapidità, Succulenza, Tendenza dolce, Acidità (se presente), Aromaticità/Speciatura, Umami.
+•	Tag vino minimi: Struttura/Corpo, Freschezza/Acidità, Tannino, Morbidezza (alcol + stile), Dolcezza (secco/abboccato/dolce), Effervescenza, Intensità aromatica, Legno/Evoluzione.
+
+C. Stili vino operativi (tassonomia per il ranking)
+•	S1 – Spumante Brut (metodo classico o charmat brut): secco, alta freschezza, effervescenza.
+•	S2 – Bianco secco fresco/minerale: acidità alta, corpo basso/medio, legno assente.
+•	S3 – Bianco secco strutturato: corpo medio/alto, acidità medio-alta, legno assente o integrato.
+•	S4 – Rosato secco gastronomico: secco, acidità medio-alta, struttura media, tannino basso.
+•	S5 – Rosso leggero poco tannico: tannino basso, corpo basso/medio, servibile più fresco.
+•	S6 – Rosso medio (tannino setoso): tannino medio, corpo medio, buona freschezza.
+•	S7 – Rosso strutturato (tannino maturo): tannino medio/alto ma maturo, corpo alto, persistenza alta.
+•	S8 – Dolce / passito / liquoroso: dolcezza evidente, aromaticità, per concordanza dessert o piatti ‘dolci-grassi’ (foie gras).
+
+D. Regole AIS – CORE (C1–C20)
+Le regole CORE sono poche, stabili e riusabili su tutta la carta vini. Si attivano automaticamente in base ai tag del piatto.
+(Rules C1-C20 omitted here for brevity as they are in the user prompt)
+
+E. Regole AIS – MODULI (M1–M10)
+(Modules M1-M10 omitted here for brevity)
+
+F. Schede Piatto – Menu Autunno (ITA)
+(Dish sheets omitted here for brevity)

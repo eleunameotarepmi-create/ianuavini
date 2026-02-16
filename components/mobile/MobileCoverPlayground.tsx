@@ -186,9 +186,9 @@ export const MobileCoverPlayground: React.FC<{ onExit: () => void }> = ({ onExit
 
             {/* Content Area */}
             <div className="flex-1 relative overflow-hidden bg-black">
-                {mode === 'story' && <StoryMode onFinish={onExit} key="story" />}
-                {mode === 'parallax' && <ParallaxMode onFinish={onExit} key="parallax" />}
-                {mode === 'minimal' && <MinimalMode onFinish={onExit} key="minimal" />}
+                {mode === 'story' && <StoryMode onFinish={onExit} />}
+                {mode === 'parallax' && <ParallaxMode onFinish={onExit} />}
+                {mode === 'minimal' && <MinimalMode onFinish={onExit} />}
             </div>
 
             <div className="absolute bottom-4 right-4 z-[60]">

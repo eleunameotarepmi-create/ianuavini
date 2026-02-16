@@ -1,0 +1,14 @@
+Verifying pairings in db.json...
+[OK] Selezione di formaggi e salumi locali -> Correctly paired with wine_1769631559580_1
+[OK] Bucatini alla amatriciana valdostana -> Correctly paired with wine_1769635123838_0
+[OK] Le polente di IANUA (concia o con il camoscio) -> Correctly paired with wine_1769631559580_1
+[OK] Rognoncino al Porto con purea di patate -> Correctly paired with wine_1769631559580_1
+[OK] Cotoletta alla valdostana in doppia panatura di grissini -> Correctly paired with wine_1769631559580_1
+[MISSING] Sottofiletto o filetto di garronese alla griglia -> MISSING pairing with wine_1769631559580_1
+[OK] Filetto di garronese alla Rossini o alla Wellington -> Correctly paired with wine_1769631559580_1
+[OK] Entrée valdostana (pane nero, miele, burro, castagne, lardo, mocetta) -> Correctly paired with wine_1769635123838_0
+[OK] Vitello tonnato -> Correctly paired with wine_1769635123838_0
+[OK] Sushi valdôtèn (albese, tartare, carne salada) -> Correctly paired with wine_1769635123838_0
+[OK] Tris del Piemonte: vol au vent ai porcini, sformato di verza, insalata russa -> Correctly paired with wine_1769635123838_0
+
+Verification Complete. 10/10 pairings verified.

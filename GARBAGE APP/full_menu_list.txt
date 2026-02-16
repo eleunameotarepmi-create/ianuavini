@@ -1,0 +1,39 @@
+MENU ITEMS:
+ID: 1 | Name: Selezione di formaggi e salumi locali
+ID: 10 | Name: Scaloppa di foie gras su granella di nocciola piemontese, frutti del bosco
+ID: 11 | Name: Pane, burro, acciughe
+ID: 12 | Name: Insalata Sur la place, Nizzarda, Chèvre chaud
+ID: 13 | Name: Pasta e fagioli con le cotiche
+ID: 14 | Name: La Valpellinentse (zuppa tradizionale con pane, cavolo, fontina…)
+ID: 15 | Name: Spaghetti al pomodoro e scorza di limone o allo scoglio
+ID: 16 | Name: Bucatini alla amatriciana valdostana
+ID: 17 | Name: Risotto amaretto e zucca
+ID: 18 | Name: Pansoti di Sori
+ID: 19 | Name: Fonduta alla valdostana con la fontina e i crostini
+ID: 2 | Name: Lumache al Bleu d'Aoste o alla mediterranea
+ID: 20 | Name: Le polente di IANUA (concia o con il camoscio)
+ID: 21 | Name: Terrina di porri
+ID: 22 | Name: La tartiflette (patate stufate, pancetta, cipolla e reblochon o rebletzen)
+ID: 23 | Name: Rognoncino al Porto con purea di patate
+ID: 24 | Name: Spigola alla acqua pazza con ratatouille
+ID: 25 | Name: Petto d'anatra al sidro
+ID: 26 | Name: Coniglio alla ligure
+ID: 27 | Name: Cotoletta alla valdostana in doppia panatura di grissini
+ID: 28 | Name: Sottofiletto o filetto di garronese alla griglia
+ID: 29 | Name: Filetto di garronese alla Rossini o alla Wellington
+ID: 3 | Name: Entrée valdostana (pane nero, miele, burro, castagne, lardo, mocetta)
+ID: 30 | Name: Crema di Cogne con le tegole
+ID: 31 | Name: Bûnet alla piemontese con ribes
+ID: 32 | Name: Semifreddo al caffè di Artari
+ID: 33 | Name: La zuppa inglese
+ID: 34 | Name: CCCP (caco, crema, cocco e panna)
+ID: 35 | Name: Sorbetto al limone o al genepì
+ID: 36 | Name: La coppa Mont Blanc
+ID: 37 | Name: Café gourmand
+ID: 38 | Name: Coppa dell’amicizia (caffè alla valdostana)
+ID: 4 | Name: Uovo poché su fonduta di fontina
+ID: 5 | Name: Vitello tonnato
+ID: 6 | Name: Prosciutto di tonno e stracciatella
+ID: 7 | Name: Zuppetta di pesce
+ID: 8 | Name: Sushi valdôtèn (albese, tartare, carne salada)
+ID: 9 | Name: Tris del Piemonte: vol au vent ai porcini, sformato di verza, insalata russa

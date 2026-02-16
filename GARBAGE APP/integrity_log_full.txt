@@ -1,0 +1,7 @@
+Starting scan...
+CRITICAL: Wine at index 176 has NO ID! Full entry: {"name":"Barolo DOCG del Comune di Serralunga d'Alba","grapes":"100% Nebbiolo","alcohol":"14,5% vol.","pairing":"Grandi arrosti, brasati, piatti a base di tartufo bianco d'Alba e formaggi erborinati.","temperature":"18 ┬░C","description":"L'emblema di Fontanafredda. Un Barolo potente e profondo che esprime tutta la forza del terroir di Serralunga.","sensory_profile":"Colore granato intenso. Profumi di rosa appassita, sottobosco e spezie scure. Al palato ├¿ austero, con tannini potenti ma eleganti.","curiosity":"Serralunga ├¿ nota per produrre i Barolo pi├╣ longevi e strutturati di tutta la denominazione grazie ai suoli calcarei antichissimi.","price":"Ôé¼ 55","type":"red","format":"0.75L","image":"Coste-Rubino Fontanafredda.webp"}
+ERROR: Wine at index 176 (ID: undefined) has NO wineryId property!
+ERROR: Wine at index 177 (ID: fontanafredda_alta_langa_limited) has NO wineryId property!
+ERROR: Wine at index 178 (ID: fontanafredda_barbaresco_coste_rubin) has NO wineryId property!
+ERROR: Wine at index 179 (ID: fontanafredda_barolo_serralunga) has NO wineryId property!
+Scan complete. Found 4 issues.

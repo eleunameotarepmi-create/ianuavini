@@ -16,14 +16,14 @@ export const MobileLayout: React.FC<MobileLayoutProps> = ({
     isAuthenticated
 }) => {
     return (
-        <div className="flex flex-col h-screen bg-stone-950 text-stone-100 overflow-hidden font-sans">
+        <div className="relative flex flex-col h-screen bg-stone-950 text-stone-100 overflow-hidden font-sans">
             {/* Main Content Area - Scrollable */}
             <main className="flex-1 overflow-y-auto no-scrollbar scroll-smooth pb-24 relative">
                 {children}
             </main>
 
             {/* Bottom Navigation Dock */}
-            <nav className="fixed bottom-0 left-0 right-0 bg-stone-900/95 backdrop-blur-md border-t border-white/5 pb-safe-area-inset-bottom z-50 pt-2 px-2 shadow-2xl">
+            <nav className="absolute bottom-0 w-full bg-stone-900/95 backdrop-blur-md border-t border-white/5 pb-safe-area-inset-bottom z-50 pt-2 px-2 shadow-2xl">
                 <div className="flex justify-around items-end h-16 pb-2">
 
                     <NavButton

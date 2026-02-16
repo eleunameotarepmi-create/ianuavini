@@ -8,15 +8,15 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
   return {
     server: {
-      port: 4015,
+      port: 3576,
       host: '0.0.0.0',
       proxy: {
         '/api': {
-          target: 'http://localhost:4016',
+          target: 'http://localhost:3577',
           changeOrigin: true,
         },
         '/socket.io': {
-          target: 'http://localhost:4016',
+          target: 'http://localhost:3577',
           ws: true,
         },
         '/deepl-proxy': {

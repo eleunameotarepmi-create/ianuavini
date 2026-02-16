@@ -177,7 +177,7 @@ export const WineriesView: React.FC<WineriesViewProps> = ({ wineries, wines, lan
                     </div>
                 </div>
 
-                <div className="p-6 md:p-8">
+                <div className="p-6">
                     <p className="font-serif text-secondary line-clamp-3 leading-relaxed italic mb-8 font-light text-lg">
                         "{language === 'en' && (winery as any).description_en
                             ? (winery as any).description_en

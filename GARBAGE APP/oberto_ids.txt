@@ -1,0 +1,5 @@
+Searching for Oberto wines/winery...
+WINERY FOUND: Andrea Oberto (ID: andrea_oberto)
+WINERY FOUND: Azienda Agricola Andrea Oberto (ID: azienda_agricola_andrea_oberto)
+WINE FOUND: ID='wine_1769631559580_1' Name='Barolo DOCG del Comune di La Morra 2019' WineryId='azienda_agricola_andrea_oberto'
+WINE FOUND: ID='wine_1769635123838_0' Name='Langhe Nebbiolo DOC 2022' WineryId='azienda_agricola_andrea_oberto'

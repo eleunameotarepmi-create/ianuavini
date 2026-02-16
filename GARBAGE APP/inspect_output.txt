@@ -1,0 +1,25 @@
+Keys: dict_keys(['wines', 'wineries', 'menu', 'glossary', 'ai_instructions'])
+Menu has 38 items.
+First 5 items:
+- Selezione di formaggi e salumi locali
+- Scaloppa di foie gras su granella di nocciola piemontese, frutti del bosco
+- Pane, burro, acciughe
+- Insalata Sur la place, Nizzarda, Chèvre chaud
+- Pasta e fagioli con le cotiche
+
+Searching for targets:
+FOUND 'Sushi': Sushi valdôtèn (albese, tartare, carne salada) (ID: 8)
+FOUND 'Vitello': Vitello tonnato (ID: 5)
+FOUND 'Entrée': Entrée valdostana (pane nero, miele, burro, castagne, lardo, mocetta) (ID: 3)
+FOUND 'Tris': Tris del Piemonte: vol au vent ai porcini, sformato di verza, insalata russa (ID: 9)
+  - Has verified pairings: [{'wineId': 'wine_1769611096224hiiak', 'justification': "La struttura aromatica del Viognier (fiori, albicocca) abbraccia la complessità del Tris Piemontese, pulendo il palato dalla grassezza dell'insalata russa e accompagnando i porcini.", 'score': 95, 'label': 'Regionale', 'technicalDetail': 'Concordanza di struttura, contrapposizione di grassezza/sapidità.'}]
+FOUND 'Bucatini': Bucatini alla amatriciana valdostana (ID: 16)
+FOUND 'Polente': Le polente di IANUA (concia o con il camoscio) (ID: 20)
+FOUND 'Filetto': Sottofiletto o filetto di garronese alla griglia (ID: 28)
+FOUND 'Filetto': Filetto di garronese alla Rossini o alla Wellington (ID: 29)
+  - Has verified pairings: [{'wineId': 'wine_1769609456737_2', 'justification': 'Il Re dei Vini per il Re dei Piatti. Foie gras e tartufo trovano nel Barolo evoluto (verticale) il compagno ideale per esaltare le note di sottobosco.', 'score': 100, 'label': 'Leggendario', 'technicalDetail': 'Armonia assoluta per analogia di profumi e struttura.'}]
+FOUND 'Cotoletta': Cotoletta alla valdostana in doppia panatura di grissini (ID: 27)
+FOUND 'Rognoncino': Rognoncino al Porto con purea di patate (ID: 23)
+  - Has verified pairings: [{'wineId': 'wine_1769609456737_1', 'justification': 'Un piatto di grande intensità e succulenza. Il Barolo, con i suoi tannini nobili e le note terziarie, tiene testa alla ferrosità del rognone sfumato al Porto.', 'score': 98, 'label': 'Intenso', 'technicalDetail': 'Equilibrio tra succulenza del cibo e astringenza del vino.'}]
+FOUND 'Selezione': Selezione di formaggi e salumi locali (ID: 1)
+  - Has verified pairings: [{'wineId': 'wine_1769609456737_2', 'justification': 'Un vino da meditazione che accompagna la complessità dei grandi formaggi stagionati senza coprirli.', 'score': 94, 'label': 'Meditazione', 'technicalDetail': 'Persistenza aromatica lunghissima.'}]

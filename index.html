@@ -107,25 +107,24 @@
     /* Admin Input Styles - Restored */
     .admin-input {
       width: 100%;
-      background-color: #fafaf9;
-      /* stone-50 */
-      border: 1px solid #78716c;
-      /* stone-500: Much darker for visibility */
-      border-radius: 0.5rem;
-      /* rounded-lg */
-      padding: 0.5rem 1rem;
-      /* px-4 py-2 */
-      font-size: 0.875rem;
-      /* text-sm */
+      background-color: #1c1917;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 0.75rem;
+      padding: 0.75rem 1rem;
+      font-size: 0.95rem;
+      font-family: 'Cormorant Garamond', serif;
+      color: #e7e5e4;
       transition: all 0.2s;
-      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
-      /* Subtle inner shadow for depth */
+    }
+
+    .admin-input::placeholder {
+      color: #78716c;
     }
 
     .admin-input:focus {
       outline: none;
       border-color: #D4AF37;
-      box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+      box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.15);
     }
 
     /* CUSTOM ANIMATIONS (Polyfill for tailwindcss-animate) */

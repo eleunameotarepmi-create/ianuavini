@@ -1,0 +1,863 @@
+{
+  "wineries": [
+    {
+      "id": "fontanafredda",
+      "name": "Fontanafredda",
+      "location": "Serralunga d'Alba",
+      "region": "Langhe",
+      "description": "Historical winery in the heart of Barolo.",
+      "curiosity": null,
+      "image": ""
+    },
+    {
+      "id": "bersano_vini",
+      "name": "Bersano Vini",
+      "location": "Nizza Monferrato",
+      "region": "Monferrato",
+      "description": "Producer of Barbera and other Monferrato wines.",
+      "curiosity": null,
+      "image": ""
+    },
+    {
+      "id": "michele_chiarlo",
+      "name": "Michele Chiarlo",
+      "location": "Calamandrana",
+      "region": "Monferrato",
+      "description": "Well-known Barbera and Barolo producer.",
+      "curiosity": null,
+      "image": ""
+    },
+    {
+      "id": "marco_canato",
+      "name": "Marco Canato",
+      "location": "Vignale Monferrato",
+      "region": "Monferrato",
+      "description": "Artisan winery focusing on the production of Monferrato wines.",
+      "curiosity": null,
+      "image": ""
+    },
+    {
+      "id": "giacomo_borgogno",
+      "name": "Giacomo Borgogno",
+      "location": "Barolo",
+      "region": "Langhe",
+      "description": "Historic Barolo producer with a long tradition.",
+      "curiosity": null,
+      "image": ""
+    },
+    {
+      "id": "gianni_doglia",
+      "name": "Gianni Doglia",
+      "location": "Castagnole Lanze",
+      "region": "Monferrato",
+      "description": "A winery that produces Barbera d'Asti with great care.",
+      "curiosity": null,
+      "image": ""
+    },
+    {
+      "id": "vigne_marina_coppi",
+      "name": "Vigne Marina Coppi",
+      "location": "Castellania",
+      "region": "Tortonese",
+      "description": "A producer that makes traditional Tortona wines.",
+      "curiosity": null,
+      "image": ""
+    },
+    {
+      "id": "curto",
+      "name": "Curto",
+      "location": "La Morra",
+      "region": "Langhe",
+      "description": "Family winery of La Morra.",
+      "curiosity": null,
+      "image": ""
+    },
+    {
+      "id": "renato_ratti",
+      "name": "Renato Ratti",
+      "location": "La Morra",
+      "region": "Langhe",
+      "description": "Dedicated to showcasing the terroir of La Morra.",
+      "curiosity": null,
+      "image": ""
+    },
+    {
+      "id": "vite_colte",
+      "name": "Vite Colte",
+      "location": "La Morra",
+      "region": "Langhe",
+      "description": "Winery producing distinctive wines of La Morra.",
+      "curiosity": null,
+      "image": ""
+    },
+    {
+      "id": "societa_agricola_roccia_rossa",
+      "name": "Società Agricola Roccia Rossa",
+      "location": "Brusnengo",
+      "region": "Alto Piemonte",
+      "description": "Producer from Alto Piemonte, known for Bramaterra wines.",
+      "curiosity": null,
+      "image": ""
+    },
+    {
+      "id": "casa_e_mirafiore",
+      "name": "Casa E. Mirafiore",
+      "location": "Serralunga d'Alba",
+      "region": "Langhe",
+      "description": "Producer in Serralunga d'Alba.",
+      "curiosity": null,
+      "image": ""
+    },
+    {
+      "id": "andrea_oberto",
+      "name": "Andrea Oberto",
+      "location": "La Morra",
+      "region": "Langhe",
+      "description": "Winery from La Morra.",
+      "curiosity": null,
+      "image": ""
+    },
+    {
+      "id": "cascina_chicco",
+      "name": "Cascina Chicco",
+      "location": "Canale",
+      "region": "Roero",
+      "description": "Focuses on the Roero area.",
+      "curiosity": null,
+      "image": ""
+    },
+    {
+      "id": "pierfrancesco_gatto",
+      "name": "Pierfrancesco Gatto",
+      "location": "Castagnole Monferrato",
+      "region": "Monferrato",
+      "description": "Produces Rucché.",
+      "curiosity": null,
+      "image": ""
+    },
+    {
+      "id": "cascina_fontana",
+      "name": "Cascina Fontana",
+      "location": "Monforte d'Alba",
+      "region": "Langhe",
+      "description": "Winery using old vines.",
+      "curiosity": null,
+      "image": ""
+    },
+    {
+      "id": "giovanni_sordo",
+      "name": "Giovanni Sordo",
+      "location": "Castiglione Falletto",
+      "region": "Langhe",
+      "description": "Produce wines in the Barolo area.",
+      "curiosity": null,
+      "image": ""
+    },
+    {
+      "id": "agricola_brandini_bio",
+      "name": "Agricola Brandini bio",
+      "location": "La Morra",
+      "region": "Langhe",
+      "description": "Organic wineproducer from La Morra.",
+      "curiosity": null,
+      "image": ""
+    },
+    {
+      "id": "fracassi_ratti_mentone",
+      "name": "Fracassi, Ratti, Mentone",
+      "location": "Cherasco",
+      "region": "Langhe",
+      "description": "Winery from Cherasco.",
+      "curiosity": null,
+      "image": ""
+    },
+    {
+      "id": "scarzello",
+      "name": "Scarzello",
+      "location": "Barolo",
+      "region": "Langhe",
+      "description": "Winery from Barolo.",
+      "curiosity": null,
+      "image": ""
+    },
+    {
+      "id": "viglione",
+      "name": "Viglione",
+      "location": "Monforte CN",
+      "region": "Langhe",
+      "description": "From Monforte CN.",
+      "curiosity": null,
+      "image": ""
+    },
+    {
+      "id": "orsolani",
+      "name": "Orsolani",
+      "location": "Caluso",
+      "region": "Alto Piemonte",
+      "description": "Producer in Alto Piemonte.",
+      "curiosity": null,
+      "image": ""
+    },
+    {
+      "id": "principiano_ferdinando",
+      "name": "Principiano Ferdinando",
+      "location": "Piemonte",
+      "region": "Langhe",
+      "description": "Auto-generated from wine list.",
+      "curiosity": null,
+      "image": ""
+    }
+  ],
+  "wines": [
+    {
+      "id": "fontanafredda_barbaresco_coste_rubin_2019",
+      "wineryId": "fontanafredda",
+      "name": "Barbaresco Coste Rubin",
+      "grapes": "Nebbiolo",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "bersano_vini_barbaresco_mantico_2018",
+      "wineryId": "bersano_vini",
+      "name": "Barbaresco Mantico",
+      "grapes": "Nebbiolo",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "michele_chiarlo_barbaresco_palas_2020",
+      "wineryId": "michele_chiarlo",
+      "name": "Barbaresco Palas",
+      "grapes": "Nebbiolo",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "marco_canato_barbera_del_monferrato_casalese_gambaloita_2022",
+      "wineryId": "marco_canato",
+      "name": "Barbera del Monferrato casalese Gambaloita",
+      "grapes": "Barbera",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "giacomo_borgogno_barbera_d_asti_superiore_cascina_valle_asinari_2022",
+      "wineryId": "giacomo_borgogno",
+      "name": "Barbera d'Asti superiore Cascina Valle Asinari",
+      "grapes": "Barbera",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "gianni_doglia_barbera_d_asti_superiore_genio_2021",
+      "wineryId": "gianni_doglia",
+      "name": "Barbera d'Asti superiore Genio",
+      "grapes": "Barbera",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "gianni_doglia_barbera_d_asti_boscodonne_2022",
+      "wineryId": "gianni_doglia",
+      "name": "Barbera d'Asti Boscodonne",
+      "grapes": "Barbera",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "vigne_marina_coppi_barbera_dei_colli_tortonesi_sant_andrea_2020",
+      "wineryId": "vigne_marina_coppi",
+      "name": "Barbera dei colli tortonesi Sant'Andrea",
+      "grapes": "Barbera",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "michele_chiarlo_barbera_nizza_cipressi_2022",
+      "wineryId": "michele_chiarlo",
+      "name": "Barbera Nizza Cipressi",
+      "grapes": "Barbera",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "curto_barbera_d_alba_di_nadia_curto_triple_a_2022",
+      "wineryId": "curto",
+      "name": "Barbera d'Alba di Nadia Curto Triple A",
+      "grapes": "Barbera",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "renato_ratti_barbera_d_asti_superiore_villa_pattono_2022",
+      "wineryId": "renato_ratti",
+      "name": "Barbera d'Asti superiore Villa Pattono",
+      "grapes": "Barbera",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "renato_ratti_barbera_d_alba_battaglione_2023",
+      "wineryId": "renato_ratti",
+      "name": "Barbera d'Alba Battaglione",
+      "grapes": "Barbera",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "vite_colte_barbera_la_luna_e_i_falo_2021",
+      "wineryId": "vite_colte",
+      "name": "Barbera La luna e i falò",
+      "grapes": "Barbera",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "societa_agricola_roccia_rossa_bramaterra_2014",
+      "wineryId": "societa_agricola_roccia_rossa",
+      "name": "Bramaterra",
+      "grapes": "Nebbiolo Blend",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "societa_agricola_roccia_rossa_bramaterra_2016",
+      "wineryId": "societa_agricola_roccia_rossa",
+      "name": "Bramaterra",
+      "grapes": "Nebbiolo Blend",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "casa_e_mirafiore_dolcetto_d_alba_2024",
+      "wineryId": "casa_e_mirafiore",
+      "name": "Dolcetto d'Alba",
+      "grapes": "Dolcetto",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "renato_ratti_dolcetto_colombe_2024",
+      "wineryId": "renato_ratti",
+      "name": "Dolcetto Colombé",
+      "grapes": "Dolcetto",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "curto_freisa_nadia_curto_triple_a_2022",
+      "wineryId": "curto",
+      "name": "Freisa Nadia Curto Triple A",
+      "grapes": "Freisa",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "marco_canato_freisa_milano_2022",
+      "wineryId": "marco_canato",
+      "name": "Freisa Milano",
+      "grapes": "Freisa",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "canato_marco_grignolino_del_monferrato_casalese_celio_2024",
+      "wineryId": "marco_canato",
+      "name": "Grignolino del Monferrato casalese Celio",
+      "grapes": "Grignolino",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "andrea_oberto_nebbiolo_2023",
+      "wineryId": "andrea_oberto",
+      "name": "Nebbiolo",
+      "grapes": "Nebbiolo",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "giacomo_borgogno_nebbiolo_no_name_2021",
+      "wineryId": "giacomo_borgogno",
+      "name": "Nebbiolo No Name",
+      "grapes": "Nebbiolo",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "renato_ratti_nebbiolo_reggimento_2022",
+      "wineryId": "renato_ratti",
+      "name": "Nebbiolo Reggimento",
+      "grapes": "Nebbiolo",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "cascina_chicco_roero_montespinato_2022",
+      "wineryId": "cascina_chicco",
+      "name": "Roero Montespinato",
+      "grapes": "Nebbiolo",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "pierfrancesco_gatto_ruche_di_castagnole_monferrrato_2022",
+      "wineryId": "pierfrancesco_gatto",
+      "name": "Ruché di Castagnole Monferrrato",
+      "grapes": "Ruché",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "cascina_fontana_vino_rosso_senza_solfiti_triple_a_da_vecchie_vigne_2023",
+      "wineryId": "cascina_fontana",
+      "name": "Vino rosso senza solfiti Triple A da Vecchie vigne",
+      "grapes": "Unknown",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "giovanni_sordo_verduno_pelaverga_2022",
+      "wineryId": "giovanni_sordo",
+      "name": "Verduno pelaverga",
+      "grapes": "Pelaverga",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "renato_ratti_chardonnay_brigata_2022",
+      "wineryId": "renato_ratti",
+      "name": "Chardonnay Brigata",
+      "grapes": "Chardonnay",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€",
+      "altitude": null,
+      "type": "white"
+    },
+    {
+      "id": "orsolani_erbaluce_la_rustia_2022",
+      "wineryId": "orsolani",
+      "name": "Erbaluce La Rustia",
+      "grapes": "Erbaluce",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€",
+      "altitude": null,
+      "type": "white"
+    },
+    {
+      "id": "orsolani_erbaluce_vintage_2020",
+      "wineryId": "orsolani",
+      "name": "Erbaluce Vintage",
+      "grapes": "Erbaluce",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€",
+      "altitude": null,
+      "type": "white"
+    },
+    {
+      "id": "casa_e_mirafiore_langhe_nascetta_biologico_2022",
+      "wineryId": "casa_e_mirafiore",
+      "name": "Langhe Nascetta biologico",
+      "grapes": "Nascetta",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€",
+      "altitude": null,
+      "type": "white"
+    },
+    {
+      "id": "giacomo_borgogno_riesling_era_ora_2021",
+      "wineryId": "giacomo_borgogno",
+      "name": "Riesling Era Ora",
+      "grapes": "Riesling",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€",
+      "altitude": null,
+      "type": "white"
+    },
+    {
+      "id": "cascina_chicco_roero_arneis_2024",
+      "wineryId": "cascina_chicco",
+      "name": "Roero Arneis",
+      "grapes": "Arneis",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€",
+      "altitude": null,
+      "type": "white"
+    },
+    {
+      "id": "vigne_marina_coppi_timorasso_fausto_2020",
+      "wineryId": "vigne_marina_coppi",
+      "name": "Timorasso Fausto",
+      "grapes": "Timorasso",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€€",
+      "altitude": null,
+      "type": "white"
+    },
+    {
+      "id": "vigne_marina_coppi_timorasso_gran_fosto_2018",
+      "wineryId": "vigne_marina_coppi",
+      "name": "Timorasso Gran Fostò",
+      "grapes": "Timorasso",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€€€",
+      "altitude": null,
+      "type": "white"
+    },
+    {
+      "id": "giovanni_sordo_timorasso_derthona_2023",
+      "wineryId": "giovanni_sordo",
+      "name": "Timorasso Derthona",
+      "grapes": "Timorasso",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€",
+      "altitude": null,
+      "type": "white"
+    },
+    {
+      "id": "agricola_brandini_bio_viognier_rebelle_vino_biologico_2018",
+      "wineryId": "agricola_brandini_bio",
+      "name": "Viognier Rebelle Vino biologico",
+      "grapes": "Viognier",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€",
+      "altitude": null,
+      "type": "white"
+    },
+    {
+      "id": "agricola_brandini_bio_annunziata_2014",
+      "wineryId": "agricola_brandini_bio",
+      "name": "Annunziata",
+      "grapes": "Nebbiolo",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "agricola_brandini_bio_resa_56_2014",
+      "wineryId": "agricola_brandini_bio",
+      "name": "Resa 56",
+      "grapes": "Nebbiolo",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "agricola_brandini_bio_resa_56_2013",
+      "wineryId": "agricola_brandini_bio",
+      "name": "Resa 56",
+      "grapes": "Nebbiolo",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "agricola_brandini_bio_resa_56_2012",
+      "wineryId": "agricola_brandini_bio",
+      "name": "Resa 56",
+      "grapes": "Nebbiolo",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "agricola_brandini_bio_resa_56_2011",
+      "wineryId": "agricola_brandini_bio",
+      "name": "Resa 56",
+      "grapes": "Nebbiolo",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "cascina_chicco_barolo_2021",
+      "wineryId": "cascina_chicco",
+      "name": "Barolo",
+      "grapes": "Nebbiolo",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "cascina_chicco_riserva_ginestra_2018",
+      "wineryId": "cascina_chicco",
+      "name": "Riserva Ginestra",
+      "grapes": "Nebbiolo",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "michele_chiarlo_palas_2019",
+      "wineryId": "michele_chiarlo",
+      "name": "Palas",
+      "grapes": "Nebbiolo",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "michele_chiarlo_palas_2020",
+      "wineryId": "michele_chiarlo",
+      "name": "Palas",
+      "grapes": "Nebbiolo",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "michele_chiarlo_tortoniano_2020",
+      "wineryId": "michele_chiarlo",
+      "name": "Tortoniano",
+      "grapes": "Nebbiolo",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "michele_chiarlo_cannubi_2005",
+      "wineryId": "michele_chiarlo",
+      "name": "Cannubi (verticale dal 2005 al 2017)",
+      "grapes": "Nebbiolo",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "principiano_ferdinando_boscareto_2011",
+      "wineryId": "principiano_ferdinando",
+      "name": "Boscareto",
+      "grapes": "Nebbiolo",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "andrea_oberto_barolo_2019",
+      "wineryId": "andrea_oberto",
+      "name": "Barolo",
+      "grapes": "Nebbiolo",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "fracassi_ratti_mentone_mantoetto_2012",
+      "wineryId": "fracassi_ratti_mentone",
+      "name": "Mantoetto",
+      "grapes": "Nebbiolo",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "renato_ratti_marcenasco_2018",
+      "wineryId": "renato_ratti",
+      "name": "Marcenasco",
+      "grapes": "Nebbiolo",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "renato_ratti_rocche_dell_annunziata_2020",
+      "wineryId": "renato_ratti",
+      "name": "Rocche dell'Annunziata",
+      "grapes": "Nebbiolo",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "scarzello_comune_di_barolo_2019",
+      "wineryId": "scarzello",
+      "name": "Comune di Barolo",
+      "grapes": "Nebbiolo",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "scarzello_vigna_merenda_2018",
+      "wineryId": "scarzello",
+      "name": "Vigna Merenda",
+      "grapes": "Nebbiolo",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "scarzello_vigna_merenda_2017",
+      "wineryId": "scarzello",
+      "name": "Vigna Merenda",
+      "grapes": "Nebbiolo",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "viglione_viglione_2014",
+      "wineryId": "viglione",
+      "name": "Viglione",
+      "grapes": "Nebbiolo",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "viglione_bussia_2017",
+      "wineryId": "viglione",
+      "name": "Bussia",
+      "grapes": "Nebbiolo",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€€€",
+      "altitude": null,
+      "type": "red"
+    },
+    {
+      "id": "viglione_cannubi_2018",
+      "wineryId": "viglione",
+      "name": "Cannubi",
+      "grapes": "Nebbiolo",
+      "description": null,
+      "pairing": null,
+      "priceRange": "€€€€",
+      "altitude": null,
+      "type": "red"
+    }
+  ],
+  "glossary": []
+}

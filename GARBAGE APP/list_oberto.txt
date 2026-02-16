@@ -1,0 +1,3 @@
+Listing wines for winery: azienda_agricola_andrea_oberto
+- Barolo DOCG del Comune di La Morra 2019 (ID: wine_1769631559580_1)
+- Langhe Nebbiolo DOC 2022 (ID: wine_1769635123838_0)

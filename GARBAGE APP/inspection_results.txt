@@ -1,0 +1,7 @@
+Total Wineries: 53
+
+--- Targeted Wineries Inspection ---
+
+--- All Wineries with 'Piemonte' in Location/Region ---
+- Società Agricola Roccia Rossa (Brusnengo (BI)) [alto-piemonte]
+- Ferdinando Principiano (Monforte d’Alba (CN) – Langhe) [Piemonte]

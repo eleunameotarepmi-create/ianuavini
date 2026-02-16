@@ -1,0 +1,16 @@
+--- TESTING VDA LOCATIONS ---
+Donnas -> bassa
+Arnad -> bassa
+Chambave -> bassa
+Nus -> nus-quart
+Aosta -> la-plaine
+Saint-Pierre -> plaine-to-valdigne
+Morgex -> valdigne
+La Salle -> valdigne
+
+--- TESTING PIEMONTE LOCATIONS ---
+Barolo -> langhe
+Barbaresco -> langhe
+Canale -> roero
+Gattinara -> alto-piemonte
+Caluso -> canavese

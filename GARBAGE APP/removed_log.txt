@@ -1,0 +1,60 @@
+Found 4 invalid wine entries that were removed.
+Entry 1: {
+    "name": "Barolo DOCG del Comune di Serralunga d'Alba",
+    "grapes": "100% Nebbiolo",
+    "alcohol": "14,5% vol.",
+    "pairing": "Grandi arrosti, brasati, piatti a base di tartufo bianco d'Alba e formaggi erborinati.",
+    "temperature": "18 \u00b0C",
+    "description": "L'emblema di Fontanafredda. Un Barolo potente e profondo che esprime tutta la forza del terroir di Serralunga.",
+    "sensory_profile": "Colore granato intenso. Profumi di rosa appassita, sottobosco e spezie scure. Al palato \u00e8 austero, con tannini potenti ma eleganti.",
+    "curiosity": "Serralunga \u00e8 nota per produrre i Barolo pi\u00f9 longevi e strutturati di tutta la denominazione grazie ai suoli calcarei antichissimi.",
+    "price": "\u20ac 55",
+    "type": "red",
+    "format": "0.75L",
+    "image": "Coste-Rubino Fontanafredda.webp"
+}
+Entry 2: {
+    "id": "fontanafredda_alta_langa_limited",
+    "name": "Alta Langa DOCG 'Limited Edition'",
+    "grapes": "Pinot Nero 67%, Chardonnay 30%, Nebbiolo 3%",
+    "alcohol": "12,5% vol.",
+    "pairing": "Ottimo come aperitivo, perfetto con antipasti piemontesi e pesci di lago.",
+    "temperature": "6 \u2013 8 \u00b0C",
+    "description": "Rappresenta la nobilt\u00e0 delle bollicine piemontesi. Affina per almeno 30 mesi sui lieviti nelle gallerie storiche ottocentesche della tenuta.",
+    "sensory_profile": "Giallo paglierino con riflessi verdi. Al naso ricorda miele, pesca bianca e pompelmo con una nota di basilico. In bocca \u00e8 sapido e avvolgente.",
+    "curiosity": "Le bottiglie riposano nel silenzio delle cantine storiche del Re, dove la temperatura costante favorisce un perlage finissimo.",
+    "price": 35,
+    "type": "white",
+    "format": "0.75L",
+    "image": "metodo_classico_fontanafredda.png"
+}
+Entry 3: {
+    "id": "fontanafredda_barbaresco_coste_rubin",
+    "name": "Barbaresco DOCG 'Coste Rubin'",
+    "grapes": "100% Nebbiolo",
+    "alcohol": "14,0% vol.",
+    "pairing": "Piatti di carni rosse importanti, selvaggina da piuma, formaggi stagionati come il Castelmagno.",
+    "temperature": "16 \u2013 18 \u00b0C",
+    "description": "Il nome evoca i versanti collinari pi\u00f9 soleggiati ('Coste') e la brillantezza del colore rubino ('Rubin'). Un Barbaresco setoso e di grande carattere.",
+    "sensory_profile": "Rosso rubino con riflessi granati. Note di prugna matura, mirtilli e viola fuse con sentori di liquirizia, cannella e tabacco. Gusto denso e pieno.",
+    "curiosity": "Nasce dai vigneti di Treiso e Neive, su terreni argillosi che donano al Nebbiolo una struttura aristocratica e tannini setosi.",
+    "price": 45,
+    "type": "red",
+    "format": "0.75L",
+    "image": "coste_rubin_fontanafredda.webp"
+}
+Entry 4: {
+    "id": "fontanafredda_barolo_serralunga",
+    "name": "Barolo DOCG del Comune di Serralunga d'Alba",
+    "grapes": "100% Nebbiolo",
+    "alcohol": "14,5% vol.",
+    "pairing": "Grandi arrosti, brasati, piatti a base di tartufo bianco d'Alba e formaggi erborinati.",
+    "temperature": "18 \u00b0C",
+    "description": "L'emblema di Fontanafredda. Un Barolo potente e profondo che esprime tutta la forza del terroir di Serralunga.",
+    "sensory_profile": "Colore granato intenso. Profumi di rosa appassita, sottobosco e spezie scure. Al palato \u00e8 austero, con tannini potenti ma eleganti.",
+    "curiosity": "Serralunga \u00e8 nota per produrre i Barolo pi\u00f9 longevi e strutturati di tutta la denominazione grazie ai suoli calcarei antichissimi.",
+    "price": 55,
+    "type": "red",
+    "format": "0.75L",
+    "image": "barolo_serralunga_fontanafredda.png"
+}

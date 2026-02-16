@@ -1,4 +1,5 @@
 
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Wine as WineIcon, X } from 'lucide-react';
 import { t, Language } from '../translations';

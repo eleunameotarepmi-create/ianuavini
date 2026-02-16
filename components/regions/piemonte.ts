@@ -54,8 +54,8 @@ export const piemonte: RegionConfig = {
     zones: [
         { id: 'canavese', label: 'Canavese', minAlt: 250, targetId: 'canavese', image: "/assets/images/piemonte/Canavese immagine.jpg" },
         { id: 'alto-piemonte', label: 'Alto Piemonte', minAlt: 300, targetId: 'alto-piemonte', image: "/assets/images/piemonte/alto piemonte vigne.jpg" },
-        { id: 'langhe', label: 'Langhe', minAlt: 200, targetId: 'langhe', image: "/assets/images/piemonte/Langhe.jpg" },
         { id: 'roero', label: 'Roero', minAlt: 280, targetId: 'roero', image: "/assets/images/piemonte/Rocche_Roero_cover.jpg" },
+        { id: 'langhe', label: 'Langhe', minAlt: 200, targetId: 'langhe', image: "/assets/images/piemonte/Langhe.jpg" },
         { id: 'monferrato', label: 'Monferrato', minAlt: 250, targetId: 'monferrato', image: "/assets/images/piemonte/Monferrato.jpg" },
         { id: 'tortonese', label: 'Colli Tortonesi', minAlt: 250, targetId: 'tortonese', image: "/assets/images/piemonte/Colli_Tortonesi.webp" }
     ],

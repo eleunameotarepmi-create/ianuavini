@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Wine, Winery } from '../../types';
-import { Search, MapPin, ArrowUpRight, ChevronDown, Grape, List, Layers, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Search, X, MapPin, ArrowUpRight, ChevronDown, Grape, List, Layers, ChevronLeft, ChevronRight } from 'lucide-react';
 import { getSafeImage } from '../../utils/imageUtils';
 import { determineWineryRegion, ALL_REGIONS, getGlobalAltitude } from '../regions/registry';
 
@@ -615,10 +615,18 @@ export const MobileWineList: React.FC<MobileWineListProps> = ({
                             }
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full bg-stone-800/50 backdrop-blur-md border border-[#D4AF37]/30 rounded-2xl py-4 pl-12 pr-4 text-stone-100 placeholder:text-[#D4AF37]/45 placeholder:italic focus:border-[#D4AF37]/60 focus:ring-1 focus:ring-[#D4AF37]/20 outline-none transition-all shadow-sm shadow-[#D4AF37]/10"
+                            className="w-full bg-stone-800/50 backdrop-blur-md border border-[#D4AF37]/30 rounded-2xl py-4 pl-12 pr-12 text-stone-100 placeholder:text-[#D4AF37]/45 placeholder:italic focus:border-[#D4AF37]/60 focus:ring-1 focus:ring-[#D4AF37]/20 outline-none transition-all shadow-sm shadow-[#D4AF37]/10"
                             style={{ fontSize: 'clamp(13px, 3.5vw, 16px)' }}
                         />
                         <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-[#D4AF37]/60" size={20} />
+                        {searchTerm && (
+                            <button
+                                onClick={() => setSearchTerm('')}
+                                className="absolute right-4 top-1/2 -translate-y-1/2 text-stone-400 hover:text-white active:text-[#D4AF37] transition-colors p-1"
+                            >
+                                <X size={18} />
+                            </button>
+                        )}
                     </div>
 
                     {/* Region Filter Chips */}

@@ -1,0 +1,401 @@
+[
+  {
+    "full_string": "Arnad-Montjovet Dino Bonin",
+    "name": "Arnad-Montjovet Dino Bonin",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "22 €"
+  },
+  {
+    "full_string": "Donnas Caves de Donnas",
+    "name": "Donnas Caves de Donnas",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "36 €"
+  },
+  {
+    "full_string": "Nebbiolo Barmet Caves de Donnas",
+    "name": "Nebbiolo Barmet Caves de Donnas",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "23 € (Barmet 2023 a 23)"
+  },
+  {
+    "full_string": "Donnas Supérieur Vieilles Vignes",
+    "name": "Donnas Supérieur Vieilles Vignes",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "46 €"
+  },
+  {
+    "full_string": "BIANCÔNE Piantagrossa",
+    "name": "BIANCÔNE",
+    "winery": "Piantagrossa",
+    "original_winery_string": "Piantagrossa",
+    "price": "44 €"
+  },
+  {
+    "full_string": "396 Aesculus Hippocastanum Piantagrossa",
+    "name": "396 Aesculus Hippocastanum",
+    "winery": "Piantagrossa",
+    "original_winery_string": "Piantagrossa",
+    "price": "30 €"
+  },
+  {
+    "full_string": "Dessus Nebbiolo Piantagrossa",
+    "name": "Dessus Nebbiolo",
+    "winery": "Piantagrossa",
+    "original_winery_string": "Piantagrossa",
+    "price": "50 €"
+  },
+  {
+    "full_string": "Seigneurs de Vallaise Brut La Kiuva",
+    "name": "Seigneurs de Vallaise Brut",
+    "winery": "La Kiuva",
+    "original_winery_string": "La Kiuva",
+    "price": "29 €"
+  },
+  {
+    "full_string": "Merlot La Kiuva",
+    "name": "Merlot",
+    "winery": "La Kiuva",
+    "original_winery_string": "La Kiuva",
+    "price": "20 €"
+  },
+  {
+    "full_string": "Rouge Tonen 2015/2016",
+    "name": "Rouge Tonen 2015/2016",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "66 €; 2018: 62 €; Magnum: 130 €"
+  },
+  {
+    "full_string": "Bocoueil Priod",
+    "name": "Bocoueil",
+    "winery": "Priod",
+    "original_winery_string": "Priod",
+    "price": "50 €"
+  },
+  {
+    "full_string": "Torrette Supérieur “Le Soldat”",
+    "name": "Torrette Supérieur “Le Soldat”",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "29 €"
+  },
+  {
+    "full_string": "Beato Emerico Rosé",
+    "name": "Beato Emerico Rosé",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "29 €"
+  },
+  {
+    "full_string": "Gamay Grosjean",
+    "name": "Gamay Grosjean",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "26 €"
+  },
+  {
+    "full_string": "Chardonnay Grosjean",
+    "name": "Chardonnay Grosjean",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "30 €"
+  },
+  {
+    "full_string": "Pinot Noir Grosjean",
+    "name": "Pinot Noir Grosjean",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "34 €"
+  },
+  {
+    "full_string": "Forcé 1968 Extra Dry Grosjean",
+    "name": "Forcé 1968 Extra Dry Grosjean",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "30 €"
+  },
+  {
+    "full_string": "Syrah “Crème” Crotta de Vegneron",
+    "name": "Syrah “Crème” Crotta de Vegneron",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "36 €"
+  },
+  {
+    "full_string": "Fumin “Esprit Follet” Crotta",
+    "name": "Fumin “Esprit Follet” Crotta",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "44 €"
+  },
+  {
+    "full_string": "Chambave Muscat Crotta",
+    "name": "Chambave Muscat Crotta",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "32 €"
+  },
+  {
+    "full_string": "Nus Les Granges",
+    "name": "Nus",
+    "winery": "Les Granges",
+    "original_winery_string": "Les Granges",
+    "price": "28 €"
+  },
+  {
+    "full_string": "Cornalin “Survivant” Les Granges",
+    "name": "Cornalin “Survivant”",
+    "winery": "Les Granges",
+    "original_winery_string": "Les Granges",
+    "price": "55 €"
+  },
+  {
+    "full_string": "Fumin Les Granges",
+    "name": "Fumin",
+    "winery": "Les Granges",
+    "original_winery_string": "Les Granges",
+    "price": "37 €"
+  },
+  {
+    "full_string": "Nus Malvoisie Les Granges",
+    "name": "Nus Malvoisie",
+    "winery": "Les Granges",
+    "original_winery_string": "Les Granges",
+    "price": "28 €"
+  },
+  {
+    "full_string": "Nus Malvoisie Flétri Les Granges",
+    "name": "Nus Malvoisie Flétri",
+    "winery": "Les Granges",
+    "original_winery_string": "Les Granges",
+    "price": "43 €"
+  },
+  {
+    "full_string": "Balteo / “Balto” Giulio Morlondo",
+    "name": "Balteo / “Balto” Giulio Morlondo",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "53 €"
+  },
+  {
+    "full_string": "Lo Rej Giulio Morlondo",
+    "name": "Lo Rej Giulio Morlondo",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "67 €"
+  },
+  {
+    "full_string": "Petite Arvine Rosset",
+    "name": "Petite Arvine Rosset",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "37 €"
+  },
+  {
+    "full_string": "Blanc de Morgex et de La Salle (Crotta de Meurdzie/Vevey Marziano)",
+    "name": "Blanc de Morgex et de La Salle (Crotta de Meurdzie/Vevey Marziano)",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "30 €"
+  },
+  {
+    "full_string": "Vin de la Fée Gewurztraminer Gargantua",
+    "name": "Vin de la Fée Gewurztraminer Gargantua",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "34 €"
+  },
+  {
+    "full_string": "Daphne Gargantua",
+    "name": "Daphne Gargantua",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "55 €"
+  },
+  {
+    "full_string": "Pinot Gris Gargantua",
+    "name": "Pinot Gris Gargantua",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "38 €"
+  },
+  {
+    "full_string": "Impasse Gargantua",
+    "name": "Impasse Gargantua",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "62 €"
+  },
+  {
+    "full_string": "Pierre Pinot Noir Gargantua",
+    "name": "Pierre Pinot Noir Gargantua",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "76 €"
+  },
+  {
+    "full_string": "Nix Nivis Riesling Anselmet",
+    "name": "Nix Nivis Riesling Anselmet",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "44 €"
+  },
+  {
+    "full_string": "Semel Pater Pinot Noir Anselmet",
+    "name": "Semel Pater Pinot Noir Anselmet",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "110 €"
+  },
+  {
+    "full_string": "Le Prisonnier Anselmet",
+    "name": "Le Prisonnier Anselmet",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "160 €"
+  },
+  {
+    "full_string": "Nevecrino Extra Brut Chemin",
+    "name": "Nevecrino Extra Brut",
+    "winery": "Chemin",
+    "original_winery_string": "Chemin",
+    "price": "75 €"
+  },
+  {
+    "full_string": "Triskell Rosé Metodo Classico Coenfer",
+    "name": "Triskell Rosé Metodo Classico Coenfer",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "42 €"
+  },
+  {
+    "full_string": "Enfer d’Arvier 2020 Coenfer",
+    "name": "Enfer d’Arvier 2020 Coenfer",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "45 €"
+  },
+  {
+    "full_string": "Enfer d’Arvier 2023 Danilo Thomain",
+    "name": "Enfer d’Arvier 2023",
+    "winery": "Danilo Thomain",
+    "original_winery_string": "Danilo Thomain",
+    "price": "42 €"
+  },
+  {
+    "full_string": "Maurice Danilo Thomain",
+    "name": "Maurice",
+    "winery": "Danilo Thomain",
+    "original_winery_string": "Danilo Thomain",
+    "price": "48 €"
+  },
+  {
+    "full_string": "Grandgosier Pinot Noir Cunéaz Nadir",
+    "name": "Grandgosier Pinot Noir Cunéaz Nadir",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "32 €"
+  },
+  {
+    "full_string": "L’Entso Fumin Cunéaz Nadir",
+    "name": "L’Entso Fumin Cunéaz Nadir",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "30 €"
+  },
+  {
+    "full_string": "Gargamelle Passito Cunéaz Nadir",
+    "name": "Gargamelle Passito Cunéaz Nadir",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "40 €"
+  },
+  {
+    "full_string": "Scaccomatto Edoardo Braga",
+    "name": "Scaccomatto",
+    "winery": "Edoardo Braga",
+    "original_winery_string": "Edoardo Braga",
+    "price": "73 €"
+  },
+  {
+    "full_string": "Vuillermin Feudo di San Maurizio",
+    "name": "Vuillermin",
+    "winery": "Feudo di San Maurizio",
+    "original_winery_string": "Feudo di San Maurizio",
+    "price": "44 €"
+  },
+  {
+    "full_string": "Saro Djablo Feudo di San Maurizio",
+    "name": "Saro Djablo",
+    "winery": "Feudo di San Maurizio",
+    "original_winery_string": "Feudo di San Maurizio",
+    "price": "29 €"
+  },
+  {
+    "full_string": "Chardonnay Cuvée Bois Les Crêtes 2020/2022",
+    "name": "Chardonnay Cuvée Bois Les Crêtes 2020/2022",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "70 €"
+  },
+  {
+    "full_string": "La Sabla Les Crêtes",
+    "name": "La Sabla Les Crêtes",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "26 €"
+  },
+  {
+    "full_string": "Syrah La Tour Les Crêtes",
+    "name": "Syrah La Tour Les Crêtes",
+    "winery": null,
+    "original_winery_string": null,
+    "price": "41 €"
+  },
+  {
+    "full_string": "Heritage Lo Triolet",
+    "name": "Heritage",
+    "winery": "Lo Triolet",
+    "original_winery_string": "Lo Triolet",
+    "price": "95 €"
+  },
+  {
+    "full_string": "Coteau Barrage Lo Triolet",
+    "name": "Coteau Barrage",
+    "winery": "Lo Triolet",
+    "original_winery_string": "Lo Triolet",
+    "price": "49 €"
+  },
+  {
+    "full_string": "Fumin 2020 Lo Triolet",
+    "name": "Fumin 2020",
+    "winery": "Lo Triolet",
+    "original_winery_string": "Lo Triolet",
+    "price": "49 €"
+  },
+  {
+    "full_string": "Pinot Gris Lo Triolet",
+    "name": "Pinot Gris",
+    "winery": "Lo Triolet",
+    "original_winery_string": "Lo Triolet",
+    "price": "35 €"
+  },
+  {
+    "full_string": "SI Les Petits Riens",
+    "name": "SI",
+    "winery": "Les Petits Riens",
+    "original_winery_string": "Les Petits Riens",
+    "price": "64 €"
+  },
+  {
+    "full_string": "Entre Terre et Ciel Les Petits Riens",
+    "name": "Entre Terre et Ciel",
+    "winery": "Les Petits Riens",
+    "original_winery_string": "Les Petits Riens",
+    "price": "70 €"
+  }
+]

@@ -1,0 +1,2142 @@
+{
+  "wines": [
+    {
+      "id": "piemonte_wine_1",
+      "name": "Bramaterra, Metodo Classico Brut",
+      "wineryId": "piemonte_winery_1",
+      "grapes": "Bramaterra, Metodo Classico Brut",
+      "year": "2020",
+      "price": "38",
+      "type": "sparkling",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_2",
+      "name": "Bramaterra",
+      "wineryId": "piemonte_winery_1",
+      "grapes": "Bramaterra",
+      "year": "2014",
+      "price": "55",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_3",
+      "name": "Bramaterra",
+      "wineryId": "piemonte_winery_1",
+      "grapes": "Bramaterra",
+      "year": "2016",
+      "price": "53",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_4",
+      "name": "Erbaluce, Metodo Classico Extra Brut Millesimato",
+      "wineryId": "piemonte_winery_2",
+      "grapes": "Erbaluce, Metodo Classico Extra Brut Millesimato",
+      "year": "2018",
+      "price": "42",
+      "type": "sparkling",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_5",
+      "name": "Erbaluce \"La Rustia\"",
+      "wineryId": "piemonte_winery_2",
+      "grapes": "Erbaluce \"La Rustia\"",
+      "year": "2022",
+      "price": "25",
+      "type": "white",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_6",
+      "name": "Erbaluce \"Vintage\"",
+      "wineryId": "piemonte_winery_2",
+      "grapes": "Erbaluce \"Vintage\"",
+      "year": "2020",
+      "price": "37",
+      "type": "white",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_7",
+      "name": "Alta Langa, Metodo Classico Brut",
+      "wineryId": "piemonte_winery_3",
+      "grapes": "Alta Langa, Metodo Classico Brut",
+      "year": "",
+      "price": "39",
+      "type": "sparkling",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_8",
+      "name": "Barbaresco \"Coste Rubin\"",
+      "wineryId": "piemonte_winery_3",
+      "grapes": "Barbaresco \"Coste Rubin\"",
+      "year": "2019",
+      "price": "69",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_9",
+      "name": "Barbera d'Asti Superiore \"Cascina Valle Asinari\"",
+      "wineryId": "piemonte_winery_4",
+      "grapes": "Barbera d'Asti Superiore \"Cascina Valle Asinari\"",
+      "year": "2022",
+      "price": "35",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_10",
+      "name": "Nebbiolo \"No Name\"",
+      "wineryId": "piemonte_winery_4",
+      "grapes": "Nebbiolo \"No Name\"",
+      "year": "2021",
+      "price": "63",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_11",
+      "name": "Riesling \"Era Ora\"",
+      "wineryId": "piemonte_winery_4",
+      "grapes": "Riesling \"Era Ora\"",
+      "year": "2021",
+      "price": "35",
+      "type": "white",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_12",
+      "name": "Barbera d'Asti Superiore \"Villa Pattono\"",
+      "wineryId": "piemonte_winery_5",
+      "grapes": "Barbera d'Asti Superiore \"Villa Pattono\"",
+      "year": "2022",
+      "price": "43",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_13",
+      "name": "Barbera d'Alba \"Battaglione\"",
+      "wineryId": "piemonte_winery_5",
+      "grapes": "Barbera d'Alba \"Battaglione\"",
+      "year": "2023",
+      "price": "30",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_14",
+      "name": "Dolcetto \"Colombé\"",
+      "wineryId": "piemonte_winery_5",
+      "grapes": "Dolcetto \"Colombé\"",
+      "year": "2024",
+      "price": "27",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_15",
+      "name": "Nebbiolo \"Reggimento\"",
+      "wineryId": "piemonte_winery_5",
+      "grapes": "Nebbiolo \"Reggimento\"",
+      "year": "2022",
+      "price": "50",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_16",
+      "name": "Chardonnay \"Brigata\"",
+      "wineryId": "piemonte_winery_5",
+      "grapes": "Chardonnay \"Brigata\"",
+      "year": "2022",
+      "price": "29",
+      "type": "white",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_17",
+      "name": "Barolo \"Marcenasco\"",
+      "wineryId": "piemonte_winery_5",
+      "grapes": "Barolo \"Marcenasco\"",
+      "year": "2018",
+      "price": "85",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_18",
+      "name": "Barolo \"Rocche dell'Annunziata\"",
+      "wineryId": "piemonte_winery_5",
+      "grapes": "Barolo \"Rocche dell'Annunziata\"",
+      "year": "2020",
+      "price": "190",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_19",
+      "name": "Barbera d'Asti Superiore \"La Luna e i Falò\"",
+      "wineryId": "piemonte_winery_6",
+      "grapes": "Barbera d'Asti Superiore \"La Luna e i Falò\"",
+      "year": "2021",
+      "price": "34",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_20",
+      "name": "Barolo \"Essenze\"",
+      "wineryId": "piemonte_winery_6",
+      "grapes": "Barolo \"Essenze\"",
+      "year": "2018",
+      "price": "75",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_21",
+      "name": "Barolo \"Paesi Tuoi\"",
+      "wineryId": "piemonte_winery_6",
+      "grapes": "Barolo \"Paesi Tuoi\"",
+      "year": "2016 (Magnum)",
+      "price": "360",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_22",
+      "name": "Piemonte Moscato Passito 0,75l",
+      "wineryId": "piemonte_winery_6",
+      "grapes": "Piemonte Moscato Passito 0,75l",
+      "year": "",
+      "price": "40",
+      "type": "dessert",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_23",
+      "name": "Barbera d'Alba \"Nadia Curto\" Triple A",
+      "wineryId": "piemonte_winery_7",
+      "grapes": "Barbera d'Alba \"Nadia Curto\" Triple A",
+      "year": "2022",
+      "price": "42",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_24",
+      "name": "Freisa \"Nadia Curto\" Triple A",
+      "wineryId": "piemonte_winery_7",
+      "grapes": "Freisa \"Nadia Curto\" Triple A",
+      "year": "2022",
+      "price": "45",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_25",
+      "name": "Langhe Nascetta Biologico",
+      "wineryId": "piemonte_winery_8",
+      "grapes": "Langhe Nascetta Biologico",
+      "year": "2022",
+      "price": "35",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_26",
+      "name": "Nebbiolo",
+      "wineryId": "piemonte_winery_9",
+      "grapes": "Nebbiolo",
+      "year": "2023",
+      "price": "34",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_27",
+      "name": "Barolo",
+      "wineryId": "piemonte_winery_9",
+      "grapes": "Barolo",
+      "year": "2021",
+      "price": "60",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_28",
+      "name": "Verduno Pelaverga",
+      "wineryId": "piemonte_winery_10",
+      "grapes": "Verduno Pelaverga",
+      "year": "2022",
+      "price": "31",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_29",
+      "name": "Timorasso \"Derthona\"",
+      "wineryId": "piemonte_winery_10",
+      "grapes": "Timorasso \"Derthona\"",
+      "year": "2023",
+      "price": "36",
+      "type": "white",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_30",
+      "name": "Barolo Stelvin",
+      "wineryId": "piemonte_winery_10",
+      "grapes": "Barolo Stelvin",
+      "year": "2016 (Piccoline)",
+      "price": "34",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_31",
+      "name": "Viognier \"Rebelle\" Biologico",
+      "wineryId": "piemonte_winery_11",
+      "grapes": "Viognier \"Rebelle\" Biologico",
+      "year": "2018",
+      "price": "49",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_32",
+      "name": "Barolo \"Annunziata\"",
+      "wineryId": "piemonte_winery_11",
+      "grapes": "Barolo \"Annunziata\"",
+      "year": "2014",
+      "price": "149",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_33",
+      "name": "Barolo \"Resa 56\"",
+      "wineryId": "piemonte_winery_11",
+      "grapes": "Barolo \"Resa 56\"",
+      "year": "2014 (",
+      "price": "119),",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_34",
+      "name": "Vino rosso senza solfiti Triple A da Vecchie Vigne",
+      "wineryId": "piemonte_winery_12",
+      "grapes": "Vino rosso senza solfiti Triple A da Vecchie Vigne",
+      "year": "2023",
+      "price": "42",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_35",
+      "name": "Barolo \"Boscareto\"",
+      "wineryId": "piemonte_winery_13",
+      "grapes": "Barolo \"Boscareto\"",
+      "year": "2011",
+      "price": "110",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_36",
+      "name": "Barolo Comune di Barolo",
+      "wineryId": "piemonte_winery_14",
+      "grapes": "Barolo Comune di Barolo",
+      "year": "2019",
+      "price": "73",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_37",
+      "name": "Barolo \"Vigna Merenda\"",
+      "wineryId": "piemonte_winery_14",
+      "grapes": "Barolo \"Vigna Merenda\"",
+      "year": "2018 (",
+      "price": "95),",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_38",
+      "name": "Barolo \"Viglione\"",
+      "wineryId": "piemonte_winery_15",
+      "grapes": "Barolo \"Viglione\"",
+      "year": "2014",
+      "price": "80",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_39",
+      "name": "Barolo \"Bussia\"",
+      "wineryId": "piemonte_winery_15",
+      "grapes": "Barolo \"Bussia\"",
+      "year": "2017",
+      "price": "134",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_40",
+      "name": "Barolo \"Cannubi\"",
+      "wineryId": "piemonte_winery_15",
+      "grapes": "Barolo \"Cannubi\"",
+      "year": "2018 (",
+      "price": "170),",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_41",
+      "name": "Barolo \"Mantoetto\"",
+      "wineryId": "piemonte_winery_16",
+      "grapes": "Barolo \"Mantoetto\"",
+      "year": "2019 (",
+      "price": "64),",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_42",
+      "name": "Roero Montespinato",
+      "wineryId": "piemonte_winery_17",
+      "grapes": "Roero Montespinato",
+      "year": "2022",
+      "price": "26",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_43",
+      "name": "Roero Arneis",
+      "wineryId": "piemonte_winery_17",
+      "grapes": "Roero Arneis",
+      "year": "2024",
+      "price": "23",
+      "type": "white",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_44",
+      "name": "Barolo Riserva \"Ginestra\"",
+      "wineryId": "piemonte_winery_17",
+      "grapes": "Barolo Riserva \"Ginestra\"",
+      "year": "2018",
+      "price": "122",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_45",
+      "name": "Barbaresco \"Palas\"",
+      "wineryId": "piemonte_winery_18",
+      "grapes": "Barbaresco \"Palas\"",
+      "year": "2020",
+      "price": "68",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_46",
+      "name": "Barbera Nizza \"Cipressi\"",
+      "wineryId": "piemonte_winery_18",
+      "grapes": "Barbera Nizza \"Cipressi\"",
+      "year": "2022",
+      "price": "36",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_47",
+      "name": "Barolo \"Palas\"",
+      "wineryId": "piemonte_winery_18",
+      "grapes": "Barolo \"Palas\"",
+      "year": "2019 (",
+      "price": "77),",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_48",
+      "name": "Barolo \"Tortoniano\"",
+      "wineryId": "piemonte_winery_18",
+      "grapes": "Barolo \"Tortoniano\"",
+      "year": "2020",
+      "price": "97",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_49",
+      "name": "Barolo \"Cannubi\"",
+      "wineryId": "piemonte_winery_18",
+      "grapes": "Barolo \"Cannubi\"",
+      "year": "2005 (Verticale)",
+      "price": "200",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_50",
+      "name": "Barolo \"Cannubi\"",
+      "wineryId": "piemonte_winery_18",
+      "grapes": "Barolo \"Cannubi\"",
+      "year": "2016 (Magnum)",
+      "price": "360",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_51",
+      "name": "Barbaresco \"Mantico\"",
+      "wineryId": "piemonte_winery_19",
+      "grapes": "Barbaresco \"Mantico\"",
+      "year": "2018",
+      "price": "62",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_52",
+      "name": "Barbera del Monferrato Casalese \"Gambaloita\"",
+      "wineryId": "piemonte_winery_20",
+      "grapes": "Barbera del Monferrato Casalese \"Gambaloita\"",
+      "year": "2022",
+      "price": "20",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_53",
+      "name": "Freisa \"Milano\"",
+      "wineryId": "piemonte_winery_20",
+      "grapes": "Freisa \"Milano\"",
+      "year": "2022",
+      "price": "26",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_54",
+      "name": "Grignolino del Monferrato Casalese \"Celio\"",
+      "wineryId": "piemonte_winery_20",
+      "grapes": "Grignolino del Monferrato Casalese \"Celio\"",
+      "year": "2024",
+      "price": "22",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_55",
+      "name": "Mosto d'uva parzialmente fermentato",
+      "wineryId": "piemonte_winery_20",
+      "grapes": "Mosto d'uva parzialmente fermentato",
+      "year": "",
+      "price": "20",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_56",
+      "name": "Barbera d'Asti Superiore \"Genio\"",
+      "wineryId": "piemonte_winery_21",
+      "grapes": "Barbera d'Asti Superiore \"Genio\"",
+      "year": "2021",
+      "price": "40",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_57",
+      "name": "Barbera d'Asti \"Bosco Donne\"",
+      "wineryId": "piemonte_winery_21",
+      "grapes": "Barbera d'Asti \"Bosco Donne\"",
+      "year": "2022",
+      "price": "28",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_58",
+      "name": "Moscato d'Asti \"Casa di Bianca\"",
+      "wineryId": "piemonte_winery_21",
+      "grapes": "Moscato d'Asti \"Casa di Bianca\"",
+      "year": "",
+      "price": "35",
+      "type": "dessert",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_59",
+      "name": "Moscato d'Asti",
+      "wineryId": "piemonte_winery_21",
+      "grapes": "Moscato d'Asti",
+      "year": "",
+      "price": "20",
+      "type": "dessert",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_60",
+      "name": "Ruché di Castagnole Monferrato",
+      "wineryId": "piemonte_winery_22",
+      "grapes": "Ruché di Castagnole Monferrato",
+      "year": "2022",
+      "price": "34",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_61",
+      "name": "Barbera dei Colli Tortonesi \"Sant'Andrea\"",
+      "wineryId": "piemonte_winery_23",
+      "grapes": "Barbera dei Colli Tortonesi \"Sant'Andrea\"",
+      "year": "2020",
+      "price": "27",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_62",
+      "name": "Timorasso \"Fausto\"",
+      "wineryId": "piemonte_winery_23",
+      "grapes": "Timorasso \"Fausto\"",
+      "year": "2020",
+      "price": "72",
+      "type": "white",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_63",
+      "name": "Timorasso \"Gran Fostò\"",
+      "wineryId": "piemonte_winery_23",
+      "grapes": "Timorasso \"Gran Fostò\"",
+      "year": "2018",
+      "price": "119",
+      "type": "white",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_64",
+      "name": "Bramaterra, Metodo Classico Brut",
+      "wineryId": "piemonte_winery_24",
+      "grapes": "Bramaterra, Metodo Classico Brut",
+      "year": "2020",
+      "price": "38",
+      "type": "sparkling",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_65",
+      "name": "Bramaterra",
+      "wineryId": "piemonte_winery_24",
+      "grapes": "Bramaterra",
+      "year": "2016",
+      "price": "53",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_66",
+      "name": "Bramaterra",
+      "wineryId": "piemonte_winery_24",
+      "grapes": "Bramaterra",
+      "year": "2014",
+      "price": "55",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_67",
+      "name": "Erbaluce, Metodo Classico Extra Brut Millesimato",
+      "wineryId": "piemonte_winery_25",
+      "grapes": "Erbaluce, Metodo Classico Extra Brut Millesimato",
+      "year": "2018",
+      "price": "42",
+      "type": "sparkling",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_68",
+      "name": "Erbaluce \"La Rustia\"",
+      "wineryId": "piemonte_winery_25",
+      "grapes": "Erbaluce \"La Rustia\"",
+      "year": "2022",
+      "price": "25",
+      "type": "white",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_69",
+      "name": "Erbaluce \"Vintage\"",
+      "wineryId": "piemonte_winery_25",
+      "grapes": "Erbaluce \"Vintage\"",
+      "year": "2020",
+      "price": "37",
+      "type": "white",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_70",
+      "name": "Alta Langa, Metodo Classico Brut",
+      "wineryId": "piemonte_winery_26",
+      "grapes": "Alta Langa, Metodo Classico Brut",
+      "year": "",
+      "price": "39",
+      "type": "sparkling",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_71",
+      "name": "Barbaresco \"Coste Rubin\"",
+      "wineryId": "piemonte_winery_26",
+      "grapes": "Barbaresco \"Coste Rubin\"",
+      "year": "2019",
+      "price": "69",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_72",
+      "name": "Barbera d'Asti Superiore \"Cascina Valle Asinari\"",
+      "wineryId": "piemonte_winery_27",
+      "grapes": "Barbera d'Asti Superiore \"Cascina Valle Asinari\"",
+      "year": "2022",
+      "price": "35",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_73",
+      "name": "Nebbiolo \"No Name\"",
+      "wineryId": "piemonte_winery_27",
+      "grapes": "Nebbiolo \"No Name\"",
+      "year": "2021",
+      "price": "63",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_74",
+      "name": "Riesling \"Era Ora\"",
+      "wineryId": "piemonte_winery_27",
+      "grapes": "Riesling \"Era Ora\"",
+      "year": "2021",
+      "price": "35",
+      "type": "white",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_75",
+      "name": "Barbera d'Asti Superiore \"Villa Pattono\"",
+      "wineryId": "piemonte_winery_28",
+      "grapes": "Barbera d'Asti Superiore \"Villa Pattono\"",
+      "year": "2022",
+      "price": "43",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_76",
+      "name": "Barbera d'Alba \"Battaglione\"",
+      "wineryId": "piemonte_winery_28",
+      "grapes": "Barbera d'Alba \"Battaglione\"",
+      "year": "2023",
+      "price": "30",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_77",
+      "name": "Dolcetto \"Colombé\"",
+      "wineryId": "piemonte_winery_28",
+      "grapes": "Dolcetto \"Colombé\"",
+      "year": "2024",
+      "price": "27",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_78",
+      "name": "Nebbiolo \"Reggimento\"",
+      "wineryId": "piemonte_winery_28",
+      "grapes": "Nebbiolo \"Reggimento\"",
+      "year": "2022",
+      "price": "50",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_79",
+      "name": "Chardonnay \"Brigata\"",
+      "wineryId": "piemonte_winery_28",
+      "grapes": "Chardonnay \"Brigata\"",
+      "year": "2022",
+      "price": "29",
+      "type": "white",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_80",
+      "name": "Barolo \"Marcenasco\"",
+      "wineryId": "piemonte_winery_28",
+      "grapes": "Barolo \"Marcenasco\"",
+      "year": "2018",
+      "price": "85",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_81",
+      "name": "Barolo \"Rocche dell'Annunziata\"",
+      "wineryId": "piemonte_winery_28",
+      "grapes": "Barolo \"Rocche dell'Annunziata\"",
+      "year": "2020",
+      "price": "190",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_82",
+      "name": "Barbera d'Asti Superiore \"La Luna e i Falò\"",
+      "wineryId": "piemonte_winery_29",
+      "grapes": "Barbera d'Asti Superiore \"La Luna e i Falò\"",
+      "year": "2021",
+      "price": "34",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_83",
+      "name": "Barolo \"Essenze\"",
+      "wineryId": "piemonte_winery_29",
+      "grapes": "Barolo \"Essenze\"",
+      "year": "2018",
+      "price": "75",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_84",
+      "name": "Barolo \"Paesi Tuoi\"",
+      "wineryId": "piemonte_winery_29",
+      "grapes": "Barolo \"Paesi Tuoi\"",
+      "year": "2016 (Magnum)",
+      "price": "360",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_85",
+      "name": "Piemonte Moscato Passito 0,75l",
+      "wineryId": "piemonte_winery_29",
+      "grapes": "Piemonte Moscato Passito 0,75l",
+      "year": "",
+      "price": "40",
+      "type": "dessert",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_86",
+      "name": "Barbera d'Alba \"Nadia Curto\" Triple A",
+      "wineryId": "piemonte_winery_30",
+      "grapes": "Barbera d'Alba \"Nadia Curto\" Triple A",
+      "year": "2022",
+      "price": "42",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_87",
+      "name": "Freisa \"Nadia Curto\" Triple A",
+      "wineryId": "piemonte_winery_30",
+      "grapes": "Freisa \"Nadia Curto\" Triple A",
+      "year": "2022",
+      "price": "45",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_88",
+      "name": "Langhe Nascetta Biologico",
+      "wineryId": "piemonte_winery_31",
+      "grapes": "Langhe Nascetta Biologico",
+      "year": "2022",
+      "price": "35",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_89",
+      "name": "Nebbiolo",
+      "wineryId": "piemonte_winery_32",
+      "grapes": "Nebbiolo",
+      "year": "2023",
+      "price": "34",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_90",
+      "name": "Barolo",
+      "wineryId": "piemonte_winery_32",
+      "grapes": "Barolo",
+      "year": "2021",
+      "price": "60",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_91",
+      "name": "Verduno Pelaverga",
+      "wineryId": "piemonte_winery_33",
+      "grapes": "Verduno Pelaverga",
+      "year": "2022",
+      "price": "31",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_92",
+      "name": "Timorasso \"Derthona\"",
+      "wineryId": "piemonte_winery_33",
+      "grapes": "Timorasso \"Derthona\"",
+      "year": "2023",
+      "price": "36",
+      "type": "white",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_93",
+      "name": "Barolo Stelvin",
+      "wineryId": "piemonte_winery_33",
+      "grapes": "Barolo Stelvin",
+      "year": "2016 (Piccoline)",
+      "price": "34",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_94",
+      "name": "Viognier \"Rebelle\" Biologico",
+      "wineryId": "piemonte_winery_34",
+      "grapes": "Viognier \"Rebelle\" Biologico",
+      "year": "2018",
+      "price": "49",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_95",
+      "name": "Barolo \"Annunziata\"",
+      "wineryId": "piemonte_winery_34",
+      "grapes": "Barolo \"Annunziata\"",
+      "year": "2014",
+      "price": "149",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_96",
+      "name": "Barolo \"Resa 56\"",
+      "wineryId": "piemonte_winery_34",
+      "grapes": "Barolo \"Resa 56\"",
+      "year": "2014 (",
+      "price": "119),",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_97",
+      "name": "Vino rosso senza solfiti Triple A da Vecchie Vigne",
+      "wineryId": "piemonte_winery_35",
+      "grapes": "Vino rosso senza solfiti Triple A da Vecchie Vigne",
+      "year": "2023",
+      "price": "42",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_98",
+      "name": "Barolo \"Boscareto\"",
+      "wineryId": "piemonte_winery_36",
+      "grapes": "Barolo \"Boscareto\"",
+      "year": "2011",
+      "price": "110",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_99",
+      "name": "Barolo Comune di Barolo",
+      "wineryId": "piemonte_winery_37",
+      "grapes": "Barolo Comune di Barolo",
+      "year": "2019",
+      "price": "73",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_100",
+      "name": "Barolo \"Vigna Merenda\"",
+      "wineryId": "piemonte_winery_37",
+      "grapes": "Barolo \"Vigna Merenda\"",
+      "year": "2018 (",
+      "price": "95),",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_101",
+      "name": "Barolo \"Viglione\"",
+      "wineryId": "piemonte_winery_38",
+      "grapes": "Barolo \"Viglione\"",
+      "year": "2014",
+      "price": "80",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_102",
+      "name": "Barolo \"Bussia\"",
+      "wineryId": "piemonte_winery_38",
+      "grapes": "Barolo \"Bussia\"",
+      "year": "2017",
+      "price": "134",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_103",
+      "name": "Barolo \"Cannubi\"",
+      "wineryId": "piemonte_winery_38",
+      "grapes": "Barolo \"Cannubi\"",
+      "year": "2018 (",
+      "price": "170),",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_104",
+      "name": "Barolo \"Mantoetto\"",
+      "wineryId": "piemonte_winery_39",
+      "grapes": "Barolo \"Mantoetto\"",
+      "year": "2019 (",
+      "price": "64),",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_105",
+      "name": "Roero Montespinato",
+      "wineryId": "piemonte_winery_40",
+      "grapes": "Roero Montespinato",
+      "year": "2022",
+      "price": "26",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_106",
+      "name": "Roero Arneis",
+      "wineryId": "piemonte_winery_40",
+      "grapes": "Roero Arneis",
+      "year": "2024",
+      "price": "23",
+      "type": "white",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_107",
+      "name": "Barolo Riserva \"Ginestra\"",
+      "wineryId": "piemonte_winery_40",
+      "grapes": "Barolo Riserva \"Ginestra\"",
+      "year": "2018",
+      "price": "122",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_108",
+      "name": "Barbaresco \"Palas\"",
+      "wineryId": "piemonte_winery_41",
+      "grapes": "Barbaresco \"Palas\"",
+      "year": "2020",
+      "price": "68",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_109",
+      "name": "Barbera Nizza \"Cipressi\"",
+      "wineryId": "piemonte_winery_41",
+      "grapes": "Barbera Nizza \"Cipressi\"",
+      "year": "2022",
+      "price": "36",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_110",
+      "name": "Barolo \"Palas\"",
+      "wineryId": "piemonte_winery_41",
+      "grapes": "Barolo \"Palas\"",
+      "year": "2019 (",
+      "price": "77),",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_111",
+      "name": "Barolo \"Tortoniano\"",
+      "wineryId": "piemonte_winery_41",
+      "grapes": "Barolo \"Tortoniano\"",
+      "year": "2020",
+      "price": "97",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_112",
+      "name": "Barolo \"Cannubi\"",
+      "wineryId": "piemonte_winery_41",
+      "grapes": "Barolo \"Cannubi\"",
+      "year": "2005 (Verticale)",
+      "price": "200",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_113",
+      "name": "Barolo \"Cannubi\"",
+      "wineryId": "piemonte_winery_41",
+      "grapes": "Barolo \"Cannubi\"",
+      "year": "2016 (Magnum)",
+      "price": "360",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_114",
+      "name": "Barbaresco \"Mantico\"",
+      "wineryId": "piemonte_winery_42",
+      "grapes": "Barbaresco \"Mantico\"",
+      "year": "2018",
+      "price": "62",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_115",
+      "name": "Barbera del Monferrato Casalese \"Gambaloita\"",
+      "wineryId": "piemonte_winery_43",
+      "grapes": "Barbera del Monferrato Casalese \"Gambaloita\"",
+      "year": "2022",
+      "price": "20",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_116",
+      "name": "Freisa \"Milano\"",
+      "wineryId": "piemonte_winery_43",
+      "grapes": "Freisa \"Milano\"",
+      "year": "2022",
+      "price": "26",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_117",
+      "name": "Grignolino del Monferrato Casalese \"Celio\"",
+      "wineryId": "piemonte_winery_43",
+      "grapes": "Grignolino del Monferrato Casalese \"Celio\"",
+      "year": "2024",
+      "price": "22",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_118",
+      "name": "Mosto d'uva parzialmente fermentato",
+      "wineryId": "piemonte_winery_43",
+      "grapes": "Mosto d'uva parzialmente fermentato",
+      "year": "",
+      "price": "20",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_119",
+      "name": "Barbera d'Asti Superiore \"Genio\"",
+      "wineryId": "piemonte_winery_44",
+      "grapes": "Barbera d'Asti Superiore \"Genio\"",
+      "year": "2021",
+      "price": "40",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_120",
+      "name": "Barbera d'Asti \"Bosco Donne\"",
+      "wineryId": "piemonte_winery_44",
+      "grapes": "Barbera d'Asti \"Bosco Donne\"",
+      "year": "2022",
+      "price": "28",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_121",
+      "name": "Moscato d'Asti \"Casa di Bianca\"",
+      "wineryId": "piemonte_winery_44",
+      "grapes": "Moscato d'Asti \"Casa di Bianca\"",
+      "year": "",
+      "price": "35",
+      "type": "dessert",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_122",
+      "name": "Moscato d'Asti",
+      "wineryId": "piemonte_winery_44",
+      "grapes": "Moscato d'Asti",
+      "year": "",
+      "price": "20",
+      "type": "dessert",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_123",
+      "name": "Ruché di Castagnole Monferrato",
+      "wineryId": "piemonte_winery_45",
+      "grapes": "Ruché di Castagnole Monferrato",
+      "year": "2022",
+      "price": "34",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_124",
+      "name": "Barbera dei Colli Tortonesi \"Sant'Andrea\"",
+      "wineryId": "piemonte_winery_46",
+      "grapes": "Barbera dei Colli Tortonesi \"Sant'Andrea\"",
+      "year": "2020",
+      "price": "27",
+      "type": "red",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_125",
+      "name": "Timorasso \"Fausto\"",
+      "wineryId": "piemonte_winery_46",
+      "grapes": "Timorasso \"Fausto\"",
+      "year": "2020",
+      "price": "72",
+      "type": "white",
+      "description": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "id": "piemonte_wine_126",
+      "name": "Timorasso \"Gran Fostò\"",
+      "wineryId": "piemonte_winery_46",
+      "grapes": "Timorasso \"Gran Fostò\"",
+      "year": "2018",
+      "price": "119",
+      "type": "white",
+      "description": "",
+      "image": "",
+      "hidden": false
+    }
+  ],
+  "wineries": [
+    {
+      "id": "piemonte_winery_1",
+      "name": "Società Agricola Roccia Rossa",
+      "location": "Brusnengo (BI)",
+      "region": "alto-piemonte",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_2",
+      "name": "Orsolani",
+      "location": "San Giorgio Canavese / Caluso (TO)",
+      "region": "canavese",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_3",
+      "name": "Fontanafredda",
+      "location": "Serralunga d'Alba (CN)",
+      "region": "langhe",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_4",
+      "name": "Giacomo Borgogno",
+      "location": "Barolo (CN)",
+      "region": "langhe",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_5",
+      "name": "Renato Ratti",
+      "location": "La Morra (CN)",
+      "region": "langhe",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_6",
+      "name": "Vite Colte",
+      "location": "Barolo (CN)",
+      "region": "langhe",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_7",
+      "name": "Curto (Nadia Curto)",
+      "location": "La Morra (CN)",
+      "region": "langhe",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_8",
+      "name": "Casa E. Mirafiore",
+      "location": "Serralunga d'Alba (CN)",
+      "region": "langhe",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_9",
+      "name": "Andrea Oberto",
+      "location": "La Morra (CN)",
+      "region": "langhe",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_10",
+      "name": "Giovanni Sordo",
+      "location": "Castiglione Falletto (CN)",
+      "region": "langhe",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_11",
+      "name": "Agricola Brandini",
+      "location": "La Morra (CN)",
+      "region": "langhe",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_12",
+      "name": "Cascina Fontana",
+      "location": "Monforte d'Alba (CN)",
+      "region": "langhe",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_13",
+      "name": "Ferdinando Principiano",
+      "location": "Monforte d'Alba (CN)",
+      "region": "langhe",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_14",
+      "name": "Scarzello",
+      "location": "Barolo (CN)",
+      "region": "langhe",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_15",
+      "name": "Viglione (Triple A)",
+      "location": "Monforte d'Alba (CN)",
+      "region": "langhe",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_16",
+      "name": "Fracassi",
+      "location": "Cherasco (CN)",
+      "region": "langhe",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_17",
+      "name": "Cascina Chicco",
+      "location": "Canale (CN)",
+      "region": "roero",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_18",
+      "name": "Michele Chiarlo",
+      "location": "Calamandrana (AT)",
+      "region": "monferrato",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_19",
+      "name": "Bersano Vini",
+      "location": "Nizza Monferrato (AT)",
+      "region": "monferrato",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_20",
+      "name": "Marco Canato",
+      "location": "Vignale Monferrato (AL)",
+      "region": "monferrato",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_21",
+      "name": "Gianni Doglia",
+      "location": "Castagnole delle Lanze (AT)",
+      "region": "monferrato",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_22",
+      "name": "Pierfrancesco Gatto",
+      "location": "Castagnole Monferrato (AT)",
+      "region": "monferrato",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_23",
+      "name": "Vigne Marina Coppi",
+      "location": "Castellania (AL)",
+      "region": "tortonese",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_24",
+      "name": "Società Agricola Roccia Rossa",
+      "location": "Brusnengo (BI)",
+      "region": "alto-piemonte",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_25",
+      "name": "Orsolani",
+      "location": "San Giorgio Canavese / Caluso (TO)",
+      "region": "canavese",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_26",
+      "name": "Fontanafredda",
+      "location": "Serralunga d'Alba (CN)",
+      "region": "langhe",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_27",
+      "name": "Giacomo Borgogno",
+      "location": "Barolo (CN)",
+      "region": "langhe",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_28",
+      "name": "Renato Ratti",
+      "location": "La Morra (CN)",
+      "region": "langhe",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_29",
+      "name": "Vite Colte",
+      "location": "Barolo (CN)",
+      "region": "langhe",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_30",
+      "name": "Curto (Nadia Curto)",
+      "location": "La Morra (CN)",
+      "region": "langhe",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_31",
+      "name": "Casa E. Mirafiore",
+      "location": "Serralunga d'Alba (CN)",
+      "region": "langhe",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_32",
+      "name": "Andrea Oberto",
+      "location": "La Morra (CN)",
+      "region": "langhe",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_33",
+      "name": "Giovanni Sordo",
+      "location": "Castiglione Falletto (CN)",
+      "region": "langhe",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_34",
+      "name": "Agricola Brandini",
+      "location": "La Morra (CN)",
+      "region": "langhe",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_35",
+      "name": "Cascina Fontana",
+      "location": "Monforte d'Alba (CN)",
+      "region": "langhe",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_36",
+      "name": "Ferdinando Principiano",
+      "location": "Monforte d'Alba (CN)",
+      "region": "langhe",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_37",
+      "name": "Scarzello",
+      "location": "Barolo (CN)",
+      "region": "langhe",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_38",
+      "name": "Viglione (Triple A)",
+      "location": "Monforte d'Alba (CN)",
+      "region": "langhe",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_39",
+      "name": "Fracassi",
+      "location": "Cherasco (CN)",
+      "region": "langhe",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_40",
+      "name": "Cascina Chicco",
+      "location": "Canale (CN)",
+      "region": "roero",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_41",
+      "name": "Michele Chiarlo",
+      "location": "Calamandrana (AT)",
+      "region": "monferrato",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_42",
+      "name": "Bersano Vini",
+      "location": "Nizza Monferrato (AT)",
+      "region": "monferrato",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_43",
+      "name": "Marco Canato",
+      "location": "Vignale Monferrato (AL)",
+      "region": "monferrato",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_44",
+      "name": "Gianni Doglia",
+      "location": "Castagnole delle Lanze (AT)",
+      "region": "monferrato",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_45",
+      "name": "Pierfrancesco Gatto",
+      "location": "Castagnole Monferrato (AT)",
+      "region": "monferrato",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_46",
+      "name": "Vigne Marina Coppi",
+      "location": "Castellania (AL)",
+      "region": "tortonese",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_47",
+      "name": "La Porta del Piemonte",
+      "location": "Canavese & Alto Piemonte",
+      "region": "tortonese",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    },
+    {
+      "id": "piemonte_winery_48",
+      "name": "La Porta del Piemonte",
+      "location": "Canavese & Alto Piemonte",
+      "region": "tortonese",
+      "description": "",
+      "image": "",
+      "website": "",
+      "coordinates": {
+        "lat": 45,
+        "lng": 8
+      }
+    }
+  ]
+}

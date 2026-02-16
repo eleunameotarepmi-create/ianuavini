@@ -1,7 +1,7 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { X, ExternalLink, Wine as WineIcon } from 'lucide-react';
-import { GLASS_DEFINITIONS, GlassDefinition, getGlassTypeFromWine as getDef } from '../data/glassData';
+import { GLASS_DEFINITIONS, GLASS_TYPE_MAP, GlassDefinition, getGlassTypeFromWine as getDef } from '../data/glassData';
 import { WineGlass } from './WineGlass';
 import { Wine } from '../types';
 
@@ -13,6 +13,7 @@ interface GlassGuideModalProps {
 }
 
 export const GlassGuideModal: React.FC<GlassGuideModalProps> = ({ glassId, wineType, onClose, language }) => {
+    const [isZoomed, setIsZoomed] = useState(false);
     // Resolve definition
     let definition: GlassDefinition;
 
@@ -33,19 +34,29 @@ export const GlassGuideModal: React.FC<GlassGuideModalProps> = ({ glassId, wineT
     // We can map our definition ID back to a reliable 'type'.
     const typeMap: Record<string, string> = {
         'flute': 'sparkling',
+        'tulipano': 'sparkling_complex',
+        'renano': 'white',
+        'borgogna': 'borgogna',
+        'borgogna_red': 'borgogna_red',
+        'borgogna_rose': 'borgogna_rose',
+        'balloon': 'red',
+        'barbaresco': 'red_premium',
+        'marsala': 'dessert',
         'white': 'white',
         'red': 'red',
         'dessert': 'dessert',
         'rose': 'rose',
+        'flute_rose': 'flute_rose',
         'universal': 'red'
     };
 
     const mockWine: Wine = {
         id: 'mock',
         name: 'Technical View',
-        type: typeMap[definition.id] as any,
+        type: (definition.id === 'flute_rose' ? 'flute_rose' : (GLASS_TYPE_MAP[definition.id] || 'red')) as any,
         grapes: '',
         description: '',
+
         price: '0',
         altitude: 0,
         priceRange: '€',
@@ -68,8 +79,11 @@ export const GlassGuideModal: React.FC<GlassGuideModalProps> = ({ glassId, wineT
                     <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-10 mix-blend-overlay" />
                     <div className="absolute inset-0 bg-radial-gradient from-[#D4AF37]/10 to-transparent opacity-50" />
 
-                    {/* Glass Visualization */}
-                    <div className="relative z-10 w-32 h-48 drop-shadow-2xl translate-y-4">
+                    {/* Glass Visualization - Tappable for Zoom */}
+                    <div
+                        className="relative z-10 w-32 h-48 drop-shadow-2xl translate-y-4 cursor-zoom-in active:scale-95 transition-transform"
+                        onClick={(e) => { e.stopPropagation(); setIsZoomed(true); }}
+                    >
                         <WineGlass wine={mockWine} straight={true} className="" />
                     </div>
 
@@ -141,6 +155,25 @@ export const GlassGuideModal: React.FC<GlassGuideModalProps> = ({ glassId, wineT
                     </div>
                 </div>
             </div>
+
+            {/* FULLSCREEN GLASS ZOOM */}
+            {isZoomed && (
+                <div
+                    className="fixed inset-0 z-[300] bg-black/95 backdrop-blur-sm flex items-center justify-center animate-in fade-in duration-300 cursor-zoom-out"
+                    onClick={() => setIsZoomed(false)}
+                >
+                    <button
+                        onClick={() => setIsZoomed(false)}
+                        className="absolute top-6 right-6 p-3 bg-white/10 hover:bg-white/20 rounded-full text-white/70 hover:text-white transition-colors z-10"
+                    >
+                        <X size={24} />
+                    </button>
+                    <div className="w-[70vw] h-[70vh] max-w-md animate-in zoom-in-90 duration-500">
+                        <WineGlass wine={mockWine} straight={true} className="" />
+                    </div>
+                    <p className="absolute bottom-8 text-white/60 font-serif text-sm italic">{definition.name}</p>
+                </div>
+            )}
         </div>
     );
 };

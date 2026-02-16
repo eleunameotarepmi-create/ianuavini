@@ -24,7 +24,7 @@ const ExpandableDescription: React.FC<{ text: string; language: Language }> = ({
 
   return (
     <div>
-      <p className="font-serif text-[15px] md:text-lg leading-[1.8] text-stone-300 italic">
+      <p className="font-serif text-[15px] leading-[1.8] text-stone-300 italic">
         {displayText}
       </p>
       {needsTruncation && (
@@ -60,7 +60,7 @@ export const WineryDetailModal: React.FC<{
       {/* Close button */}
       <button
         onClick={onClose}
-        className="fixed top-4 right-4 md:top-6 md:right-6 z-50 p-3 bg-black/50 backdrop-blur-md rounded-full text-white/70 hover:text-white transition-all border border-white/10"
+        className="fixed top-4 right-4 z-50 p-3 bg-black/50 backdrop-blur-md rounded-full text-white/70 hover:text-white transition-all border border-white/10"
       >
         <X size={22} />
       </button>
@@ -68,7 +68,7 @@ export const WineryDetailModal: React.FC<{
       <div className="w-full h-full overflow-y-auto overflow-x-hidden no-scrollbar">
 
         {/* ═══════ HERO SECTION ═══════ */}
-        <div className="relative w-full h-[55vh] md:h-[65vh] flex items-end overflow-hidden">
+        <div className="relative w-full h-[55vh] flex items-end overflow-hidden">
           <div className={`absolute inset-0 transition-transform duration-[20s] ease-linear ${isAnimating ? 'scale-110' : 'scale-100'}`}>
             <img
               src={winery.image}
@@ -79,18 +79,18 @@ export const WineryDetailModal: React.FC<{
           <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/50 to-transparent" />
 
           {/* Title content - pinned to bottom */}
-          <div className="relative z-10 w-full px-5 md:px-12 pb-8 md:pb-12">
+          <div className="relative z-10 w-full px-5 pb-8">
             <div className={`transition-all duration-1000 delay-300 transform ${isAnimating ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
               <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-[#D4AF37] font-sans text-[10px] font-bold uppercase tracking-[0.2em] mb-3">
                 <MapPin size={11} /> {winery.location}
               </span>
             </div>
 
-            <h1 className={`text-3xl md:text-6xl lg:text-8xl font-serif text-white uppercase tracking-tight leading-[0.95] transition-all duration-1000 delay-500 transform ${isAnimating ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+            <h1 className={`text-3xl font-serif text-white uppercase tracking-tight leading-[0.95] transition-all duration-1000 delay-500 transform ${isAnimating ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
               {winery.name}
             </h1>
 
-            <div className={`w-16 md:w-24 h-[2px] bg-[#D4AF37] mt-4 transition-all duration-1000 delay-700 transform ${isAnimating ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0'}`} />
+            <div className={`w-16 h-[2px] bg-[#D4AF37] mt-4 transition-all duration-1000 delay-700 transform ${isAnimating ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0'}`} />
           </div>
         </div>
 
@@ -104,7 +104,7 @@ export const WineryDetailModal: React.FC<{
           </div>
 
           {/* ─── STORIA & TERRITORIO ─── */}
-          <div className="relative px-5 md:px-12 py-8 md:py-14 max-w-5xl md:mx-auto">
+          <div className="relative px-5 py-8 max-w-5xl">
             <div className="flex items-center gap-3 mb-6">
               <span className="w-10 h-[1px] bg-[#D4AF37]" />
               <h2 className="text-[#D4AF37] font-sans text-[11px] font-bold uppercase tracking-[0.3em]">{t('wineries.story_territory', language)}</h2>
@@ -114,13 +114,13 @@ export const WineryDetailModal: React.FC<{
 
             {/* Curiosity */}
             {(winery.curiosity || (winery as any).curiosity_en || (winery as any).curiosity_fr) && (
-              <div className="mt-8 bg-stone-900/60 border border-[#D4AF37]/15 p-5 md:p-8 rounded-2xl flex gap-4 items-start">
+              <div className="mt-8 bg-stone-900/60 border border-[#D4AF37]/15 p-5 rounded-2xl flex gap-4 items-start">
                 <div className="p-2.5 bg-[#D4AF37]/10 rounded-full text-[#D4AF37] flex-shrink-0">
                   <Lightbulb size={20} />
                 </div>
                 <div>
                   <h4 className="font-sans text-[10px] font-bold uppercase tracking-[0.25em] text-[#D4AF37] mb-2">{t('wineries.curiosity', language)}</h4>
-                  <p className="font-serif text-stone-300 italic text-[15px] md:text-lg leading-[1.7]">
+                  <p className="font-serif text-stone-300 italic text-[15px] leading-[1.7]">
                     {getTranslated(winery, 'curiosity', language)}
                   </p>
                 </div>
@@ -129,14 +129,14 @@ export const WineryDetailModal: React.FC<{
           </div>
 
           {/* Divider */}
-          <div className="px-5 md:px-12 max-w-5xl md:mx-auto">
+          <div className="px-5 max-w-5xl">
             <div className="h-[1px] bg-white/5" />
           </div>
 
           {/* ─── VINI IN CARTA ─── */}
-          <div className="relative px-5 md:px-12 py-8 md:py-14 max-w-5xl md:mx-auto">
+          <div className="relative px-5 py-8 max-w-5xl">
             <div className="mb-6">
-              <h3 className="text-2xl md:text-4xl font-serif text-white uppercase tracking-wider mb-1">{t('wineries.in_menu', language)}</h3>
+              <h3 className="text-2xl font-serif text-white uppercase tracking-wider mb-1">{t('wineries.in_menu', language)}</h3>
               <p className="text-stone-500 font-sans text-[11px] uppercase tracking-[0.2em]">{wines.filter(w => !w.hidden).length} Etichette Selezionate</p>
             </div>
 
@@ -146,7 +146,7 @@ export const WineryDetailModal: React.FC<{
                   <div
                     key={wine.id}
                     onClick={() => onSelectWine(wine)}
-                    className="group flex items-center gap-4 bg-stone-900/50 hover:bg-stone-900 border border-white/5 hover:border-[#D4AF37]/30 rounded-xl p-3 md:p-4 cursor-pointer transition-all duration-300"
+                    className="group flex items-center gap-4 bg-stone-900/50 hover:bg-stone-900 border border-white/5 hover:border-[#D4AF37]/30 rounded-xl p-3 cursor-pointer transition-all duration-300"
                   >
                     {/* Bottle */}
                     <div className="h-20 w-10 flex-shrink-0 flex items-center justify-center">
@@ -164,7 +164,7 @@ export const WineryDetailModal: React.FC<{
 
                     {/* Info */}
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-serif text-[14px] md:text-[15px] font-bold text-white group-hover:text-[#D4AF37] transition-colors leading-snug uppercase line-clamp-2 mb-0.5" title={wine.name}>
+                      <h4 className="font-serif text-[14px] font-bold text-white group-hover:text-[#D4AF37] transition-colors leading-snug uppercase line-clamp-2 mb-0.5" title={wine.name}>
                         {wine.name}
                       </h4>
                       <p className="text-[10px] text-stone-500 font-bold uppercase tracking-widest line-clamp-1">{wine.grapes}</p>
@@ -185,7 +185,7 @@ export const WineryDetailModal: React.FC<{
           </div>
 
           {/* ─── FOOTER ─── */}
-          <div className="px-5 md:px-12 py-10 md:py-16 flex justify-center">
+          <div className="px-5 py-10 flex justify-center">
             <a
               href={winery.website}
               target="_blank"

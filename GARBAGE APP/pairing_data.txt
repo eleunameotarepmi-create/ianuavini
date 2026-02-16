@@ -1,0 +1,208 @@
+=== BRANDINI WINES ===
+ID: wine_1769609456737_1
+Name: Barolo DOCG "Annunziata" 2014
+Grapes: Nebbiolo da Barolo
+Desc: Un Barolo elegante proveniente dal Cru Annunziata,...
+---
+ID: wine_1769611096224hiiak
+Name: Viognier "Rebelle" Langhe Bianco DOC 2018
+Grapes: 100% Viognier
+Desc: Un bianco ribelle e di classe proveniente da un vi...
+---
+ID: wine_1769609456737_2
+Name: Barolo DOCG "Resa 56" (Verticale 2011 al 2014)
+Grapes: Nebbiolo da Barolo
+Desc: Un Barolo che nasce dalla scommessa della qualità ...
+---
+
+=== MENU ITEMS ===
+ID: 1
+Course: undefined
+Name: Selezione di formaggi e salumi locali
+Desc: ...
+---
+ID: 10
+Course: undefined
+Name: Scaloppa di foie gras su granella di nocciola piemontese, frutti del bosco
+Desc: ...
+---
+ID: 11
+Course: undefined
+Name: Pane, burro, acciughe
+Desc: ...
+---
+ID: 12
+Course: undefined
+Name: Insalata Sur la place, Nizzarda, Chèvre chaud
+Desc: ...
+---
+ID: 13
+Course: undefined
+Name: Pasta e fagioli con le cotiche
+Desc: ...
+---
+ID: 14
+Course: undefined
+Name: La Valpellinentse (zuppa tradizionale con pane, cavolo, fontina…)
+Desc: ...
+---
+ID: 15
+Course: undefined
+Name: Spaghetti al pomodoro e scorza di limone o allo scoglio
+Desc: ...
+---
+ID: 16
+Course: undefined
+Name: Bucatini alla amatriciana valdostana
+Desc: ...
+---
+ID: 17
+Course: undefined
+Name: Risotto amaretto e zucca
+Desc: ...
+---
+ID: 18
+Course: undefined
+Name: Pansoti di Sori
+Desc: ...
+---
+ID: 19
+Course: undefined
+Name: Fonduta alla valdostana con la fontina e i crostini
+Desc: ...
+---
+ID: 2
+Course: undefined
+Name: Lumache al Bleu d'Aoste o alla mediterranea
+Desc: ...
+---
+ID: 20
+Course: undefined
+Name: Le polente di IANUA (concia o con il camoscio)
+Desc: ...
+---
+ID: 21
+Course: undefined
+Name: Terrina di porri
+Desc: ...
+---
+ID: 22
+Course: undefined
+Name: La tartiflette (patate stufate, pancetta, cipolla e reblochon o rebletzen)
+Desc: ...
+---
+ID: 23
+Course: undefined
+Name: Rognoncino al Porto con purea di patate
+Desc: ...
+---
+ID: 24
+Course: undefined
+Name: Spigola alla acqua pazza con ratatouille
+Desc: ...
+---
+ID: 25
+Course: undefined
+Name: Petto d'anatra al sidro
+Desc: ...
+---
+ID: 26
+Course: undefined
+Name: Coniglio alla ligure
+Desc: ...
+---
+ID: 27
+Course: undefined
+Name: Cotoletta alla valdostana in doppia panatura di grissini
+Desc: ...
+---
+ID: 28
+Course: undefined
+Name: Sottofiletto o filetto di garronese alla griglia
+Desc: ...
+---
+ID: 29
+Course: undefined
+Name: Filetto di garronese alla Rossini o alla Wellington
+Desc: ...
+---
+ID: 3
+Course: undefined
+Name: Entrée valdostana (pane nero, miele, burro, castagne, lardo, mocetta)
+Desc: ...
+---
+ID: 30
+Course: undefined
+Name: Crema di Cogne con le tegole
+Desc: ...
+---
+ID: 31
+Course: undefined
+Name: Bûnet alla piemontese con ribes
+Desc: ...
+---
+ID: 32
+Course: undefined
+Name: Semifreddo al caffè di Artari
+Desc: ...
+---
+ID: 33
+Course: undefined
+Name: La zuppa inglese
+Desc: ...
+---
+ID: 34
+Course: undefined
+Name: CCCP (caco, crema, cocco e panna)
+Desc: ...
+---
+ID: 35
+Course: undefined
+Name: Sorbetto al limone o al genepì
+Desc: ...
+---
+ID: 36
+Course: undefined
+Name: La coppa Mont Blanc
+Desc: ...
+---
+ID: 37
+Course: undefined
+Name: Café gourmand
+Desc: ...
+---
+ID: 38
+Course: undefined
+Name: Coppa dell’amicizia (caffè alla valdostana)
+Desc: ...
+---
+ID: 4
+Course: undefined
+Name: Uovo poché su fonduta di fontina
+Desc: ...
+---
+ID: 5
+Course: undefined
+Name: Vitello tonnato
+Desc: ...
+---
+ID: 6
+Course: undefined
+Name: Prosciutto di tonno e stracciatella
+Desc: ...
+---
+ID: 7
+Course: undefined
+Name: Zuppetta di pesce
+Desc: ...
+---
+ID: 8
+Course: undefined
+Name: Sushi valdôtèn (albese, tartare, carne salada)
+Desc: ...
+---
+ID: 9
+Course: undefined
+Name: Tris del Piemonte: vol au vent ai porcini, sformato di verza, insalata russa
+Desc: ...
+---

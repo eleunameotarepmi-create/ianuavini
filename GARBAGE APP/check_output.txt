@@ -1,0 +1,39 @@
+--- Report Vini Richiesti ---
+
+Cercando: vevey
+  Nessun vino trovato nel nome.
+  Trovata Cantina: Crotta de la Meurdzie – Vevey Marziano (winery_1768442226083). Cerco vini collegati...
+  - Blanc de Morgex et de La Salle DOP – Versione Fermo: 30 €
+  - Blanc de Morgex et de La Salle DOP – Metodo Classico: PREZZO MANCANTE
+
+Cercando: pellissier
+  Nessun vino trovato nel nome.
+  Trovata Cantina: André Pellissier (winery_1768617245278). Cerco vini collegati...
+  - Torrette Supérieur – Valle d’Aosta DOP: PREZZO MANCANTE
+  - Syrah – Valle d’Aosta DOP: PREZZO MANCANTE
+
+Cercando: source
+  Nessun vino trovato nel nome.
+  Trovata Cantina: La Source (winery_1768496743541). Cerco vini collegati...
+  - Cornalin – Valle d’Aosta DOP: PREZZO MANCANTE
+  - Torrette Supérieur – Valle d’Aosta DOP: PREZZO MANCANTE
+
+Cercando: gasperi
+  Nessun vino trovato nel nome.
+  Trovata Cantina: Di Francesco-Gasperi Vino & Spiriti (winery_1768491353325). Cerco vini collegati...
+  - Petite Arvine – Vallée d’Aoste D.O.C.: 37 €
+  - Fumin – Vallée d’Aoste D.O.C.: PREZZO MANCANTE
+  - Planchettes – Vallée d’Aoste D.O.C. Rouge: PREZZO MANCANTE
+
+Cercando: barrò
+  Nessun vino trovato nel nome.
+  Trovata Cantina: Di Barrò (winery_1768482887878). Cerco vini collegati...
+  - 🥂 Pinot Gris – Valle d’Aosta DOC: PREZZO MANCANTE
+  - 🥂 Petite Arvine – Valle d’Aosta DOC: PREZZO MANCANTE
+  - 🥂 Chardonnay – Valle d’Aosta DOC: PREZZO MANCANTE
+  - 🍷 Torrette Supérieur – Valle d’Aosta DOC: 29 €
+  - 🍷 Fumin – Valle d’Aosta DOC: 44 €
+  - Fumin Magnum (1.5 L) | 2016: 80€
+
+Cercando: barro
+  Nessun vino trovato nel nome.

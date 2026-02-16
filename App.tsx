@@ -3,10 +3,11 @@ import { Wine, Winery, AppView, MenuItem, GlossaryItem, AiInstruction } from './
 import { io } from 'socket.io-client';
 // Data Provider & Switcher
 import { MobileApp } from './components/mobile/MobileApp';
+import { DesktopMobileWrapper } from './components/mobile/DesktopMobileWrapper';
 
 const API_TOKEN = 'ianua2024';
 const API_URL = window.location.hostname === 'localhost'
-  ? 'http://localhost:4016'
+  ? 'http://localhost:3577'
   : '';
 
 const socket = io(API_URL);
@@ -247,16 +248,20 @@ const App: React.FC = () => {
     }
   };
 
-  return <MobileApp
-    view={view}
-    setView={setView}
-    language={language}
-    setLanguage={setLanguage}
-    wines={wines} wineries={wineries} menu={menu} aiInstructions={aiInstructions} isAuthenticated={isAuthenticated}
-    onLoginSuccess={handleLoginSuccess}
-    onLogout={handleLogout}
-    {...handlers}
-  />;
+  return (
+    <DesktopMobileWrapper>
+      <MobileApp
+        view={view}
+        setView={setView}
+        language={language}
+        setLanguage={setLanguage}
+        wines={wines} wineries={wineries} menu={menu} aiInstructions={aiInstructions} isAuthenticated={isAuthenticated}
+        onLoginSuccess={handleLoginSuccess}
+        onLogout={handleLogout}
+        {...handlers}
+      />
+    </DesktopMobileWrapper>
+  );
 };
 
 export default App;

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { GlossaryItem } from '../../types';
 import { Search, BookOpen, Wine as WineIcon } from 'lucide-react';
 import { Language, t } from '../../translations';
-import { GLASS_DEFINITIONS } from '../../data/glassData';
+import { GLASS_DEFINITIONS, GLASS_TYPE_MAP } from '../../data/glassData';
 import { WineGlass } from '../WineGlass';
 import { GlassGuideModal } from '../GlassGuideModal';
 import type { Wine } from '../../types';
@@ -46,10 +46,6 @@ export const MobileGlossary: React.FC<MobileGlossaryProps> = ({ items, language 
 
     // Glass guide
     const glassEntries = Object.values(GLASS_DEFINITIONS);
-    const typeMap: Record<string, string> = {
-        'flute': 'sparkling', 'white': 'white', 'red': 'red',
-        'dessert': 'dessert', 'rose': 'rose', 'universal': 'red'
-    };
 
     return (
         <div className="pb-32 px-4 pt-4 min-h-full bg-stone-950 text-stone-100">
@@ -191,7 +187,7 @@ export const MobileGlossary: React.FC<MobileGlossaryProps> = ({ items, language 
                         {glassEntries.map(glass => {
                             const mockWine: Wine = {
                                 id: `mock-${glass.id}`, name: glass.name,
-                                type: typeMap[glass.id] as any, grapes: '', description: '',
+                                type: GLASS_TYPE_MAP[glass.id] as any, grapes: '', description: '',
                                 price: '0', altitude: 0, priceRange: '€',
                                 wineryId: '', image: '', alcohol: '', temperature: '', pairing: ''
                             };
@@ -205,10 +201,10 @@ export const MobileGlossary: React.FC<MobileGlossaryProps> = ({ items, language 
                                         <WineGlass wine={mockWine} straight={true} className="" />
                                     </div>
                                     <div className="text-center">
-                                        <h3 className="text-sm font-serif text-stone-200 group-hover:text-[#D4AF37] transition-colors leading-tight">
+                                        <h3 className="text-sm font-serif text-white group-hover:text-[#D4AF37] transition-colors leading-tight">
                                             {glass.name.split('/')[0].trim()}
                                         </h3>
-                                        <p className="text-[10px] text-stone-500 mt-1 italic font-serif line-clamp-2">
+                                        <p className="text-[11px] text-stone-400 mt-1 italic font-serif line-clamp-2">
                                             {glass.shortDescription}
                                         </p>
                                     </div>

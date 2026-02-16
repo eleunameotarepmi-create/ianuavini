@@ -1,0 +1,197 @@
+Total Wines: 124
+Total Wineries: 35
+
+### Noussan Vini (3)
+- Pinot Gris "Tzanté" – Vallée d’Aoste D.O.C.
+- Torrette Supérieur "La Prieure" – Vallée d’Aoste D.O.C.
+- Torrette – Vallée d’Aoste D.O.C. (2023)
+
+### Boen (Bonin Dino) (1)
+- Vallée d'Aoste Arnad-Montjovet D.O.C.
+
+### Caves Coopératives de Donnas (5)
+- Vallée d'Aoste D.O.C. Donnas
+- Valle d’Aosta D.O.C. Nebbiolo Barmet
+- Valle d’Aosta D.O.C. Donnas Supérieur Vieilles Vignes
+- Donnas | 2019/2020
+- Nebbiolo Donnas (0.375 L) | 2020
+
+### Piantagrossa (3)
+- BIANC˃ONE – Vallée d’Aoste D.O.C.
+- 396 Aesculus Hippocastanum – Vallée d’Aoste D.O.C.
+- Dessus – Vallée d’Aoste D.O.C. Nebbiolo
+
+### La Kiuva (4)
+- Seigneurs de Vallaise – Spumante Brut
+- Nebbiolo Picotendro – Vallée d’Aoste D.O.C.
+- Merlot – Vallée d’Aoste D.O.C.
+- Seigneurs de Vallaise – Spumante Brut
+
+### Priod (7)
+- Rouge Tonen – Vin de Table
+- Patri Meo Rosé – Vin de Table
+- Bocoueil – Vin de Table
+- Merlot Rouge Tonen | 2015
+- Merlot Rouge Tonen | 2016
+- Merlot Rouge Tonen | 2018
+- Merlot Rouge Tonen Magnum (1.5 L) | 2016/17/18
+
+### Pierre Philippe QUINSON (2)
+- Valle d’Aosta Torrette Supérieur “Le Soldat” – D.O.C.
+- Beato Emerico Rosé – Vallée d’Aoste D.O.C.
+
+### Grosjean Vins (4)
+- Gamay – Vallée d’Aoste D.O.C.
+- Chardonnay – Vallée d’Aoste D.O.C.
+- Pinot Noir – Vallée d’Aoste D.O.C.
+- Forcé 1968 – Extra Dry (spumante)
+
+### La Crotta di Vegneron (6)
+- Chambave Muscat – Vallée d’Aoste D.O.C.
+- Syrah “Crème” – Vallée d’Aoste D.O.C.
+- Fumin “Esprit Follet” – Vallée d’Aoste D.O.C.
+- Refrain – Vino spumante Dry (Metodo Charmat)
+- Fumin (0.375 L) | 2019
+- Chambave Muscat (0.375 L) | 2023
+
+### Les Granges (6)
+- Nus – Vallée d’Aoste D.O.C.
+- Cornalin “Survivant” – Vallée d’Aoste D.O.C.
+- Fumin – Vallée d’Aoste D.O.C.
+- Nus Malvoisie – Pinot Gris D.O.C.
+- Nus Malvoisie Flétri – Passito D.O.C.
+- Fumin Magnum 
+
+### ViniRari – Giulio Moriondo (2)
+- Balteo – ViniRari
+- Lo Rej – Cuvée du Roi
+
+### Rosset Terroir (1)
+- Petite Arvine – Vallée d’Aoste DOP
+
+### Crotta de la Meurdzie – Vevey Marziano (2)
+- Blanc de Morgex et de La Salle DOP – Versione Fermo
+- Blanc de Morgex et de La Salle DOP – Metodo Classico
+
+### Cave Gargantua (5)
+- Vin de la Fée – Vallée d’Aoste Bianco D.O.C.
+- Daphne – Vallée d’Aoste Blanc D.O.C.
+- Pinot Gris – Vallée d’Aoste D.O.C.
+- Impasse – Vallée d’Aoste Rouge D.O.C.
+- Pierre – Vallée d’Aoste Pinot Noir D.O.C.
+
+### Cave Mont Blanc de Morgex et La Salle (2)
+- Blanc de Morgex et de La Salle – Vallée d’Aoste D.O.C.
+- Blanc de Morgex et de La Salle (0.375 L) | 2023
+
+### Maison Anselmet (7)
+- Chambave Muscat – Valle d’Aosta D.O.C.
+- Nix Nivis MMXIX – Valle d’Aosta D.O.C.
+- Müller Thurgau – Valle d’Aosta D.O.C.
+- Les Deux Petits Cœurs – Rosato
+- Semel Pater – Valle d’Aosta Pinot Noir D.O.C.
+- Fumin Élevé en Fût de Chêne – Vallée d’Aoste D.O.C.
+- Le Prisonnier – Vin Rouge
+
+### Château Feuillet (5)
+- Chardonnay – Valle d’Aosta D.O.C.
+- Petite Arvine – Valle d’Aosta D.O.C.
+- Pinot Nero – Valle d’Aosta D.O.C.
+- Torrette – Valle d’Aosta D.O.C.
+- Torrette (0.375 L) | 2023
+
+### Chemin (1)
+- Nevecrino Extra Brut – Chemin
+
+### CoEnfer – Cooperativa de l’Enfer (2)
+- Triskell – Vallée d’Aoste D.O.C. Rosé Brut Metodo Classico
+- Enfer d’Arvier – Vallée d’Aoste D.O.C.
+
+### La Crotta di Prado (2)
+- Torrette – Valle d’Aosta D.O.P.
+- Gamay – Valle d’Aosta D.O.P.
+
+### La Cantina di Cunéaz Nadir (3)
+- Grandgosier – Valle d’Aosta DOP Pinot Noir
+- Gargamelle – Vino da uve stramature
+- L’Entso – Vino Rosso
+
+### Diego Curtaz Viticoltore (2)
+- Chardonnay – Vallée d’Aoste D.O.C.
+- Syrah / Shiraz
+
+### Di Barrò (6)
+- 🥂 Pinot Gris – Valle d’Aosta DOC
+- 🥂 Petite Arvine – Valle d’Aosta DOC
+- 🥂 Chardonnay – Valle d’Aosta DOC
+- 🍷 Torrette Supérieur – Valle d’Aosta DOC
+- 🍷 Fumin – Valle d’Aosta DOC
+- Fumin Magnum (1.5 L) | 2016
+
+### Di Francesco-Gasperi Vino & Spiriti (3)
+- Petite Arvine – Vallée d’Aoste D.O.C.
+- Fumin – Vallée d’Aoste D.O.C.
+- Planchettes – Vallée d’Aoste D.O.C. Rouge
+
+### Edoardo Braga (4)
+- Scaccomatto – Edizione Limitata
+- Gamay – Valle d’Aosta D.O.C.
+- Fumin – Valle d’Aosta D.O.C.
+- Elettra – Valle d’Aosta D.O.C. Rosé
+
+### La Source (2)
+- Cornalin – Valle d’Aosta DOP
+- Torrette Supérieur – Valle d’Aosta DOP
+
+### Feudo di San Maurizio (5)
+- Gewürztraminer “Grapillon” – Vallée d’Aoste D.O.C.
+- Torrette – Vallée d’Aoste D.O.C.
+- Vuillermin – Vallée d’Aoste D.O.C.
+- Saro Djablo
+- Saro Djablo C.A.L.O.U.
+
+### Cave Les Crêtes – Famiglia Charrère (6)
+- Chardonnay Cuvée Bois – Valle d’Aosta D.O.P.
+- La Sabla – Valle d’Aosta D.O.P.
+- Syrah La Tour – Valle d’Aosta D.O.P.
+- Cuvée Bois Chardonnay | 2016
+- Cuvée Bois Chardonnay | 2020
+- Cuvée Bois Chardonnay | 2022
+
+### Les Petits Riens (3)
+- Petit Bout de Lune
+- SI
+- Entre Terre et Ciel
+
+### Lo Triolet (5)
+- Pinot Gris – Valle d’Aosta DOC
+- Pinot Gris Élevé en Barriques – Valle d’Aosta DOC
+- Rouge Coteau Barrage – Valle d’Aosta DOC
+- Fumin – Valle d’Aosta DOC
+- Heritage – Valle d’Aosta DOC
+
+### Maison Vagneur (2)
+- Muscat Petit Grain – Valle d’Aosta D.O.C.
+- Syrah – Valle d’Aosta D.O.C.
+
+### Maison Maurice Cretaz (1)
+- BOS MONOT – Vino Rosso (Valle d’Aosta)
+
+### Cave des Onze Communes (8)
+- Müller-Thurgau – Vallée d’Aoste D.O.C.
+- Blanc Perdrix – Vino Bianco
+- Flétry – Vallée d’Aoste D.O.C. (Passito) – Muscat Petit Grain
+- Pinot Noir – Vallée d’Aoste D.O.C. (Mezza bottiglia 0,375 L)
+- Torrette 0,35l – Vallée d’Aoste D.O.C.
+- Mayolet – Vallée d’Aoste D.O.C.
+- Rouge Bouquetin – Vino Rosso
+- Muller Thurgau (0.375 L) | 2023
+
+### André Pellissier (2)
+- Torrette Supérieur – Valle d’Aosta DOP
+- Syrah – Valle d’Aosta DOP
+
+### Danilo Thomain (2)
+- Enfer d’Arvier – Vallée d’Aoste D.O.C.
+- Maurice – Vallée d’Aoste D.O.C.
+
