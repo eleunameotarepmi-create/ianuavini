@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { Send, Sparkles, BookOpen, Feather } from 'lucide-react';
+import { Send, Sparkles, BookOpen, Feather, X } from 'lucide-react';
 
 interface ChatMessage {
     role: 'user' | 'ai';
@@ -13,6 +13,7 @@ interface MobileSommelierProps {
     handleSendChat: (mode: 'poeta' | 'tecnico') => void;
     isTyping: boolean;
     language: 'it' | 'en' | 'fr';
+    onClose?: () => void;
 }
 
 // Strip markdown bold/italic markers from text
@@ -33,7 +34,8 @@ export const MobileSommelier: React.FC<MobileSommelierProps> = ({
     setChatInput,
     handleSendChat,
     isTyping,
-    language
+    language,
+    onClose
 }) => {
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const inputBarRef = useRef<HTMLDivElement>(null);
@@ -88,9 +90,17 @@ export const MobileSommelier: React.FC<MobileSommelierProps> = ({
         <div className="h-full flex flex-col bg-stone-950 relative">
             {/* Header with mode selector */}
             <div className="p-3 border-b border-stone-800 bg-stone-900/50 backdrop-blur-sm sticky top-0 z-10">
-                <div className="flex items-center justify-center gap-2 mb-2">
+                <div className="flex items-center justify-center gap-2 mb-2 relative">
                     <Sparkles className="text-[#D4AF37]" size={14} />
                     <h2 className="text-[#D4AF37] text-xs font-bold uppercase tracking-[0.2em]">Ianua Sommelier</h2>
+                    {onClose && (
+                        <button
+                            onClick={onClose}
+                            className="absolute right-0 top-1/2 -translate-y-1/2 p-2 rounded-full bg-stone-800/80 text-stone-400 hover:text-white active:scale-90 transition-all border border-stone-700/50"
+                        >
+                            <X size={16} />
+                        </button>
+                    )}
                 </div>
                 {/* Mode toggle */}
                 <div className="flex justify-center gap-1">
@@ -117,7 +127,7 @@ export const MobileSommelier: React.FC<MobileSommelierProps> = ({
                 </div>
             </div>
 
-            <div className="flex-1 overflow-y-auto px-4 py-6 space-y-6 scrollbar-hide pb-32">
+            <div className="flex-1 overflow-y-auto px-4 py-6 space-y-6 scrollbar-hide pb-4">
                 {chatHistory.length === 0 && (
                     <div className="flex flex-col items-center justify-center h-[60vh] text-stone-600 space-y-4 opacity-50 px-8 text-center">
                         <Sparkles size={48} strokeWidth={1} />
@@ -167,11 +177,10 @@ export const MobileSommelier: React.FC<MobileSommelierProps> = ({
                 <div ref={messagesEndRef} />
             </div>
 
-            {/* Input bar — keyboard aware */}
+            {/* Input bar — sticky at bottom of chat */}
             <div
                 ref={inputBarRef}
-                className="p-4 bg-stone-900/90 backdrop-blur-md border-t border-stone-800 fixed left-0 right-0 z-[60] transition-all duration-150"
-                style={{ bottom: keyboardOffset > 0 ? `${keyboardOffset}px` : '80px' }}
+                className="p-4 bg-stone-900/95 backdrop-blur-md border-t border-stone-800 sticky bottom-0 z-[60]"
             >
                 <div className="flex gap-2 relative max-w-md mx-auto">
                     <input

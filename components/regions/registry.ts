@@ -4,9 +4,13 @@ import { vda } from './vda';
 import { piemonte } from './piemonte';
 import { liguria } from './liguria';
 import { sardegna } from './sardegna';
+import { toscana } from './toscana';
+import { veneto } from './veneto';
+import { lombardia } from './lombardia';
+import { francia } from './francia';
 import { Winery } from '../../types';
 
-export const ALL_REGIONS: RegionConfig[] = [vda, piemonte, liguria, sardegna];
+export const ALL_REGIONS: RegionConfig[] = [vda, piemonte, liguria, sardegna, toscana, veneto, lombardia, francia];
 
 export const getRegionById = (id: string): RegionConfig | undefined => {
     return ALL_REGIONS.find(r => r.id === id);

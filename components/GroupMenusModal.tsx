@@ -60,16 +60,16 @@ export const GroupMenusModal: React.FC<GroupMenusModalProps> = ({ isOpen, onClos
             </div>
 
             {/* Content Area */}
-            <div className="flex-1 overflow-hidden flex flex-col md:flex-row">
+            <div className="flex-1 overflow-hidden flex flex-col">
 
                 {/* Sidebar - Menu List (horizontal scroll on mobile, vertical sidebar on desktop) */}
-                <div className="w-full md:w-64 bg-stone-800 border-b md:border-b-0 md:border-r border-[#D4AF37]/10 overflow-x-auto md:overflow-y-auto md:overflow-x-hidden p-2 md:p-3 shrink-0 print:hidden">
-                    <div className="flex md:flex-col gap-2 md:gap-1 md:space-y-0 min-w-max md:min-w-0">
+                <div className="w-full bg-stone-800 border-b border-[#D4AF37]/10 overflow-x-auto p-2 shrink-0 print:hidden">
+                    <div className="flex gap-2 min-w-max">
                         {GROUP_MENUS.map((menu) => (
                             <button
                                 key={menu.id}
                                 onClick={() => setSelectedMenuId(menu.id)}
-                                className={`whitespace-nowrap md:whitespace-normal md:w-full text-left px-3 py-2 rounded-lg transition-all text-sm ${selectedMenuId === menu.id
+                                className={`whitespace-nowrap text-left px-3 py-2 rounded-lg transition-all text-sm ${selectedMenuId === menu.id
                                     ? 'bg-[#D4AF37] text-stone-900 shadow-lg'
                                     : 'text-stone-300 hover:bg-stone-700'
                                     }`}
@@ -78,14 +78,14 @@ export const GroupMenusModal: React.FC<GroupMenusModalProps> = ({ isOpen, onClos
                                     {menu.id.toString().padStart(2, '0')}
                                 </span>
                                 <span className="font-serif italic">{menu.name[language]}</span>
-                                <span className="ml-2 md:float-right text-xs opacity-60 whitespace-nowrap">{menu.price}€</span>
+                                <span className="ml-2 text-xs opacity-60 whitespace-nowrap">{menu.price}€</span>
                             </button>
                         ))}
                     </div>
                 </div>
 
                 {/* Main Content - Menu Page */}
-                <div className="flex-1 overflow-y-auto bg-stone-100 p-4 md:p-8 print:p-0 print:overflow-visible">
+                <div className="flex-1 overflow-y-auto bg-stone-100 p-4 print:p-0 print:overflow-visible">
                     {/* Screen View */}
                     <div className="print:hidden">
                         <GroupMenuPage

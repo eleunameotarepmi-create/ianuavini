@@ -33,7 +33,7 @@ const StoryMode = ({ onFinish }: { onFinish: () => void }) => {
                 src={BG_IMAGE}
                 animate={{ scale: [1, 1.1] }}
                 transition={{ duration: 10, repeat: Infinity, repeatType: "mirror" }}
-                className="absolute inset-0 w-full h-full object-cover opacity-60 blur-sm"
+                className="fixed inset-0 w-full h-full object-cover opacity-60 blur-sm"
             />
 
             {/* Progress Bar */}
@@ -50,7 +50,7 @@ const StoryMode = ({ onFinish }: { onFinish: () => void }) => {
             </div>
 
             {/* Content */}
-            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center p-8 text-center bg-black/40 backdrop-blur-[2px]">
+            <div className="fixed inset-0 z-10 flex flex-col items-center justify-center p-8 text-center bg-black/40 backdrop-blur-[2px]">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={index}
@@ -83,9 +83,9 @@ const ParallaxMode = ({ onFinish }: { onFinish: () => void }) => {
         <div className="relative w-full overflow-y-auto h-full bg-stone-950 snap-y snap-mandatory scroll-behavior-smooth">
             {/* Hero Section */}
             <section className="h-full w-full relative snap-start flex flex-col items-center justify-center shrink-0">
-                <div className="absolute inset-0 z-0">
+                <div className="fixed inset-0 z-0">
                     <img src={BG_IMAGE} className="w-full h-full object-cover opacity-70" />
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-stone-950" />
+                    <div className="fixed inset-0 bg-gradient-to-b from-transparent to-stone-950" />
                 </div>
                 <div className="z-10 text-center space-y-4">
                     <h1 className="text-6xl font-serif text-[#D4AF37] tracking-[0.2em]">IANUA</h1>
@@ -99,7 +99,7 @@ const ParallaxMode = ({ onFinish }: { onFinish: () => void }) => {
             {/* Text Sections */}
             {MANIFESTO_TEXT.map((text, i) => (
                 <section key={i} className="h-full w-full snap-center flex items-center justify-center p-8 relative shrink-0">
-                    <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+                    <div className="fixed inset-0 z-0 opacity-20 pointer-events-none">
                         <div className="text-[200px] font-serif text-white/5 absolute -top-20 -left-20">{i + 1}</div>
                     </div>
                     <motion.p

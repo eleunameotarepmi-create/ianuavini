@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { getGlassTypeFromWine } from '../data/glassData';
 import type { Wine, Winery, MenuItem } from '../types';
-import { X, Droplets, Thermometer, Utensils, Grape, ArrowUpRight, Wine as WineIcon, Activity } from 'lucide-react';
+import { X, Droplets, Thermometer, Utensils, Grape, ArrowUpRight, Wine as WineIcon, Activity, ChevronDown } from 'lucide-react';
 import { t, Language } from '../translations';
 import { getSafeImage } from '../utils/imageUtils';
 import { WineGlass } from './WineGlass';
@@ -64,6 +64,8 @@ export const WineDetailModal: React.FC<WineDetailModalProps> = ({ wine, winery, 
   const [showIanuaPairings, setShowIanuaPairings] = useState(false);
   const [isBottleGuideOpen, setIsBottleGuideOpen] = useState(false);
   const [zoomedDishImage, setZoomedDishImage] = useState<{ src: string; name: string } | null>(null);
+  const [openAccordion, setOpenAccordion] = useState<'sensory' | 'pairing' | null>(null);
+
 
 
   // Compute "Effective Wine" - inheriting text from standard bottle if this is a small bottle
@@ -169,7 +171,7 @@ export const WineDetailModal: React.FC<WineDetailModalProps> = ({ wine, winery, 
 
       </div>
 
-      <div className="relative w-full h-full flex flex-col overflow-hidden bg-stone-900/40">
+      <div className="relative w-full h-full flex flex-col overflow-y-auto bg-stone-900/40">
 
         {/* Close Button - Moved inside the card specifically to avoid overlapping the frame */}
         <button
@@ -312,41 +314,43 @@ export const WineDetailModal: React.FC<WineDetailModalProps> = ({ wine, winery, 
             </div>
           )}
 
-          {/* Mobile Drag Handle Indicator & Type Icon fallback if needed */}
-          <div className="w-full flex items-center justify-between px-6 pt-4 pb-2">
-            <div className="w-12 h-1.5 bg-stone-800 rounded-full mx-auto" />
-            {/* Small glass icon top right mobile? Optional. Let's keep specific mobile glass in header block below instead for consistency */}
+          {/* Ornamental Drag Handle */}
+          <div className="w-full flex items-center justify-center pt-5 pb-3">
+            <div className="flex items-center gap-3">
+              <div className="h-[1px] w-10 bg-gradient-to-r from-transparent to-[#D4AF37]/40" />
+              <span className="text-[#D4AF37]/50 text-xs">✦</span>
+              <div className="h-[1px] w-10 bg-gradient-to-l from-transparent to-[#D4AF37]/40" />
+            </div>
           </div>
 
-          <div className="px-3 py-6 mx-auto space-y-6">
+          <div className="px-5 py-4 mx-auto space-y-8">
 
             {/* Header Info (Unified for Mobile & Desktop) */}
-            <div className="space-y-4 text-center">
-              <div className="flex items-center justify-center gap-3">
-                <div className="h-[1px] w-8 bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728]" />
-                <span className="font-sans text-sm uppercase tracking-[0.25em] bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] bg-clip-text text-transparent font-bold">{winery?.name}</span>
-                <div className="h-[1px] w-8 bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728]" />
+            <div className="space-y-5 text-center">
+              {/* Winery pill */}
+              <div className="flex items-center justify-center">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-stone-800/50 backdrop-blur-sm border border-[#D4AF37]/20 text-xs uppercase tracking-[0.25em] font-bold" style={{ fontFamily: "'Montserrat', sans-serif", color: '#D4AF37' }}>
+                  {winery?.name}
+                </span>
               </div>
-              {/* NEW WINE TYPE BADGE - Text Based, Clean, No Icons */}
-              {/* Wine Glass Indicator - Removed from here, moved to Hero Left Column per user request */}
 
               <h1 className="text-3xl font-serif text-stone-100 leading-tight">
                 {effectiveWine.name}
               </h1>
 
-              {/* Bottle Formats Guide - near header for wines with multiple formats */}
+              {/* Bottle Formats Guide */}
               {showBottleGuide && (
                 <button
                   onClick={() => setIsBottleGuideOpen(true)}
-                  className="inline-flex items-center gap-2 px-3 py-1.5 bg-stone-800/60 border border-white/10 rounded-full text-xs uppercase tracking-widest font-serif text-stone-400 hover:text-[#D4AF37] hover:border-[#D4AF37]/30 transition-all mx-auto"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-stone-800/40 backdrop-blur-sm border border-white/10 rounded-full text-xs uppercase tracking-widest text-stone-400 hover:text-[#D4AF37] hover:border-[#D4AF37]/30 transition-all mx-auto" style={{ fontFamily: "'Montserrat', sans-serif" }}
                 >
                   <span>{t('bottle.formats', language)}</span>
                   <span className="text-[#D4AF37]">→</span>
                 </button>
               )}
 
-              <div className="flex flex-col items-center gap-4">
-                <span className="bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] bg-clip-text text-transparent font-sans text-xl uppercase tracking-widest order-2 font-bold shadow-black drop-shadow-sm">
+              <div className="flex flex-col items-center gap-3">
+                <span className="text-lg uppercase tracking-[0.15em] italic" style={{ fontFamily: "'Cormorant Garamond', serif", color: '#D4AF37' }}>
                   {effectiveWine.grapes}
                 </span>
 
@@ -398,133 +402,230 @@ export const WineDetailModal: React.FC<WineDetailModalProps> = ({ wine, winery, 
               </div>
             )}
 
-            {/* Technical Grid - Compact: only Alcohol + Temperature */}
-            <div className="grid grid-cols-2 gap-x-6 gap-y-4 py-5 border-y border-white/10">
-              <div className="space-y-1">
-                <div className="flex items-center gap-2 text-accent mb-1">
-                  <Droplets size={16} /> <span className="text-sm uppercase tracking-widest font-serif">{t('wine.alcohol', language)}</span>
+            {/* Technical Grid - Glassmorphism Cards */}
+            <div className="grid grid-cols-2 gap-3">
+              <div className="bg-stone-800/30 backdrop-blur-sm border border-[#D4AF37]/15 rounded-2xl p-4 text-center">
+                <div className="flex items-center justify-center gap-1.5 text-[#D4AF37] mb-2">
+                  <Droplets size={14} /> <span className="text-[10px] uppercase tracking-[0.2em] font-bold" style={{ fontFamily: "'Montserrat', sans-serif" }}>{t('wine.alcohol', language)}</span>
                 </div>
-                <p className="text-stone-300 font-serif text-lg">{effectiveWine.alcohol}</p>
+                <p className="text-stone-200 text-xl font-medium" style={{ fontFamily: "'Cormorant Garamond', serif" }}>{effectiveWine.alcohol}</p>
               </div>
 
-              <div className="space-y-1">
-                <div className="flex items-center gap-2 text-accent mb-1">
-                  <Thermometer size={16} /> <span className="text-sm uppercase tracking-widest font-serif">{t('wine.temperature', language)}</span>
+              <div className="bg-stone-800/30 backdrop-blur-sm border border-[#D4AF37]/15 rounded-2xl p-4 text-center">
+                <div className="flex items-center justify-center gap-1.5 text-[#D4AF37] mb-2">
+                  <Thermometer size={14} /> <span className="text-[10px] uppercase tracking-[0.2em] font-bold" style={{ fontFamily: "'Montserrat', sans-serif" }}>{t('wine.temperature', language)}</span>
                 </div>
-                <p className="text-stone-300 font-serif text-lg">{effectiveWine.temperature}</p>
+                <p className="text-stone-200 text-xl font-medium" style={{ fontFamily: "'Cormorant Garamond', serif" }}>{effectiveWine.temperature}</p>
               </div>
             </div>
 
-            {/* Sensory Profile - Full Width Horizontal */}
-            {(() => {
-              const profile = getTranslated(effectiveWine, 'sensoryProfile', language);
-              return (profile && profile.length > 3) ? (
-                <div className="py-4 border-b border-white/10">
-                  <div className="flex items-center gap-2 text-accent mb-2">
-                    <Activity size={16} /> <span className="text-sm uppercase tracking-widest font-serif">{t('wine.sensory_profile', language)}</span>
-                  </div>
-                  <p className="text-stone-300 font-serif text-base leading-relaxed">
-                    {profile}
-                  </p>
-                </div>
-              ) : null;
-            })()}
-
-            {/* Pairing - Full Width */}
-            <div className="py-4 border-b border-white/10">
-              <div className="flex items-center gap-2 text-accent mb-2">
-                <Utensils size={16} /> <span className="text-sm uppercase tracking-widest font-serif">{t('wine.pairing', language)}</span>
-              </div>
-              <p className="text-stone-300 font-serif text-base leading-relaxed">{getTranslated(effectiveWine, 'pairing', language)}</p>
-
-              {/* IANUA PAIRINGS BUTTON - REFINED */}
-              {effectiveWine.ianuaPairings && effectiveWine.ianuaPairings.length > 0 && (
-                <div className="mt-4 pt-4 border-t border-white/5 w-full">
+            {/* Accordion Buttons - Side by Side */}
+            <div className="flex gap-3">
+              {/* Sensory Profile Button */}
+              {getTranslated(effectiveWine, 'sensoryProfile', language)?.length > 3 && (
+                <div className={`flex-1 rounded-2xl overflow-hidden border transition-all duration-400 ${openAccordion === 'sensory'
+                  ? 'border-[#D4AF37]/35 bg-stone-800/25'
+                  : 'border-[#D4AF37]/20 bg-stone-800/15'
+                  }`}>
                   <button
-                    onClick={() => setShowIanuaPairings(!showIanuaPairings)}
-                    className="group flex items-center justify-between w-full px-6 py-2.5 bg-gradient-to-r from-[#D4AF37]/10 to-transparent border border-[#D4AF37]/30 rounded-xl hover:from-[#D4AF37]/20 transition-all"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setOpenAccordion(prev => prev === 'sensory' ? null : 'sensory');
+                    }}
+                    className="group flex items-center justify-center w-full px-5 py-4 bg-transparent hover:bg-[#D4AF37]/5 transition-all"
                   >
-                    <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-full bg-stone-800/80 border border-[#D4AF37]/50 flex items-center justify-center text-[#D4AF37] shadow-lg shadow-[#D4AF37]/10">
-                        <Utensils size={18} strokeWidth={2.5} />
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-stone-900/60 border border-[#D4AF37]/40 flex items-center justify-center text-[#D4AF37] shadow-lg shadow-[#D4AF37]/10">
+                        <Activity size={16} />
                       </div>
-                      <div className="text-left">
-                        <span className="block font-serif text-sm uppercase tracking-widest text-[#D4AF37] font-bold opacity-80">
-                          {t('wine.ianua_recommends', language)}
-                        </span>
-                        <span className="block text-base text-stone-300 font-bold">
-                          {effectiveWine.ianuaPairings.length} {t('wine.pairings_count', language)}
-                        </span>
-                      </div>
-                    </div>
-                    <div className={`w-9 h-9 rounded-full flex items-center justify-center border transition-transform duration-300 ${showIanuaPairings ? 'rotate-180 bg-stone-800/80 border-[#D4AF37]/50 text-[#D4AF37]' : 'bg-black/20 border-[#D4AF37]/20 text-[#D4AF37]'}`}>
-                      <ArrowUpRight size={16} />
+                      <span className="text-[10px] uppercase tracking-[0.25em] font-bold" style={{ fontFamily: "'Montserrat', sans-serif", color: '#D4AF37' }}>
+                        {t('wine.sensory_profile', language)}
+                      </span>
                     </div>
                   </button>
+                </div>
+              )}
 
-                  {/* EXPANDABLE PAIRING LIST */}
-                  <div className={`transition-all duration-500 ease-in-out overflow-x-hidden ${showIanuaPairings ? 'max-h-[500px] opacity-100 mt-2' : 'max-h-0 opacity-0'}`}>
-                    <div className="space-y-3 overflow-y-auto overflow-x-hidden max-h-[450px] scrollbar-thin scrollbar-thumb-[#D4AF37]/20 scrollbar-track-transparent">
-                      {effectiveWine.ianuaPairings.map((pair, idx) => {
-                        const dish = menu?.find(m => m.id === pair.dishId);
-                        if (!dish) return null;
-
-                        return (
-                          <div key={idx} className="animate-in fade-in duration-300" style={{ animationDelay: `${idx * 50}ms` }}>
-                            <div className="flex gap-2.5 items-center">
-                              <div
-                                className="w-12 h-12 rounded-lg bg-stone-800 overflow-hidden shrink-0 border border-white/10 cursor-pointer active:scale-95 transition-transform"
-                                onClick={(e) => { e.stopPropagation(); if (dish.image) setZoomedDishImage({ src: dish.image, name: dish.name }); }}
-                              >
-                                {dish.image ? (
-                                  <img src={dish.image} alt={dish.name} className="w-full h-full object-contain" />
-                                ) : (
-                                  <div className="w-full h-full flex items-center justify-center text-stone-600"><Utensils size={16} /></div>
-                                )}
-                              </div>
-                              <div className="flex-1 min-w-0">
-                                <div className="flex items-center gap-1.5 flex-wrap">
-                                  <p className="text-[#D4AF37] font-serif text-sm font-medium leading-snug">{dish.name}</p>
-                                  {pair.label && (
-                                    <span className="text-[9px] px-1.5 py-px rounded-full uppercase tracking-wider font-bold bg-stone-800/80 border border-[#D4AF37]/50 text-[#D4AF37]">{pair.label}</span>
-                                  )}
-                                </div>
-                                <p className="text-xs text-[#D4AF37]/60 uppercase tracking-wider">{dish.category} • {dish.price}€</p>
-                              </div>
-                            </div>
-                            {(pair.notes || pair.description) && (
-                              <div className="mt-1 border-l-2 border-[#D4AF37]/30 pl-2.5 ml-1">
-                                {pair.notes && pair.notes.length <= 30 && <p className="text-sm text-[#D4AF37]/80 font-serif font-semibold">{pair.notes}</p>}
-                                {pair.notes && pair.notes.length > 30 && !pair.description && <p className="text-sm text-stone-300 leading-snug font-serif">{pair.notes}</p>}
-                                {pair.description && pair.description !== pair.notes && <p className="text-sm text-stone-300 leading-snug font-serif">{pair.description}</p>}
-                              </div>
-                            )}
-                          </div>
-                        );
-                      })}
+              {/* Winery Pairings Button */}
+              {getTranslated(effectiveWine, 'pairing', language)?.length > 3 && (
+                <div className={`flex-1 rounded-2xl overflow-hidden border transition-all duration-400 ${openAccordion === 'pairing'
+                  ? 'border-[#D4AF37]/35 bg-stone-800/25'
+                  : 'border-[#D4AF37]/20 bg-stone-800/15'
+                  }`}>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setOpenAccordion(prev => prev === 'pairing' ? null : 'pairing');
+                    }}
+                    className="group flex items-center justify-center w-full px-5 py-4 bg-transparent hover:bg-[#D4AF37]/5 transition-all"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-stone-900/60 border border-[#D4AF37]/40 flex items-center justify-center text-[#D4AF37] shadow-lg shadow-[#D4AF37]/10">
+                        <Utensils size={16} />
+                      </div>
+                      <span className="text-[10px] uppercase tracking-[0.25em] font-bold" style={{ fontFamily: "'Montserrat', sans-serif", color: '#D4AF37' }}>
+                        {t('wine.pairing', language)}
+                      </span>
                     </div>
-                  </div>
+                  </button>
                 </div>
               )}
             </div>
 
+            {/* Expanded Content - Full Width Below */}
+            {openAccordion === 'sensory' && getTranslated(effectiveWine, 'sensoryProfile', language)?.length > 3 && (
+              <div className={`rounded-2xl overflow-hidden border transition-all duration-400 border-[#D4AF37]/35 bg-stone-800/25 mt-3`}>
+                <div className={`transition-all duration-500 ease-in-out overflow-hidden max-h-[2000px] opacity-100`}>
+                  <div className="px-5 pb-5 pt-3 space-y-3">
+                    {(() => {
+                      const profile = getTranslated(effectiveWine, 'sensoryProfile', language);
+                      const coloreMatch = profile?.match(/Colore:\s*([\s\S]*?)(?=Profumo:|Naso:|Olfatto:|$)/i);
+                      const profumoMatch = profile?.match(/(?:Profumo|Naso|Olfatto):\s*([\s\S]*?)(?=Gusto:|Bocca:|Palato:|$)/i);
+                      const gustoMatch = profile?.match(/(?:Gusto|Bocca|Palato):\s*([\s\S]*)$/i);
+
+                      if (coloreMatch && profumoMatch && gustoMatch) {
+                        return (
+                          <>
+                            <div className="flex gap-0 items-baseline">
+                              <span className="text-[11px] font-bold text-[#D4AF37] uppercase tracking-[0.1em] shrink-0" style={{ fontFamily: "'Montserrat', sans-serif", minWidth: '80px' }}>Colore:</span>
+                              <span className="text-base text-stone-300 leading-relaxed" style={{ fontFamily: "'Cormorant Garamond', serif" }}>{coloreMatch[1].trim()}</span>
+                            </div>
+                            <div className="flex gap-0 items-baseline">
+                              <span className="text-[11px] font-bold text-[#D4AF37] uppercase tracking-[0.1em] shrink-0" style={{ fontFamily: "'Montserrat', sans-serif", minWidth: '80px' }}>Profumo:</span>
+                              <span className="text-base text-stone-300 leading-relaxed" style={{ fontFamily: "'Cormorant Garamond', serif" }}>{profumoMatch[1].trim()}</span>
+                            </div>
+                            <div className="flex gap-0 items-baseline">
+                              <span className="text-[11px] font-bold text-[#D4AF37] uppercase tracking-[0.1em] shrink-0" style={{ fontFamily: "'Montserrat', sans-serif", minWidth: '80px' }}>Gusto:</span>
+                              <span className="text-base text-stone-300 leading-relaxed" style={{ fontFamily: "'Cormorant Garamond', serif" }}>{gustoMatch[1].trim().split(/\.\s*\n/)[0].trim()}{gustoMatch[1].trim().split(/\.\s*\n/)[0].trim().endsWith('.') ? '' : '.'}</span>
+                            </div>
+                          </>
+                        );
+                      }
+                      return <p className="text-base text-stone-300 leading-relaxed" style={{ fontFamily: "'Cormorant Garamond', serif" }}>{profile}</p>;
+                    })()}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {openAccordion === 'pairing' && getTranslated(effectiveWine, 'pairing', language)?.length > 3 && (
+              <div className={`rounded-2xl overflow-hidden border transition-all duration-400 border-[#D4AF37]/35 bg-stone-800/25 mt-3`}>
+                <div className={`transition-all duration-500 ease-in-out overflow-hidden max-h-[600px] opacity-100`}>
+                  <div className="px-5 pb-5 pt-3">
+                    <p className="text-stone-300 text-base leading-relaxed" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                      {getTranslated(effectiveWine, 'pairing', language)}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+
+
+            {/* IANUA PAIRINGS - Full Width Below */}
+            {effectiveWine.ianuaPairings && effectiveWine.ianuaPairings.length > 0 && (
+              <div className="mt-4">
+                <button
+                  onClick={() => setShowIanuaPairings(!showIanuaPairings)}
+                  className="group flex items-center justify-between w-full px-6 py-4 bg-gradient-to-r from-[#D4AF37]/10 to-transparent border border-[#D4AF37]/30 rounded-xl hover:from-[#D4AF37]/20 transition-all"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-full bg-stone-800/80 border border-[#D4AF37]/50 flex items-center justify-center text-[#D4AF37] shadow-lg shadow-[#D4AF37]/10">
+                      <Utensils size={18} strokeWidth={2.5} />
+                    </div>
+                    <div className="text-left">
+                      <span className="block font-serif text-sm uppercase tracking-widest text-[#D4AF37] font-bold opacity-80">
+                        {t('wine.ianua_recommends', language)}
+                      </span>
+                      <span className="block text-base text-stone-300 font-bold">
+                        {effectiveWine.ianuaPairings.length} {t('wine.pairings_count', language)}
+                      </span>
+                    </div>
+                  </div>
+                  <div className={`w-9 h-9 rounded-full flex items-center justify-center border transition-transform duration-300 ${showIanuaPairings ? 'rotate-180 bg-stone-800/80 border-[#D4AF37]/50 text-[#D4AF37]' : 'bg-black/20 border-[#D4AF37]/20 text-[#D4AF37]'}`}>
+                    <ArrowUpRight size={16} />
+                  </div>
+                </button>
+
+                {/* EXPANDABLE PAIRING LIST */}
+                <div className={`transition-all duration-500 ease-in-out overflow-x-hidden ${showIanuaPairings ? 'max-h-[500px] opacity-100 mt-4' : 'max-h-0 opacity-0'}`}>
+                  <div className="space-y-3 overflow-y-auto overflow-x-hidden max-h-[450px] scrollbar-thin scrollbar-thumb-[#D4AF37]/20 scrollbar-track-transparent">
+                    {effectiveWine.ianuaPairings.map((pair, idx) => {
+                      const dish = menu?.find(m => m.id === pair.dishId);
+                      if (!dish) return null;
+
+                      return (
+                        <div key={idx} className="animate-in fade-in duration-300" style={{ animationDelay: `${idx * 50}ms` }}>
+                          <div className="flex gap-2.5 items-center">
+                            <div
+                              className="w-12 h-12 rounded-lg bg-stone-800 overflow-hidden shrink-0 border border-white/10 cursor-pointer active:scale-95 transition-transform"
+                              onClick={(e) => { e.stopPropagation(); if (dish.image) setZoomedDishImage({ src: dish.image, name: dish.name }); }}
+                            >
+                              {dish.image ? (
+                                <img src={dish.image} alt={dish.name} className="w-full h-full object-contain" />
+                              ) : (
+                                <div className="w-full h-full flex items-center justify-center text-stone-600"><Utensils size={16} /></div>
+                              )}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-1.5 flex-wrap">
+                                <p className="text-[#D4AF37] font-serif text-sm font-medium leading-snug">{dish.name}</p>
+                              </div>
+                              <div className="flex items-center gap-1.5 flex-wrap">
+                                <p className="text-xs text-[#D4AF37]/60 uppercase tracking-wider">{dish.category} • {dish.price}€</p>
+                                {pair.label && (
+                                  <span className="text-[9px] px-1.5 py-px rounded-full uppercase tracking-wider font-bold bg-stone-800/80 border border-[#D4AF37]/50 text-[#D4AF37]">{pair.label}</span>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                          {(pair.notes || pair.description) && (
+                            <div className="mt-1 border-l-2 border-[#D4AF37]/30 pl-2.5 ml-1">
+                              {pair.notes && pair.notes.length <= 30 && <p className="text-sm text-[#D4AF37]/80 font-serif font-semibold">{pair.notes}</p>}
+                              {pair.notes && pair.notes.length > 30 && !pair.description && <p className="text-sm text-stone-300 leading-snug font-serif">{pair.notes}</p>}
+                              {pair.description && pair.description !== pair.notes && <p className="text-sm text-stone-300 leading-snug font-serif">{pair.description}</p>}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Ornamental Divider */}
+            <div className="flex items-center justify-center gap-3 py-1">
+              <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-[#D4AF37]/20" />
+              <span className="text-[#D4AF37]/30 text-[10px]">✦</span>
+              <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent to-[#D4AF37]/20" />
+            </div>
+
             {/* Description */}
             <div className="relative">
-              <p className="font-serif text-lg text-stone-200 leading-relaxed italic border-l-2 border-accent/30 pl-4 py-1">
+              <p className="text-lg text-stone-200 leading-relaxed italic border-l-2 border-accent/30 pl-4 py-1" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                 {getTranslated(effectiveWine, 'description', language)}
               </p>
             </div>
 
-            {/* Curiosity Card */}
+            {/* Ornamental Divider */}
+            <div className="flex items-center justify-center gap-3 py-1">
+              <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-[#D4AF37]/20" />
+              <span className="text-[#D4AF37]/30 text-[10px]">✦</span>
+              <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent to-[#D4AF37]/20" />
+            </div>
+
+            {/* Curiosity Card - Premium Glassmorphism */}
             {getTranslated(effectiveWine, 'curiosity', language) && (
-              <div className="bg-gradient-to-br from-stone-900 to-stone-950 border border-accent/20 p-4 rounded-xl relative overflow-hidden group shadow-lg">
-                <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
-                  <WineIcon size={48} className="text-accent" />
+              <div className="bg-stone-800/20 backdrop-blur-sm border border-[#D4AF37]/15 p-5 rounded-2xl relative overflow-hidden group">
+                <div className="absolute top-0 right-0 p-3 opacity-5 group-hover:opacity-10 transition-opacity">
+                  <WineIcon size={48} className="text-[#D4AF37]" />
                 </div>
-                <h3 className="font-serif bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] bg-clip-text text-transparent mb-1 flex items-center gap-2 text-base">
-                  <span className="text-lg text-[#FCF6BA]">✦</span> {t('wine.curiosity', language)}
-                </h3>
-                <p className="text-stone-300 font-serif text-base leading-relaxed relative z-10">
+                <div className="flex items-center gap-2 text-[#D4AF37] mb-3">
+                  <span className="text-sm">✦</span>
+                  <span className="text-[10px] uppercase tracking-[0.2em] font-bold" style={{ fontFamily: "'Montserrat', sans-serif" }}>{t('wine.curiosity', language)}</span>
+                </div>
+                <p className="text-stone-300 text-base leading-relaxed relative z-10 italic" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                   {getTranslated(effectiveWine, 'curiosity', language)}
                 </p>
               </div>
@@ -534,7 +635,7 @@ export const WineDetailModal: React.FC<WineDetailModalProps> = ({ wine, winery, 
             {onGoToWinery && winery && (
               <button
                 onClick={() => onGoToWinery(winery)}
-                className="w-full py-4 border border-white/20 hover:border-[#D4AF37] text-stone-300 hover:text-[#D4AF37] rounded-none font-serif uppercase tracking-[0.2em] text-xs transition-all flex items-center justify-center gap-2 hover:bg-white/5"
+                className="w-full py-3.5 border border-[#D4AF37]/30 hover:border-[#D4AF37] text-[#D4AF37]/80 hover:text-[#D4AF37] rounded-full uppercase tracking-[0.2em] text-[11px] transition-all flex items-center justify-center gap-2 hover:bg-[#D4AF37]/5 backdrop-blur-sm" style={{ fontFamily: "'Montserrat', sans-serif" }}
               >
                 {t('wine.discover_winery', language)} <ArrowUpRight size={14} />
               </button>

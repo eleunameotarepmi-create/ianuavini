@@ -59,7 +59,7 @@ export const HowToOpenWine: React.FC<HowToOpenWineProps> = ({ language }) => {
                         </div>
                     </div>
 
-                    <h1 className="text-4xl md:text-5xl font-serif text-stone-800 uppercase tracking-[0.2em] leading-tight">
+                    <h1 className="text-4xl font-serif text-stone-800 uppercase tracking-[0.2em] leading-tight">
                         {t.title}
                     </h1>
 
@@ -85,7 +85,7 @@ export const HowToOpenWine: React.FC<HowToOpenWineProps> = ({ language }) => {
                     <div className="absolute bottom-0 right-0 w-16 h-16 border-b-4 border-r-4 border-[#D4AF37] rounded-br-3xl" />
 
                     {/* Video Container */}
-                    <div className="relative p-4 md:p-8">
+                    <div className="relative p-4">
                         <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                             <iframe
                                 className="absolute top-0 left-0 w-full h-full rounded-2xl"
@@ -102,7 +102,7 @@ export const HowToOpenWine: React.FC<HowToOpenWineProps> = ({ language }) => {
 
             {/* Key Points Section */}
             <div className="max-w-4xl mx-auto px-4 py-16 pb-32">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 gap-6">
                     {t.keyPoints.map((point, idx) => (
                         <div
                             key={idx}

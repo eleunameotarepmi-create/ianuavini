@@ -65,6 +65,8 @@ export const MenuView: React.FC<MenuViewProps> = (props) => {
 
     const [expandedDetailId, setExpandedDetailId] = React.useState<string | null>(null);
     const [zoomedDishImage, setZoomedDishImage] = React.useState<{ src: string; name: string } | null>(null);
+    const [carouselActiveIdx, setCarouselActiveIdx] = React.useState<Record<string, number>>({});
+    const carouselRefs = React.useRef<Record<string, HTMLDivElement | null>>({});
     const [showManifesto, setShowManifesto] = React.useState(false);
     const [showChefBio, setShowChefBio] = React.useState(false);
 
@@ -185,7 +187,7 @@ export const MenuView: React.FC<MenuViewProps> = (props) => {
     return (
         <div className="pb-32 bg-stone-950 min-h-full animate-in fade-in duration-700">
             {/* GOLDEN DECOR OVERLAYS */}
-            <div className="absolute inset-0 pointer-events-none opacity-[0.05] mix-blend-screen overflow-hidden">
+            <div className="fixed inset-0 pointer-events-none opacity-[0.05] mix-blend-screen overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-full bg-[url('/assets/golden_vines.png')] bg-cover opacity-20" />
             </div>
 
@@ -302,48 +304,50 @@ export const MenuView: React.FC<MenuViewProps> = (props) => {
                                         return (
                                             <div key={item.id} className="relative mb-4 last:mb-2 group">
                                                 {/* Dish Card */}
-                                                <div className="relative z-20 bg-stone-900/80 rounded-xl p-5 border border-stone-800 hover:border-[#D4AF37]/30 transition-all">
-                                                    <div className="flex items-start gap-4">
+                                                <div className="relative z-20 bg-stone-900/80 rounded-xl p-3 border border-stone-800 hover:border-[#D4AF37]/30 transition-all">
+                                                    <div className="flex items-start gap-2.5">
                                                         {/* LEFT COLUMN: Icons */}
                                                         <div className="flex flex-col gap-3 pt-1">
                                                             {onSelectWine && (
                                                                 <button
                                                                     onClick={() => handleGetPairing(item)}
-                                                                    className={`w-10 h-10 rounded-full flex items-center justify-center border transition-all duration-300 ${hasMasterPairing || expandedPairingId === `${item.id}_wine`
+                                                                    className={`w-8 h-8 rounded-full flex items-center justify-center border transition-all duration-300 shrink-0 ${expandedPairingId === `${item.id}_wine`
                                                                         ? 'bg-[#D4AF37] border-[#D4AF37] text-stone-900 shadow-[0_0_15px_rgba(212,175,55,0.4)]'
-                                                                        : 'bg-stone-800 border-stone-700 text-stone-500 hover:border-[#D4AF37] hover:text-[#D4AF37]'
+                                                                        : hasMasterPairing
+                                                                            ? 'bg-stone-800/60 border-[#D4AF37]/40 text-[#D4AF37]/70 hover:border-[#D4AF37] hover:text-[#D4AF37]'
+                                                                            : 'bg-stone-800 border-stone-700 text-stone-500 hover:border-[#D4AF37] hover:text-[#D4AF37]'
                                                                         }`}
                                                                 >
-                                                                    {loadingPairs.has(item.id) ? <Loader2 className="animate-spin" size={20} /> : <WineIcon size={20} strokeWidth={1.5} />}
+                                                                    {loadingPairs.has(item.id) ? <Loader2 className="animate-spin" size={16} /> : <WineIcon size={16} strokeWidth={1.5} />}
                                                                 </button>
                                                             )}
                                                             {(item.story || item.preparation) && (
                                                                 <button
                                                                     onClick={() => setExpandedPairingId(expandedPairingId === `${item.id}_info` ? null : `${item.id}_info`)}
-                                                                    className={`w-10 h-10 rounded-full flex items-center justify-center border transition-all duration-300 ${expandedPairingId === `${item.id}_info`
+                                                                    className={`w-8 h-8 rounded-full flex items-center justify-center border transition-all duration-300 shrink-0 ${expandedPairingId === `${item.id}_info`
                                                                         ? 'bg-[#D4AF37]/20 border-[#D4AF37] text-[#D4AF37]'
                                                                         : 'bg-transparent border-transparent text-stone-600 hover:text-[#D4AF37]'
                                                                         }`}
                                                                 >
-                                                                    <BookOpen size={18} strokeWidth={1.5} />
+                                                                    <BookOpen size={14} strokeWidth={1.5} />
                                                                 </button>
                                                             )}
                                                             {item.allergens && (
                                                                 <button
                                                                     onClick={() => setExpandedPairingId(expandedPairingId === `${item.id}_allergens` ? null : `${item.id}_allergens`)}
-                                                                    className={`w-10 h-10 rounded-full flex items-center justify-center border transition-all duration-300 ${expandedPairingId === `${item.id}_allergens`
+                                                                    className={`w-8 h-8 rounded-full flex items-center justify-center border transition-all duration-300 shrink-0 ${expandedPairingId === `${item.id}_allergens`
                                                                         ? 'bg-red-900/20 border-red-500/50 text-red-400'
                                                                         : 'bg-transparent border-transparent text-stone-700 hover:text-red-400'
                                                                         }`}
                                                                 >
-                                                                    <AlertCircle size={18} strokeWidth={1.5} />
+                                                                    <AlertCircle size={14} strokeWidth={1.5} />
                                                                 </button>
                                                             )}
                                                         </div>
 
                                                         {/* CENTER COLUMN: Dish Info */}
-                                                        <div className="flex-1 min-w-0 pr-2">
-                                                            <h4 className="text-xl text-stone-100 font-normal uppercase tracking-[0.15em] leading-tight group-hover:text-[#D4AF37] transition-colors" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                                        <div className="flex-1 min-w-0">
+                                                            <h4 className="text-stone-100 font-normal uppercase leading-tight group-hover:text-[#D4AF37] transition-colors" style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(13px, 3.8vw, 18px)', letterSpacing: '0.08em' }}>
                                                                 {getTranslated(item, 'name')}
                                                             </h4>
                                                             {(() => {
@@ -353,7 +357,7 @@ export const MenuView: React.FC<MenuViewProps> = (props) => {
                                                                 const desc = s ? s.charAt(0).toUpperCase() + s.slice(1).toLowerCase() : '';
 
                                                                 return desc ? (
-                                                                    <p className="text-base text-stone-400 leading-relaxed mt-2 italic opacity-90" style={{ fontFamily: "'Lato', sans-serif" }}>
+                                                                    <p className="text-stone-400 leading-relaxed mt-1.5 italic opacity-90" style={{ fontFamily: "'Lato', sans-serif", fontSize: 'clamp(12px, 3.2vw, 16px)' }}>
                                                                         {desc}
                                                                     </p>
                                                                 ) : null;
@@ -363,13 +367,14 @@ export const MenuView: React.FC<MenuViewProps> = (props) => {
                                                         {/* RIGHT COLUMN: Price & Image */}
                                                         <div className="flex flex-col items-end gap-3 pt-1">
                                                             {item.price && (
-                                                                <span className="font-serif text-xl text-[#D4AF37] whitespace-nowrap drop-shadow-sm">
+                                                                <span className="font-serif text-[#D4AF37] whitespace-nowrap drop-shadow-sm" style={{ fontSize: 'clamp(14px, 4vw, 20px)' }}>
                                                                     € {item.price}
                                                                 </span>
                                                             )}
                                                             {item.image && (
                                                                 <div
-                                                                    className="w-36 h-36 rounded-lg overflow-hidden border border-stone-800 shadow-lg cursor-pointer hover:border-[#D4AF37]/50 transition-all bg-black shrink-0"
+                                                                    className="rounded-lg overflow-hidden border border-stone-800 shadow-lg cursor-pointer hover:border-[#D4AF37]/50 transition-all bg-black shrink-0"
+                                                                    style={{ width: 'clamp(72px, 22vw, 120px)', height: 'clamp(72px, 22vw, 120px)' }}
                                                                     onClick={() => setZoomedDishImage({ src: item.image!, name: getTranslated(item, 'name') })}
                                                                 >
                                                                     <img
@@ -400,68 +405,99 @@ export const MenuView: React.FC<MenuViewProps> = (props) => {
                                                                 </div>
 
                                                                 {aiPairings[item.id] ? (
-                                                                    <div className="space-y-3 relative z-10 max-h-[500px] overflow-y-auto pt-2">
-                                                                        {aiPairings[item.id].map((pairing, idx) => {
-                                                                            const wine = wines.find(w => w.id === pairing.wineId);
-                                                                            if (!wine) return null;
-                                                                            const winery = wineries.find(w => w.id === wine.wineryId);
+                                                                    <>
+                                                                        {/* Carousel Container */}
+                                                                        <div
+                                                                            ref={(el) => { carouselRefs.current[item.id] = el; }}
+                                                                            className="relative z-10 flex gap-3 overflow-x-auto pt-2 pb-3 px-2"
+                                                                            style={{ scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' } as React.CSSProperties}
+                                                                            onScroll={(e) => {
+                                                                                const el = e.currentTarget;
+                                                                                const cardWidth = el.firstElementChild?.getBoundingClientRect().width || 1;
+                                                                                const idx = Math.round(el.scrollLeft / (cardWidth + 12));
+                                                                                setCarouselActiveIdx(prev => ({ ...prev, [item.id]: idx }));
+                                                                            }}
+                                                                        >
+                                                                            {aiPairings[item.id].map((pairing, idx) => {
+                                                                                const wine = wines.find(w => w.id === pairing.wineId);
+                                                                                if (!wine) return null;
+                                                                                const winery = wineries.find(w => w.id === wine.wineryId);
 
-                                                                            return (
-                                                                                <div
-                                                                                    key={idx}
-                                                                                    className="group rounded-2xl flex flex-col border border-[#D4AF37]/40 active:scale-[0.98] transition-all relative z-0 overflow-visible shadow-lg"
-                                                                                    style={{ padding: '12px', gap: '0px', background: 'linear-gradient(135deg, #1c1917 0%, #292524 50%, #1c1917 100%)' }}
-                                                                                    onClick={() => onSelectWine(wine)}
-                                                                                >
-                                                                                    <div className="absolute inset-0 rounded-2xl overflow-hidden"><div className="absolute inset-0 bg-gradient-to-r from-[#D4AF37]/0 via-[#D4AF37]/5 to-[#D4AF37]/0 translate-x-[-100%] group-active:translate-x-[100%] transition-transform duration-700" /></div>
+                                                                                return (
+                                                                                    <div
+                                                                                        key={idx}
+                                                                                        className="group rounded-2xl flex flex-col border border-[#D4AF37]/40 active:scale-[0.98] transition-all relative z-0 overflow-visible shadow-lg shrink-0"
+                                                                                        style={{ padding: '12px', gap: '0px', background: 'linear-gradient(135deg, #1c1917 0%, #292524 50%, #1c1917 100%)', width: '85%', scrollSnapAlign: 'center' }}
+                                                                                        onClick={() => onSelectWine(wine)}
+                                                                                    >
+                                                                                        <div className="absolute inset-0 rounded-2xl overflow-hidden"><div className="absolute inset-0 bg-gradient-to-r from-[#D4AF37]/0 via-[#D4AF37]/5 to-[#D4AF37]/0 translate-x-[-100%] group-active:translate-x-[100%] transition-transform duration-700" /></div>
 
-                                                                                    {/* Top Row: Bottle + Wine Info + Match Badge */}
-                                                                                    <div className="flex items-start relative z-10" style={{ paddingLeft: '8px', gap: '12px' }}>
-                                                                                        {/* Bottle */}
-                                                                                        <div className="flex items-center justify-center shrink-0 relative" style={{ width: '56px', height: '80px' }}>
-                                                                                            <img
-                                                                                                src={wine.image}
-                                                                                                alt={wine.name}
-                                                                                                className="object-contain drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)] relative z-10"
-                                                                                                style={{ height: '105px', marginTop: '-12px' }}
-                                                                                            />
+                                                                                        {/* Top Row: Bottle + Wine Info + Match Badge */}
+                                                                                        <div className="flex items-start relative z-10" style={{ paddingLeft: '8px', gap: '12px' }}>
+                                                                                            {/* Bottle */}
+                                                                                            <div className="flex items-center justify-center shrink-0 relative" style={{ width: '56px', height: '80px' }}>
+                                                                                                <img
+                                                                                                    src={wine.image}
+                                                                                                    alt={wine.name}
+                                                                                                    className="object-contain drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)] relative z-10"
+                                                                                                    style={{ height: '105px', marginTop: '-12px' }}
+                                                                                                />
+                                                                                            </div>
+
+                                                                                            {/* Wine Info */}
+                                                                                            <div className="flex-1 min-w-0">
+                                                                                                <p className="text-[#D4AF37] uppercase font-bold truncate" style={{ fontSize: 'clamp(9px, 2.5vw, 13px)', letterSpacing: '0.12em', marginBottom: '2px' }}>{winery?.name}</p>
+                                                                                                <h4 className="text-stone-100 font-serif line-clamp-2 group-active:text-[#D4AF37] transition-colors" style={{ fontSize: 'clamp(14px, 3.8vw, 20px)', lineHeight: '1.25', marginBottom: '4px' }}>{wine.name}</h4>
+                                                                                                <p className="text-[#D4AF37]/80 uppercase leading-snug" style={{ fontSize: 'clamp(8px, 2.2vw, 11px)', letterSpacing: '0.08em', fontFamily: "'Cormorant Garamond', serif" }}>{wine.grapes}</p>
+                                                                                            </div>
+
+                                                                                            {/* Match Badge */}
+                                                                                            {pairing.score && (
+                                                                                                <span className="text-[#D4AF37] font-serif font-bold bg-[#D4AF37]/10 rounded-full shadow-[0_0_12px_rgba(212,175,55,0.25)] border border-[#D4AF37]/30 whitespace-nowrap shrink-0 flex flex-col items-center justify-center leading-none" style={{ fontSize: 'clamp(8px, 2.2vw, 10px)', padding: '4px 6px', minWidth: '42px' }}>
+                                                                                                    {pairing.score === 100 ? (
+                                                                                                        <>
+                                                                                                            <span>100%</span>
+                                                                                                            <span className="text-[7px] mt-0.5 opacity-90">match</span>
+                                                                                                        </>
+                                                                                                    ) : `${pairing.score}%`}
+                                                                                                </span>
+                                                                                            )}
                                                                                         </div>
 
-                                                                                        {/* Wine Info */}
-                                                                                        <div className="flex-1 min-w-0">
-                                                                                            <p className="text-[#D4AF37] uppercase font-bold truncate" style={{ fontSize: 'clamp(9px, 2.5vw, 13px)', letterSpacing: '0.12em', marginBottom: '2px' }}>{winery?.name}</p>
-                                                                                            <h4 className="text-stone-100 font-serif line-clamp-2 group-active:text-[#D4AF37] transition-colors" style={{ fontSize: 'clamp(14px, 3.8vw, 20px)', lineHeight: '1.25', marginBottom: '4px' }}>{wine.name}</h4>
-                                                                                            <p className="text-[#D4AF37] font-medium uppercase truncate" style={{ fontSize: 'clamp(9px, 2.5vw, 13px)', letterSpacing: '0.1em' }}>{wine.grapes}</p>
-                                                                                        </div>
-
-                                                                                        {/* Match Badge */}
-                                                                                        {pairing.score && (
-                                                                                            <span className="text-[#D4AF37] font-serif font-bold bg-[#D4AF37]/10 rounded-full shadow-[0_0_12px_rgba(212,175,55,0.25)] border border-[#D4AF37]/30 whitespace-nowrap shrink-0 flex flex-col items-center justify-center leading-none" style={{ fontSize: 'clamp(8px, 2.2vw, 10px)', padding: '4px 6px', minWidth: '42px' }}>
-                                                                                                {pairing.score === 100 ? (
-                                                                                                    <>
-                                                                                                        <span>100%</span>
-                                                                                                        <span className="text-[7px] mt-0.5 opacity-90">match</span>
-                                                                                                    </>
-                                                                                                ) : `${pairing.score}%`}
-                                                                                            </span>
+                                                                                        {/* Justification — BELOW */}
+                                                                                        {pairing.justification && (
+                                                                                            <p className="text-stone-400 text-sm italic leading-relaxed relative z-10 border-t border-stone-800/60 pt-3 mt-3">
+                                                                                                {pairing.justification}
+                                                                                            </p>
+                                                                                        )}
+                                                                                        {pairing.technicalDetail && (
+                                                                                            <p className="text-xs text-stone-600 font-serif leading-relaxed mt-1 opacity-0 group-hover:opacity-100 transition-opacity relative z-10">
+                                                                                                {pairing.technicalDetail}
+                                                                                            </p>
                                                                                         )}
                                                                                     </div>
-
-                                                                                    {/* Justification — BELOW */}
-                                                                                    {pairing.justification && (
-                                                                                        <p className="text-stone-400 text-sm italic leading-relaxed relative z-10 border-t border-stone-800/60 pt-3 mt-3">
-                                                                                            {pairing.justification}
-                                                                                        </p>
-                                                                                    )}
-                                                                                    {pairing.technicalDetail && (
-                                                                                        <p className="text-xs text-stone-600 font-serif leading-relaxed mt-1 opacity-0 group-hover:opacity-100 transition-opacity relative z-10">
-                                                                                            {pairing.technicalDetail}
-                                                                                        </p>
-                                                                                    )}
-                                                                                </div>
-                                                                            );
-                                                                        })}
-                                                                    </div>
+                                                                                );
+                                                                            })}
+                                                                        </div>
+                                                                        {/* Dot Indicators */}
+                                                                        {aiPairings[item.id].length > 1 && (
+                                                                            <div className="flex justify-center gap-1.5 pt-1 pb-1">
+                                                                                {aiPairings[item.id].map((_, dotIdx) => (
+                                                                                    <button
+                                                                                        key={dotIdx}
+                                                                                        className={`rounded-full transition-all duration-300 ${(carouselActiveIdx[item.id] || 0) === dotIdx ? 'w-5 h-1.5 bg-[#D4AF37]' : 'w-1.5 h-1.5 bg-stone-600'}`}
+                                                                                        onClick={() => {
+                                                                                            const container = carouselRefs.current[item.id];
+                                                                                            if (container) {
+                                                                                                const cardEl = container.children[dotIdx] as HTMLElement;
+                                                                                                if (cardEl) cardEl.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                                                                                            }
+                                                                                        }}
+                                                                                    />
+                                                                                ))}
+                                                                            </div>
+                                                                        )}
+                                                                    </>
                                                                 ) : (
                                                                     <p className="text-stone-500 text-xs italic">{language === 'it' ? 'Chiedi al personale per un consiglio.' : language === 'en' ? 'Ask our staff for a suggestion.' : 'Demandez à notre personnel pour un conseil.'}</p>
                                                                 )}

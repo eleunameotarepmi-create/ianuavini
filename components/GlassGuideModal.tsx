@@ -76,8 +76,8 @@ export const GlassGuideModal: React.FC<GlassGuideModalProps> = ({ glassId, wineT
 
                 {/* Header / Hero with Glass */}
                 <div className="relative h-64 bg-gradient-to-b from-stone-800 to-stone-900 flex items-center justify-center overflow-hidden shrink-0">
-                    <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-10 mix-blend-overlay" />
-                    <div className="absolute inset-0 bg-radial-gradient from-[#D4AF37]/10 to-transparent opacity-50" />
+                    <div className="fixed inset-0 bg-[url('/assets/noise.png')] opacity-10 mix-blend-overlay" />
+                    <div className="fixed inset-0 bg-radial-gradient from-[#D4AF37]/10 to-transparent opacity-50" />
 
                     {/* Glass Visualization - Tappable for Zoom */}
                     <div

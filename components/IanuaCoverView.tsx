@@ -44,7 +44,7 @@ interface IanuaCoverViewProps {
 export const IanuaCoverView: React.FC<IanuaCoverViewProps> = ({ onEnter, onViewMenu, language, setLanguage, onLogin }) => {
 
     return (
-        <div className="relative h-screen w-full flex flex-col items-center justify-between text-center px-6 overflow-hidden bg-[#1c1917] pb-8 md:pb-0">
+        <div className="relative h-screen w-full flex flex-col items-center justify-between text-center px-6 overflow-hidden bg-[#1c1917] pb-8">
             <BackgroundSlider />
 
             {/* Language Selector - Top Right on Mobile - Minimal and Single */}
@@ -74,7 +74,7 @@ export const IanuaCoverView: React.FC<IanuaCoverViewProps> = ({ onEnter, onViewM
             </div>
 
             {/* Main Content Area - Full Impact */}
-            <div className="relative z-10 w-full max-w-7xl h-full flex flex-col items-center justify-between pt-20 pb-4 md:justify-center md:pt-0">
+            <div className="relative z-10 w-full max-w-7xl h-full flex flex-col items-center justify-between pt-20 pb-4">
 
                 {/* Header Group */}
                 <div className="flex flex-col items-center animate-in fade-in slide-in-from-top duration-1000">

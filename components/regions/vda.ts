@@ -9,8 +9,8 @@ export const vda: RegionConfig = {
 
     heroImage: "/assets/vda-zones/vda-gateway.jpg",
     coverImage: "/assets/vda-zones/vda-gateway.jpg",
-    introTitle: "",
-    introContent: "",
+    introTitle: "L'Ascesa",
+    introContent: "Viticoltura eroica tra i vigneti più alti d'Europa, dove la montagna forgia il carattere del vino.",
 
     details: {
         territory: {

@@ -62,6 +62,11 @@
       transition: background-color 0.3s ease, color 0.3s ease;
     }
 
+    /* Hide scrollbar for carousel (WebKit) */
+    .overflow-x-auto::-webkit-scrollbar {
+      display: none;
+    }
+
     h1,
     h2,
     h3,
@@ -108,7 +113,7 @@
     .admin-input {
       width: 100%;
       background-color: #1c1917;
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 0.75rem;
       padding: 0.75rem 1rem;
       font-size: 0.95rem;

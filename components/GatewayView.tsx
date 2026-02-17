@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles, ArrowRight, Mountain, Grape, Anchor, Sun } from 'lucide-react';
+import { Sparkles, ArrowRight, Mountain, Grape, Anchor, Sun, Landmark, Castle, Building2, Flag } from 'lucide-react';
 import { ALL_REGIONS } from './regions/registry';
 import { getHomeIntro } from '../contentTranslations';
 
@@ -17,6 +17,10 @@ export const GatewayView: React.FC<GatewayViewProps> = ({ onSelectRegion, langua
             case 'piemonte': return Grape;
             case 'liguria': return Anchor;
             case 'sardegna': return Sun;
+            case 'toscana': return Landmark;
+            case 'veneto': return Castle;
+            case 'lombardia': return Building2;
+            case 'francia': return Flag;
             default: return Grape;
         }
     };
@@ -58,19 +62,13 @@ export const GatewayView: React.FC<GatewayViewProps> = ({ onSelectRegion, langua
                             {/* CENTER: TITLES & QUOTES */}
                             <div className="space-y-2 md:space-y-6 max-w-sm mx-auto">
                                 <h2 className="text-2xl md:text-5xl lg:text-5xl font-serif text-[#D4AF37] uppercase tracking-[0.15em] leading-tight italic">
-                                    {region.id === 'vda' ? getHomeIntro(language).title.split(' ').join('\n') :
-                                        region.id === 'piemonte' ? getHomeIntro(language).piemonteTitle.split(' ').join('\n') :
-                                            region.id === 'liguria' ? getHomeIntro(language).liguriaTitle.split(' ').join('\n') :
-                                                getHomeIntro(language).sardegnaTitle.split(' ').join('\n')}
+                                    {region.introTitle}
                                 </h2>
 
                                 <div className="w-12 h-px bg-[#D4AF37]/50 mx-auto" />
 
                                 <p className="text-sm md:text-base font-serif italic text-stone-200 leading-relaxed max-w-xs mx-auto opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-700">
-                                    "{region.id === 'vda' ? getHomeIntro(language).content :
-                                        region.id === 'piemonte' ? getHomeIntro(language).piemonteContent :
-                                            region.id === 'liguria' ? getHomeIntro(language).liguriaContent :
-                                                getHomeIntro(language).sardegnaContent}"
+                                    "{region.introContent}"
                                 </p>
                             </div>
 

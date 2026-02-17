@@ -55,7 +55,7 @@ export const BottleSizeModal: React.FC<BottleSizeModalProps> = ({ language, onCl
                     initial={{ scale: 0.9, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0.9, opacity: 0 }}
-                    className="relative w-full max-w-6xl max-h-[90vh] bg-[#0c0c0c] border border-[#D4AF37]/20 rounded-[2rem] shadow-2xl overflow-y-auto flex flex-col md:flex-row shadow-black/80"
+                    className="relative w-full max-w-6xl max-h-[90vh] bg-[#0c0c0c] border border-[#D4AF37]/20 rounded-[2rem] shadow-2xl overflow-y-auto flex flex-col shadow-black/80"
                     onClick={(e) => e.stopPropagation()}
                 >
 
@@ -68,7 +68,7 @@ export const BottleSizeModal: React.FC<BottleSizeModalProps> = ({ language, onCl
                     </button>
 
                     {/* Left Side: Title & Intro */}
-                    <div className={`${isSingleFormat ? 'w-full md:w-1/3' : 'w-full md:w-1/4'} bg-[#121212] p-8 flex flex-col justify-center border-b md:border-b-0 md:border-r border-[#D4AF37]/10 relative transition-all duration-500`}>
+                    <div className="w-full bg-[#121212] p-8 flex flex-col justify-center border-b border-[#D4AF37]/10 relative transition-all duration-500">
                         <h2 className="text-3xl font-serif text-white uppercase tracking-widest mb-6 leading-tight">
                             <span className="text-[#D4AF37] block text-xs font-sans font-bold tracking-[0.4em] mb-3">{t('bottle.guide_title', language)}</span>
                             L'Importanza<br />del Formato
@@ -79,11 +79,11 @@ export const BottleSizeModal: React.FC<BottleSizeModalProps> = ({ language, onCl
                     </div>
 
                     {/* Right Side: Visual Comparison using REAL IMAGES */}
-                    <div className={`${isSingleFormat ? 'w-full md:w-2/3' : 'w-full md:w-3/4'} p-8 md:p-12 flex flex-col justify-center bg-gradient-to-br from-[#1c1917] to-black relative transition-all duration-500`}>
+                    <div className="w-full p-8 flex flex-col justify-center bg-gradient-to-br from-[#1c1917] to-black relative transition-all duration-500">
                         {/* Background Glow */}
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-[#D4AF37]/5 blur-[100px] rounded-full pointer-events-none" />
 
-                        <div className={`flex justify-center items-end ${isSingleFormat ? 'gap-0' : 'gap-8 md:gap-16'} w-full h-auto min-h-[400px] pb-12 text-center relative z-10 transition-all duration-500`}>
+                        <div className="flex justify-center items-end gap-8 w-full h-auto min-h-[400px] pb-12 text-center relative z-10 transition-all duration-500">
 
                             {/* MEZZA (0.375L) */}
                             {availableFormats.mezza && (
@@ -92,19 +92,19 @@ export const BottleSizeModal: React.FC<BottleSizeModalProps> = ({ language, onCl
                                     <div className="space-y-2">
                                         <h3 className={`text-white font-serif tracking-widest ${isSingleFormat ? 'text-4xl mb-2' : 'text-xl'}`}>{t('bottle.mezza_volume', language)}</h3>
                                         <p className="text-[#D4AF37] text-[10px] font-bold uppercase tracking-[0.2em]">{t('bottle.mezza_title', language)}</p>
-                                        <p className={`text-stone-400 mx-auto leading-tight mt-2 ${isSingleFormat ? 'text-sm max-w-sm' : 'text-[10px] max-w-[150px] hidden md:block'}`}>{t('bottle.mezza_desc', language)}</p>
+                                        <p className="text-stone-400 mx-auto leading-tight mt-2 text-[10px] max-w-[150px] hidden">{t('bottle.mezza_desc', language)}</p>
                                     </div>
                                 </div>
                             )}
 
                             {/* STANDARD (0.75L) */}
                             {availableFormats.standard && (
-                                <div className={`flex flex-col items-center justify-end h-full gap-6 ${isSingleFormat ? 'w-full' : 'w-1/3'} animate-in fade-in slide-in-in-from-bottom-4 duration-700 delay-200`}>
+                                <div className="flex flex-col items-center justify-end h-full gap-6 w-1/3 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
                                     {renderBottle(isSingleFormat ? 300 : 190, 'Standard')}
                                     <div className="space-y-2">
                                         <h3 className={`text-white font-serif tracking-widest font-bold ${isSingleFormat ? 'text-5xl mb-2' : 'text-3xl'}`}>{t('bottle.standard_volume', language)}</h3>
                                         <p className="text-[#D4AF37] text-xs font-bold uppercase tracking-[0.2em]">{t('bottle.standard_title', language)}</p>
-                                        <p className={`text-stone-400 mx-auto leading-tight mt-2 ${isSingleFormat ? 'text-sm max-w-md' : 'text-[10px] max-w-[180px] hidden md:block'}`}>{t('bottle.standard_desc', language)}</p>
+                                        <p className="text-stone-400 mx-auto leading-tight mt-2 text-[10px] max-w-[180px] hidden">{t('bottle.standard_desc', language)}</p>
                                     </div>
                                 </div>
                             )}
@@ -116,12 +116,7 @@ export const BottleSizeModal: React.FC<BottleSizeModalProps> = ({ language, onCl
                                     <div className="space-y-2">
                                         <h3 className={`text-white font-serif tracking-widest ${isSingleFormat ? 'text-6xl mb-2' : 'text-4xl'}`}>{t('bottle.magnum_volume', language)}</h3>
                                         <p className="text-[#D4AF37] text-xs font-bold uppercase tracking-[0.2em]">{t('bottle.magnum_title', language)}</p>
-                                        <p className={`text-stone-400 mx-auto leading-tight mt-2 ${isSingleFormat ? 'text-base max-w-lg italic font-serif' : 'text-[10px] max-w-[200px] hidden md:block'}`}>
-                                            {isSingleFormat
-                                                ? "Il formato regale per eccellenza. La massa maggiore garantisce una temperatura più stabile e un rapporto ossigeno/vino ridotto, favorendo un invecchiamento lento e nobile che esalta la complessità aromatica nel tempo."
-                                                : t('bottle.magnum_desc', language)
-                                            }
-                                        </p>
+                                        <p className="text-stone-400 mx-auto leading-tight mt-2 text-[10px] max-w-[200px] hidden">{t('bottle.magnum_desc', language)}</p>
                                     </div>
                                 </div>
                             )}

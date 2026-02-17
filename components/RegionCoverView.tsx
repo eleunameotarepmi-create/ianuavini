@@ -113,10 +113,10 @@ export const RegionCoverView: React.FC<RegionCoverViewProps> = ({ region, onEnte
             {/* Background Image - Fixed to ensure it stays during mobile scroll */}
             <div className="fixed inset-0 z-0">
                 <div
-                    className={`absolute inset-0 bg-cover bg-center transition-transform duration-[3000ms] ease-out ${isVisible ? 'scale-105' : 'scale-100'}`}
+                    className={`fixed inset-0 bg-cover bg-center transition-transform duration-[3000ms] ease-out ${isVisible ? 'scale-105' : 'scale-100'}`}
                     style={{ backgroundImage: `url("${region.coverImage || region.heroImage}")` }}
                 />
-                <div className="absolute inset-0 bg-black/50 backdrop-blur-[0.5px]" />
+                <div className="fixed inset-0 bg-black/50 backdrop-blur-[0.5px]" />
             </div>
 
             {/* Home Button - Top Right - Optimized Touch Target */}
@@ -138,7 +138,7 @@ export const RegionCoverView: React.FC<RegionCoverViewProps> = ({ region, onEnte
                     {/* 1. Header Portion: Icon and Region */}
                     <div className="flex flex-col items-center gap-4">
                         <div className="relative">
-                            <div className="absolute inset-0 bg-[#D4AF37]/40 blur-3xl rounded-full scale-[2.2]" />
+                            <div className="fixed inset-0 bg-[#D4AF37]/40 blur-3xl rounded-full scale-[2.2]" />
                             <Icon size={46} className="relative text-[#D4AF37] drop-shadow-[0_0_20px_rgba(244,196,48,0.8)]" strokeWidth={1} />
                         </div>
                         <span className="text-xs uppercase tracking-[0.8em] text-[#D4AF37] font-bold drop-shadow-[0_0_15px_rgba(244,196,48,0.5)] text-center">

@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Winery, Wine } from '../types';
-import { X, MapPin, Globe, ChevronRight, Lightbulb, Info, MoveRight, ArrowUpRight } from 'lucide-react';
+import { X, MapPin, Globe, ChevronRight, Lightbulb, Info, MoveRight, ArrowUpRight, Store, Grape } from 'lucide-react';
 import { t, Language } from '../translations';
 import { getAltitude } from '../constants';
 import { getSafeImage } from '../utils/imageUtils';
@@ -47,8 +47,11 @@ export const WineryDetailModal: React.FC<{
   language: Language;
   onClose: () => void;
   onSelectWine: (wine: Wine) => void;
-}> = ({ winery, wines, language, onClose, onSelectWine }) => {
+  allWineries?: Winery[];
+  onSelectWinery?: (winery: Winery) => void;
+}> = ({ winery, wines, language, onClose, onSelectWine, allWineries, onSelectWinery }) => {
   const [isAnimating, setIsAnimating] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     setIsAnimating(true);
@@ -60,7 +63,7 @@ export const WineryDetailModal: React.FC<{
       {/* Close button */}
       <button
         onClick={onClose}
-        className="fixed top-4 right-4 z-50 p-3 bg-black/50 backdrop-blur-md rounded-full text-white/70 hover:text-white transition-all border border-white/10"
+        className="fixed top-4 right-4 z-[70] p-3 bg-black/50 backdrop-blur-md rounded-full text-white/70 hover:text-white transition-all border border-white/10"
       >
         <X size={22} />
       </button>

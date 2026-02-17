@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ALL_REGIONS } from '../regions/registry';
-import { ChevronRight, BookOpen, Lock, Feather, X } from 'lucide-react';
+import { ChevronRight, BookOpen, Lock, Feather, X, Search } from 'lucide-react';
 import { t, Language } from '../../translations';
 import { getHomeIntro } from '../../contentTranslations';
 
@@ -8,11 +8,13 @@ interface MobileRegionSelectorProps {
     onSelectRegion: (id: string) => void;
     onOpenGlossary: () => void;
     onOpenAdmin: () => void;
+    onSearch?: (term: string) => void;
     language: 'it' | 'en' | 'fr';
 }
 
-export const MobileRegionSelector: React.FC<MobileRegionSelectorProps> = ({ onSelectRegion, onOpenGlossary, onOpenAdmin, language }) => {
+export const MobileRegionSelector: React.FC<MobileRegionSelectorProps> = ({ onSelectRegion, onOpenGlossary, onOpenAdmin, onSearch, language }) => {
     const [showManifesto, setShowManifesto] = useState(false);
+    const [localSearchTerm, setLocalSearchTerm] = useState('');
     const homeIntro = getHomeIntro(language);
 
     return (
@@ -45,6 +47,38 @@ export const MobileRegionSelector: React.FC<MobileRegionSelectorProps> = ({ onSe
                         <BookOpen size={20} />
                     </button>
                 </div>
+            </div>
+
+            {/* Search Bar */}
+            <div className="relative">
+                <input
+                    type="text"
+                    placeholder={language === 'it' ? 'Cerca vino, vitigno, cantina...' : language === 'fr' ? 'Chercher vin, cépage, domaine...' : 'Search wine, grape, winery...'}
+                    value={localSearchTerm}
+                    onChange={(e) => setLocalSearchTerm(e.target.value)}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter' && localSearchTerm.trim() && onSearch) {
+                            onSearch(localSearchTerm.trim());
+                            setLocalSearchTerm('');
+                        }
+                    }}
+                    className="w-full bg-stone-900/60 backdrop-blur-md border border-[#D4AF37]/30 rounded-2xl py-4 pl-12 pr-12 text-stone-100 placeholder:text-[#D4AF37]/45 placeholder:italic focus:border-[#D4AF37]/60 focus:ring-1 focus:ring-[#D4AF37]/20 outline-none transition-all shadow-sm shadow-[#D4AF37]/10"
+                    style={{ fontSize: 'clamp(13px, 3.5vw, 16px)' }}
+                />
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-[#D4AF37]/60" size={20} />
+                {localSearchTerm && (
+                    <button
+                        onClick={() => {
+                            if (localSearchTerm.trim() && onSearch) {
+                                onSearch(localSearchTerm.trim());
+                                setLocalSearchTerm('');
+                            }
+                        }}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 text-[#D4AF37]/60 hover:text-[#D4AF37] transition-colors p-1"
+                    >
+                        <ChevronRight size={18} />
+                    </button>
+                )}
             </div>
 
             <div className="space-y-4">

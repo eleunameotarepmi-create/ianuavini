@@ -18,7 +18,7 @@ const GroupMenuPage: React.FC<GroupMenuPageProps> = ({ menu, extras, lang, onPri
     };
 
     return (
-        <div className="bg-[#fdfbf7] min-h-[1056px] w-full max-w-4xl mx-auto shadow-2xl p-12 md:p-20 relative overflow-hidden flex flex-col page-break mb-12 border border-[#e5e1da] print:px-8 print:py-8 print:min-h-0 print:h-[100vh] print:w-full print:max-w-none print:border-0 print:shadow-none print:overflow-visible print:mb-0 print:block">
+        <div className="bg-[#fdfbf7] min-h-[1056px] w-full max-w-4xl mx-auto shadow-2xl p-12 relative overflow-hidden flex flex-col page-break mb-12 border border-[#e5e1da] print:px-8 print:py-8 print:min-h-0 print:h-[100vh] print:w-full print:max-w-none print:border-0 print:shadow-none print:overflow-visible print:mb-0 print:block">
             {/* Decorative Golden Corner Elements */}
             <div className="absolute top-0 left-0 w-32 h-32 border-t-4 border-l-4 border-[#d4af37]/40 m-8 print:hidden"></div>
             <div className="absolute top-0 right-0 w-32 h-32 border-t-4 border-r-4 border-[#d4af37]/40 m-8 print:hidden"></div>
@@ -44,7 +44,7 @@ const GroupMenuPage: React.FC<GroupMenuPageProps> = ({ menu, extras, lang, onPri
                     <div className="flex justify-center mb-6 print:mb-1">
                         <img src="/assets/ianua_logo_gold_transparent.png" alt="IANUA Logo" className="w-24 h-auto print:w-16" />
                     </div>
-                    <h1 className="font-serif text-5xl md:text-6xl tracking-[0.25em] text-slate-900 mb-2 print:text-5xl print:mb-2" style={{ fontFamily: '"Cinzel", serif' }}>IANUA</h1>
+                    <h1 className="font-serif text-5xl tracking-[0.25em] text-slate-900 mb-2 print:text-5xl print:mb-2" style={{ fontFamily: '"Cinzel", serif' }}>IANUA</h1>
                     <div className="flex items-center justify-center gap-4 mb-4 print:mb-4">
                         <div className="w-16 h-[1px] bg-[#d4af37] print:w-12"></div>
                         <p className="font-serif text-lg tracking-[0.4em] text-[#b08d2b] print:text-sm print:tracking-[0.3em]" style={{ fontFamily: '"Cinzel", serif' }}>{labels[lang].proposal}</p>
@@ -68,8 +68,8 @@ const GroupMenuPage: React.FC<GroupMenuPageProps> = ({ menu, extras, lang, onPri
                         {menu.courses[lang].map((course, idx) => (
                             <div key={idx} className="relative group text-center">
                                 <p className={`font-serif leading-relaxed text-slate-700 font-light print:leading-relaxed ${course.length > 170 || course.startsWith("Sempre") || course.startsWith("Sorbet")
-                                    ? 'text-base md:text-lg print:text-sm'
-                                    : 'text-2xl md:text-3xl print:text-2xl'
+                                    ? 'text-base print:text-sm'
+                                    : 'text-2xl print:text-2xl'
                                     }`} style={{ fontFamily: '"Playfair Display", serif' }}>
                                     {course}
                                 </p>

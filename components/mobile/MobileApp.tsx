@@ -312,6 +312,11 @@ export const MobileApp: React.FC<MobileAppProps> = (props) => {
                     }}
                     onOpenGlossary={() => setMobileTab('glossary')}
                     onOpenAdmin={() => setView('admin')}
+                    onSearch={(term) => {
+                        setSearchTerm(term);
+                        setSelectedRegion(null);
+                        setMobileTab('cellar');
+                    }}
                     language={language}
                 />
             )}
@@ -359,6 +364,7 @@ export const MobileApp: React.FC<MobileAppProps> = (props) => {
                     handleSendChat={handleSendChat}
                     isTyping={isTyping}
                     language={language}
+                    onClose={() => setMobileTab('home')}
                 />
             )}
 
@@ -560,6 +566,8 @@ export const MobileApp: React.FC<MobileAppProps> = (props) => {
                         setSelectedWinery(null);
                         setSelectedWine(w);
                     }}
+                    allWineries={wineries}
+                    onSelectWinery={(w) => setSelectedWinery(w)}
                 />
             )}
         </MobileLayout>

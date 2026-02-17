@@ -1599,6 +1599,34 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
     }
   };
 
+  // --- SENSORY PROFILE HELPERS ---
+  const parseSensoryProfile = (profile: string) => {
+    if (!profile) return { colore: '', profumo: '', gusto: '' };
+
+    // Normalize newlines
+    const text = profile.replace(/\\r\\n/g, '\\n');
+
+    const cMatch = text.match(/Colore:\\s*([\\s\\S]*?)(?=\\nProfumo:|$)/i);
+    const pMatch = text.match(/Profumo:\\s*([\\s\\S]*?)(?=\\nGusto:|$)/i);
+    const gMatch = text.match(/Gusto:\\s*([\\s\\S]*?)$/i);
+
+    return {
+      colore: cMatch ? cMatch[1].trim() : '',
+      profumo: pMatch ? pMatch[1].trim() : '',
+      gusto: gMatch ? gMatch[1].trim() : ''
+    };
+  };
+
+  const updateSensoryField = (field: 'colore' | 'profumo' | 'gusto', value: string) => {
+    const current = parseSensoryProfile(wineForm.sensoryProfile || '');
+    const newParts = { ...current, [field]: value };
+
+    // Reconstruct
+    const newProfile = `Colore: ${newParts.colore}\\nProfumo: ${newParts.profumo}\\nGusto: ${newParts.gusto}`;
+    setWineForm(prev => ({ ...prev, sensoryProfile: newProfile }));
+  };
+
+
   return (
     <div className="p-4 pb-32 space-y-6 animate-in fade-in duration-500 bg-stone-950 min-h-screen">
       <div className="flex justify-between items-center px-1">
@@ -1962,8 +1990,48 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   </div>
                   <div className="p-3 space-y-2 bg-stone-950/30">
                     <textarea placeholder="Descrizione del vino..." className="admin-input h-28" value={wineForm.description} onChange={e => setWineForm({ ...wineForm, description: e.target.value })} />
-                    <textarea placeholder="Profilo sensoriale..." className="admin-input h-20" value={wineForm.sensoryProfile || ''} onChange={e => setWineForm({ ...wineForm, sensoryProfile: e.target.value })} />
+
+                    {/* STRUCTURED SENSORY PROFILE EDITOR */}
+                    <div className="space-y-2 bg-stone-900/50 p-3 rounded-xl border border-white/5">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-[10px] uppercase font-bold tracking-widest text-[#D4AF37]">Profilo Sensoriale</span>
+                        <div className="h-px flex-1 bg-white/10"></div>
+                      </div>
+
+                      <div className="grid gap-2">
+                        <div>
+                          <label className="text-[9px] uppercase text-stone-500 font-bold ml-1">Colore</label>
+                          <textarea
+                            placeholder="Rosso rubino..."
+                            className="admin-input h-12 text-sm"
+                            value={parseSensoryProfile(wineForm.sensoryProfile || '').colore}
+                            onChange={(e) => updateSensoryField('colore', e.target.value)}
+                          />
+                        </div>
+                        <div>
+                          <label className="text-[9px] uppercase text-stone-500 font-bold ml-1">Profumo</label>
+                          <textarea
+                            placeholder="Fruttato, speziato..."
+                            className="admin-input h-16 text-sm"
+                            value={parseSensoryProfile(wineForm.sensoryProfile || '').profumo}
+                            onChange={(e) => updateSensoryField('profumo', e.target.value)}
+                          />
+                        </div>
+                        <div>
+                          <label className="text-[9px] uppercase text-stone-500 font-bold ml-1">Gusto</label>
+                          <textarea
+                            placeholder="Caldo, morbido..."
+                            className="admin-input h-16 text-sm"
+                            value={parseSensoryProfile(wineForm.sensoryProfile || '').gusto}
+                            onChange={(e) => updateSensoryField('gusto', e.target.value)}
+                          />
+                        </div>
+                      </div>
+                      {/* Fallback/Raw view toggle could go here if needed, but we assume standard format now */}
+                    </div>
+
                     <textarea placeholder="Curiosità (lo sapevi che?)" className="admin-input h-16" value={wineForm.curiosity || ''} onChange={e => setWineForm({ ...wineForm, curiosity: e.target.value })} />
+
                   </div>
                 </div>
 
@@ -2165,36 +2233,34 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                                   w.grapes?.toLowerCase().includes(wineSearchTerm.toLowerCase())
                                 )
                                 .map(wine => (
-                                  <div key={wine.id} className={`flex items-center gap-2.5 pl-5 pr-3 py-2 border-t border-white/[0.03] border-l-2 ${wine.hidden ? 'border-l-red-500/40 bg-red-500/[0.03]' : 'border-l-stone-700/50 bg-stone-950/30'}`}>
-                                    {wine.image && <img src={wine.image} alt={wine.name} className="w-9 h-12 object-cover rounded-md flex-shrink-0 border border-white/10" />}
+                                  <div key={wine.id} className={`flex items-center gap-3 pl-4 pr-2 py-2.5 border-t border-white/[0.03] border-l-2 ${wine.hidden ? 'border-l-red-500/40 bg-red-500/[0.03]' : 'border-l-stone-700/50 bg-stone-950/30'}`}>
+                                    {wine.image && <img src={wine.image} alt={wine.name} className="w-10 h-14 object-contain rounded-md flex-shrink-0 bg-stone-900/60 border border-white/10 p-0.5" />}
                                     <div className="flex-1 min-w-0">
-                                      <p className="text-[13px] text-stone-300 leading-tight truncate" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}>{wine.name}</p>
-                                      <p className="text-[8px] text-stone-600 uppercase truncate">{wine.grapes}</p>
+                                      <p className="text-[13px] text-stone-200 leading-tight truncate" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}>{wine.name}</p>
+                                      <p className="text-[10px] text-stone-500 uppercase mt-0.5 truncate" style={{ fontFamily: "'Lato', sans-serif", letterSpacing: '0.05em' }}>{wine.grapes}</p>
                                     </div>
-                                    <div className="flex items-center gap-0 flex-shrink-0">
+                                    <div className="flex items-center gap-0.5 flex-shrink-0">
                                       {/* Primary: Edit */}
                                       <button
                                         onClick={() => { setWineForm(wine); setEditingId(wine.id); setEditingContext('wine'); lastScrollPos.current = window.scrollY; }}
-                                        className="p-1.5 text-[#D4AF37]/50 hover:text-[#D4AF37] rounded-lg transition-colors"
+                                        className="p-2 text-[#D4AF37]/70 hover:text-[#D4AF37] rounded-lg transition-colors"
                                       >
-                                        <Edit2 size={13} />
+                                        <Edit2 size={15} />
                                       </button>
-                                      {/* Secondary: Hide + Delete — subtle */}
-                                      <div className="flex items-center gap-0 opacity-40 hover:opacity-100 transition-opacity">
-                                        <button
-                                          onClick={() => onUpdateWine({ ...wine, hidden: !wine.hidden })}
-                                          className={`p-1 rounded transition-colors ${wine.hidden ? 'text-green-500 opacity-100' : 'text-stone-500 hover:text-orange-400'}`}
-                                          title={wine.hidden ? 'Rimetti in carta' : 'Nascondi'}
-                                        >
-                                          {wine.hidden ? <Eye size={11} /> : <EyeOff size={11} />}
-                                        </button>
-                                        <button
-                                          onClick={() => { if (confirm(`Eliminare "${wine.name}"?`)) onDeleteWine(wine.id); }}
-                                          className="p-1 text-stone-600 hover:text-red-400 rounded transition-colors"
-                                        >
-                                          <Trash2 size={11} />
-                                        </button>
-                                      </div>
+                                      {/* Secondary: Hide + Delete */}
+                                      <button
+                                        onClick={() => onUpdateWine({ ...wine, hidden: !wine.hidden })}
+                                        className={`p-1.5 rounded transition-colors ${wine.hidden ? 'text-green-500' : 'text-stone-500 hover:text-orange-400'}`}
+                                        title={wine.hidden ? 'Rimetti in carta' : 'Nascondi'}
+                                      >
+                                        {wine.hidden ? <Eye size={13} /> : <EyeOff size={13} />}
+                                      </button>
+                                      <button
+                                        onClick={() => { if (confirm(`Eliminare "${wine.name}"?`)) onDeleteWine(wine.id); }}
+                                        className="p-1.5 text-stone-600 hover:text-red-400 rounded transition-colors"
+                                      >
+                                        <Trash2 size={13} />
+                                      </button>
                                     </div>
                                   </div>
                                 ))
@@ -2219,8 +2285,8 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
           }
 
           {/* Footer vineyard image */}
-          <div className="mt-8 rounded-2xl overflow-hidden">
-            <img src="/assets/desktop_bg.jpg" alt="" className="w-full object-cover" style={{ height: '220px' }} />
+          <div className="mt-10 rounded-2xl overflow-hidden bg-stone-950">
+            <img src="/assets/desktop_bg.jpg" alt="" className="w-full object-contain" style={{ maxHeight: '180px' }} />
           </div>
         </div >
       )
@@ -2771,7 +2837,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
               {/* Model config footer */}
               <div className="px-6 py-4 bg-stone-950/50 border-t border-white/5">
                 <p className="text-[10px] font-bold text-stone-500 uppercase tracking-wider mb-3">Modelli attivi</p>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                <div className="grid grid-cols-1 gap-2">
                   <select value={selectedGeminiModel} onChange={e => setSelectedGeminiModel(e.target.value)}
                     className="bg-stone-800 border border-white/10 rounded-lg px-3 py-2 text-stone-300 text-xs font-bold">
                     {geminiModels.map(m => <option key={m.id} value={m.id}>🔮 {m.name}</option>)}
@@ -3054,7 +3120,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   >
                     {/* Preview Header */}
                     <div className="h-24 w-full relative overflow-hidden">
-                      <div className="absolute inset-0" style={{ backgroundColor: theme.colors.background }}></div>
+                      <div className="fixed inset-0" style={{ backgroundColor: theme.colors.background }}></div>
                       <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/20 to-transparent"></div>
                       <div className="relative z-10 p-6 flex justify-between items-center">
                         <span className={`text-2xl font-bold`} style={{ fontFamily: theme.fonts.heading, color: theme.colors.text }}>
